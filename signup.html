@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <style>
+        table,
+        td,
+        th {
+            text-align: center;
+            border: 3px solid black;
+            border-collapse: collapse;
+            padding: 10px;
+        }
+
+        .center {
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+    <title>signup</title>
+</head>
+
+<body>
+    <form>
+        <table class="center">
+            <tr>
+                <td><label for="firstName">First Name</label></td>
+                <td><input type="text" id="firstName" name="firstName"></td>
+            </tr>
+            <tr>
+                <td><label for="lastName">Last Name</label></td>
+                <td><input type="text" id="lastName" name="lastName"></td>
+            </tr>
+            <tr>
+                <td>Gender</td>
+                <td>
+                    <input type="radio" id="male" name="gender">
+                    <label for="male">Male</label>
+                    <input type="radio" id="female" name="gender">
+                    <label for="female">Female</label>
+                    <input type="radio" id="other" name="gender">
+                    <label for="other">Other</label>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="aadhaar">Aadhaar</label></td>
+                <td><input type="number" min="1000000000000000" max="9999999999999999" id="aadhaar"></td>
+            </tr>
+            <tr>
+                <td><label for="dOB">Date Of Birth</label></td>
+                <td><input type="date" id="dOB"></td>
+            </tr>
+            <tr>
+                <td><label for="pincode">Pincode</label></td>
+                <td><input type="number" id="pincode" min="100000" max="999999"></td>
+            </tr>
+            <tr>
+                <td><label for="phoneNumber">Phone Number</label></td>
+                <td><input type="number" id="phoneNumber" min="1000000000" max="9999999999"></td>
+            </tr>
+            <tr>
+                <td><label for="password">Password</label></td>
+                <td><input type="password" id="password" minlength="8"></td>
+            </tr>
+            <tr>
+                <td><label for="repeatPassword">Repeat Password</label></td>
+                <td><input type="password" id="repeatPassword" minlength="8"></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" id="submit" value="Signup"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+
+</html>
