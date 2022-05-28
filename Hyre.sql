@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 28, 2022 at 07:29 AM
+-- Generation Time: May 28, 2022 at 07:54 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.6
 
@@ -111,6 +111,59 @@ CREATE TABLE `job` (
   `workerRating` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `maid`
+--
+
+CREATE TABLE `maid` (
+  `workerID` varchar(32) NOT NULL,
+  `hourlyCharge` int(11) NOT NULL,
+  `description` varchar(500) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `painter`
+--
+
+CREATE TABLE `painter` (
+  `workerID` varchar(32) NOT NULL,
+  `paintType` varchar(200) NOT NULL,
+  `basicPay` float NOT NULL,
+  `costPerSqft` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `report`
+--
+
+CREATE TABLE `report` (
+  `reporterID` varchar(32) NOT NULL,
+  `reportedID` varchar(32) NOT NULL,
+  `type` varchar(32) NOT NULL,
+  `description` varchar(1000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `worker`
+--
+
+CREATE TABLE `worker` (
+  `workerID` varchar(32) NOT NULL,
+  `workingHours` varchar(15) NOT NULL,
+  `experience` tinyint(11) NOT NULL,
+  `photo` blob NOT NULL,
+  `reputationCount` int(11) NOT NULL,
+  `averageRating` smallint(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 --
 -- Indexes for dumped tables
 --
@@ -137,6 +190,18 @@ ALTER TABLE `client`
 -- Indexes for table `cook`
 --
 ALTER TABLE `cook`
+  ADD PRIMARY KEY (`workerID`);
+
+--
+-- Indexes for table `maid`
+--
+ALTER TABLE `maid`
+  ADD PRIMARY KEY (`workerID`);
+
+--
+-- Indexes for table `worker`
+--
+ALTER TABLE `worker`
   ADD PRIMARY KEY (`workerID`);
 COMMIT;
 
