@@ -21,6 +21,8 @@ if ( isset($_POST['submit'])){
         $userType = $row['userType'] ;
         $name=$row['name'];
 
+        
+
         //$em_database = $row['Email'] ; 
         //$CollegeID = $row['CollegeID'] ; 
         //$Password1 = $row['Password1'] ; 

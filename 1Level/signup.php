@@ -50,13 +50,14 @@ if( isset($_POST['submit'])){ //Checking if the form is submitted.
       
     $insert = "INSERT INTO account(name,phoneNumber,gender,dOB,pincode,aadhaar,password,userType,ID,accountStatus,reportCount) VALUES ('$fname','$phoneNumber','$gender','$dOB','$pincode','$aadhaar','$pwd1','$userType','$ID',0,0)";
 
-    if ($conn->query($insert)) { 
+    if ($conn->query($insert)){ 
 
       if( $userType == "C" ){
         $conn->query("INSERT INTO client( clientID) values('$ID') ") ;
       }
       else{
-        $conn->query("INSERT INTO worker( workerID ) values('$ID') ") ;
+        $conn->query("INSERT INTO worker workerID values('$ID',) ") ;
+
 
       }
       echo "<script>alert('Account successfully created. Click Ok to login.')";
