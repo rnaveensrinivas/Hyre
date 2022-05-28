@@ -1,3 +1,35 @@
+<?php
+
+session_start() ; 
+include 'config.php' ; 
+
+// Displaying student main lobby
+if( $_SESSION['userType'] == "W"){ 
+    echo "Welcome worker." ;
+    /*
+    //To get the student table name. 
+    $tablename = $_SESSION['CollegeID'] ; 
+    $tablename = "S" . $tablename ; 
+    $_SESSION['studenttablename'] = $tablename ; 
+
+    //For displaying all the teams they have enrolled in. 
+    $selectAllTeamNames = "SELECT * FROM $tablename " ; 
+    if ( $result = mysqli_query( $conn, $selectAllTeamNames ) ) { 
+        while ( $row = mysqli_fetch_assoc($result) ) { 
+            $teams = $row['TeamName'] ; 
+            $PrintTeamName = substr($teams,0,-11) ;
+            echo "<h3>Team : $PrintTeamName "; 
+            echo "<a href='teams.php?TeamName=$teams' id='submit-button'><button> Join </button></a></h3>" ;
+            //Joining a specific team page. And we are passing the team name using GET to that teams page.
+        }
+    }
+    else{ 
+        //echo "<script>alert('You have to join a new team.')</script>" ; 
+    }
+    */
+    //Joining team below. 
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -53,37 +85,7 @@
 </div>
 
 
-<?php
 
-session_start() ; 
-include 'config.php' ; 
-
-// Displaying student main lobby
-if( $_SESSION['userType'] == "W"){ 
-    echo "Welcome worker." ;
-    /*
-    //To get the student table name. 
-    $tablename = $_SESSION['CollegeID'] ; 
-    $tablename = "S" . $tablename ; 
-    $_SESSION['studenttablename'] = $tablename ; 
-
-    //For displaying all the teams they have enrolled in. 
-    $selectAllTeamNames = "SELECT * FROM $tablename " ; 
-    if ( $result = mysqli_query( $conn, $selectAllTeamNames ) ) { 
-        while ( $row = mysqli_fetch_assoc($result) ) { 
-            $teams = $row['TeamName'] ; 
-            $PrintTeamName = substr($teams,0,-11) ;
-            echo "<h3>Team : $PrintTeamName "; 
-            echo "<a href='teams.php?TeamName=$teams' id='submit-button'><button> Join </button></a></h3>" ;
-            //Joining a specific team page. And we are passing the team name using GET to that teams page.
-        }
-    }
-    else{ 
-        //echo "<script>alert('You have to join a new team.')</script>" ; 
-    }
-    */
-    //Joining team below. 
-?>
 
     <!-- <button onclick="location.href='jointeam.php'" id="submit-button">Join Team</button> -->
 
