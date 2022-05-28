@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Eduvate</title>
+            <title>hyre</title>
         <link rel="stylesheet" type="text/css" href="1Level/style2.css">
     </head>
 
@@ -11,7 +11,7 @@
         <button type="button" onclick="location.href='logout.php'" name="Logout" id="submit-button" style="background-color: white; color:rgb(95, 108, 255);">Sign Out</button>
         </div>
         <div class="form">
-            <h2>Welcome to your online classroom</h2>
+            <h2>Welcome to home Page.</h2>
 
 <?php
 
@@ -19,8 +19,9 @@ session_start() ;
 include 'config.php' ; 
 
 // Displaying student main lobby
-if( $_SESSION['Category'] == "Student"){ 
-
+if( $_SESSION['userType'] == "W"){ 
+    echo "Welcome worker." ;
+    /*
     //To get the student table name. 
     $tablename = $_SESSION['CollegeID'] ; 
     $tablename = "S" . $tablename ; 
@@ -40,17 +41,19 @@ if( $_SESSION['Category'] == "Student"){
     else{ 
         //echo "<script>alert('You have to join a new team.')</script>" ; 
     }
-
+    */
     //Joining team below. 
 ?>
 
-    <button onclick="location.href='jointeam.php'" id="submit-button">Join Team</button>
+    <!-- <button onclick="location.href='jointeam.php'" id="submit-button">Join Team</button> -->
 
 <?php
 
 }   // Displaying teacher main lobby
-else if( $_SESSION['Category'] == "Teacher"){ 
+else if( $_SESSION['userType'] == "C"){ 
       
+    echo "Welcome client" ;
+    /*
     $CollegeID  = $_SESSION['CollegeID'] ; 
 
     // Trying to display all the teams teacher has created.
@@ -65,9 +68,10 @@ else if( $_SESSION['Category'] == "Teacher"){
         }
     }
     //creating team below. 
+    */
 ?>
 
-    <button onclick="location.href='createteam.php'" id='submit-button'>Create Team</a></button>
+    <!-- <button onclick="location.href='createteam.php'" id='submit-button'>Create Team</a></button> -->
 
 <?php
 

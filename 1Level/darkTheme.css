@@ -1,0 +1,131 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+h2 {
+    font-weight: 400;
+    margin-bottom: 35px;
+    color: #595959;
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+    margin-bottom: 10px;
+}
+h1 {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+}
+
+
+body {
+    background-color: rgb(17, 17, 17);
+ }
+ .form {
+     margin: auto; 
+     /*to center a div element in the page, always say margin auto*/
+     padding-left: 50px;
+     padding-right: 50px;
+     padding-bottom: 50px;
+     padding-top: 30px;
+     background-color: white;
+     min-height: xxx;
+     overflow: hidden;
+     /*lines 30 & 31 for div element to automatically adjust height
+     according to content inside the div tag*/
+     width: 40%;
+     border-radius: 15px;
+     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 30px 0 rgba(0,0,0,0.2);
+     /*gives the shadow effect of the div element*/
+     font-family: "Poppins", sans-serif;
+     line-height: 180%; /*the spacing between the two lines */
+     color: rgb(112, 112, 112);
+     font-size: 17px;
+ }
+ input {
+     border-radius: 7px;
+     width: 100%;
+     height: 40px;
+     border: 2px solid rgb(213, 213, 213);
+     font-family: "Poppins", sans-serif;
+     color: rgb(112, 112, 112);
+     margin: auto;
+     display: block; /*lines 41 and 42 align the input fields in the center*/
+
+ }
+ 
+ h3 {
+     text-align: center;
+     color: rgb(112, 112, 112);
+ }
+
+ input:focus { /*removes the automatic blue highlight*/
+     outline: none;
+     border-color:#91D6FF ;
+     box-shadow: 0 0 5px #91D6FF;
+ }
+ button , .button{
+     font-size: 17px;
+     padding: 15px;
+     top:50%;
+     background-color: rgb(17, 17, 17);
+     color: white;
+     border: none;
+     border-radius: 5px;
+     box-shadow: 0 4px 5px 0 rgba(0,0,0,0.2), 0 5px 5px 0 rgba(0,0,0,0.1);
+     font-family: "Poppins", sans-serif;
+     color: rgb(255, 255, 255);
+ }
+
+ ::placeholder {
+     color: rgb(198, 198, 198);
+ }
+
+ #cap {
+     font-size: 17px;
+     padding: 5px;
+     box-shadow: 0 4px 4px 0 rgba(0,0,0,0.1), 0 4px 4px 0 rgba(0,0,0,0.1);
+     width: 100%;
+     margin-bottom: 10px;
+ }
+ #submit-button {
+     width: 100%;
+}
+p {
+    color: rgb(112, 112, 112);
+    text-align: center;
+    font-size: 15px;
+    line-height: 15px;
+}
+* {/*to set the captcha button to same width as the input field*/
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+button {
+    transition-duration: 0.4s;
+  }
+  
+button:hover {
+    background-color: #3c52b6;
+    color: rgb(255, 255, 255);
+}
+.searchBox{
+  background-image:url('captchabg.jpeg');
+  background-size: 100%; /*sets the background image size to full*/
+  background-repeat:no-repeat;
+  padding-left:20px;
+  text-align:center; 
+  margin-bottom:8px; 
+  font-size:25px;
+  color: black;
+}
+input[type=radio] {
+    width: 15px;
+    height: 15px;
+    /*do not use size; use width and height*/
+    display: inline;
+}
+
+.logout{
+    width:10%;
+    position: fixed;
+    top:2px;
+    right: 0;
+}

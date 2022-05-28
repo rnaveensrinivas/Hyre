@@ -3,21 +3,21 @@ include '../config.php';
 
 if( isset($_POST['submit'])){ //Checking if the form is submitted. 
 
-  $em=$_POST["em"];
-  $uid=$_POST["uid"];
-  $pwd1=$_POST["pwd1"]; 
-  $pwd2=$_POST["pwd2"];
+  $phoneNumber = $_POST["phoneNumber"];
+  $aadhaar = $_POST["aadhaar"];
+  $pwd1 = $_POST["pwd1"]; 
+  $pwd2 = $_POST["pwd2"];
 
-  $checkMailIfExists = "SELECT * FROM users WHERE Email = '$em'" ; //Checking if email already exists. 
-  $checkCollegeIDIfExists = "SELECT * FROM users WHERE CollegeID = '$uid'" ; //Checking if College ID already exists. 
-  $mailResult = mysqli_query($conn , $checkMailIfExists) ; 
-  $collegeIDResult =  mysqli_query($conn , $checkCollegeIDIfExists) ; 
+  $checkPhoneNumberIfExists = "SELECT * FROM account WHERE phoneNumber = '$phoneNumber'" ; //Checking if phone already exists. 
+  $checkAadhaarIDIfExists = "SELECT * FROM account WHERE aadhaar = '$aadhaar'" ; //Checking if aadhaar ID already exists. 
+  $phoneNumberResult = mysqli_query($conn , $checkPhoneNumberIfExists) ; 
+  $aadhaarIDResult =  mysqli_query($conn , $checkAadhaarIDIfExists) ; 
 
 
-  if( $mailResult->fetch_assoc()){
+  if( $phoneNumberResult->fetch_assoc()){
     echo "<script>alert('This Email already exists. Go to login page.')</script>" ; 
   }
-  else if( $collegeIDResult->fetch_assoc()){
+  else if( $aadhaarIDResult->fetch_assoc()){
     echo "<script>alert('This College Id already exists. Go to login page.')</script>" ; 
   }
   else if( $pwd1 != $pwd2 ){ 
@@ -27,26 +27,32 @@ if( isset($_POST['submit'])){ //Checking if the form is submitted.
 
     //Getting rest of the details here. 
     $fname=$_POST["fname"];
-    $col=$_POST["col"];
-    $categ=$_POST["categ"];
+    $gender=$_POST["gender"] ;
+    $dOB=$_POST["dOB"];
+    $userType=$_POST["userType"];
+    $pincode=$_POST["pincode"];
 
     //sanitize form data. - removes all illegal form data.
-    $em= $conn->real_escape_string($em);
+    $phoneNumber= $conn->real_escape_string($phoneNumber);
     $fname=$conn->real_escape_string($fname);
-    $col=$conn->real_escape_string($col);
-    $categ=$conn->real_escape_string($categ);
-    $uid=$conn->real_escape_string($uid);
+    $aadhaar=$conn->real_escape_string($aadhaar);
+    $gender=$conn->real_escape_string($gender);
+    $userType=$conn->real_escape_string($userType);
+    $pincode=$conn->real_escape_string($pincode);
+    $dOB=$conn->real_escape_string($dOB);
     $pwd1=$conn->real_escape_string($pwd1); 
       
     //encrypting the password. 
     $pwd1 = md5($pwd1) ; //md5() is an encrypting function. 
 
-    //generate Vkey
-    $Vkey = md5(time().$fname) ; // based on timestamp.  
+    //generate ID
+    $ID = md5($aadhaar) ; 
       
-    $insert = "INSERT INTO Users (Email,FullName,College,Category,CollegeID,Password1,Vkey) VALUES ('$em','$fname','$col','$categ','$uid','$pwd1','$Vkey')";
+    $insert = "INSERT INTO account(name,phoneNumber,gender,dOB,pincode,aadhaar,password,userType,ID,accountStatus,reportCount) VALUES ('$fname','$phoneNumber','$gender','$dOB','$pincode','$aadhaar','$pwd1','$userType','$ID',0,0)";
 
     if ($conn->query($insert)) { 
+      echo "<script>alert('Account successfully created. Click Ok to login.')";
+      /*
       //Sending Email Verification.
     
       $to = $em ; 
@@ -58,8 +64,9 @@ if( isset($_POST['submit'])){ //Checking if the form is submitted.
       $headers .= "Content-type:text/html;charset=UTF-8". "\r\n" ; 
 
       mail($to , $subject , $message, $headers) ; 
-
-      header('location:thankyou.php?Status=Sent');//Where do you want to send them to after verification. 
+      */
+      header('location:thankyou.php?Status=success');//Where do you want to send them to after verification. 
+    
     }  
   }
   $conn->close();
@@ -72,7 +79,7 @@ if( isset($_POST['submit'])){ //Checking if the form is submitted.
 <html>
   <head>
     <title>Signup</title>
-    <link rel="stylesheet" type="text/css" href="style2.css">
+    <link rel="stylesheet" type="text/css" href="darkTheme.css">
     <script src="validation.js"></script>
   </head>
 
@@ -81,13 +88,15 @@ if( isset($_POST['submit'])){ //Checking if the form is submitted.
     <form action="" method="POST" autocomplete="off" >
       <div class="form">
 
-        <h2>A New Pedagogy Awaits!</h2>
-        <p>One account to start your Eduvation journey.</p>
+        <h2>(to be filled)</h2>
+        <p>(to be filled)</p>
         
+        <!--
         <div class="email">
           <label for="em">E-mail</label><br>
           <input type = "email" id="em" name="em" required placeholder="abcd@gmail.com"><br>
         </div>
+        -->
             
         <div class="fname">
           <label for="fname">Full Name</label><br>
@@ -95,25 +104,49 @@ if( isset($_POST['submit'])){ //Checking if the form is submitted.
         </div>
 
            
-        <label for="col">College</label><br>
-        <input type = "text" id="col" name="col"placeholder="Eg: College Of Engineering, Guindy"><br>
+        <label for="phoneNumber">Phone Number</label><br>
+        <input type = "text" id="phoneNumber" name="phoneNumber" placeholder="Eg: 7332809723"><br>
         
         <div style="text-align:center; padding:10px;">
-          Choose:
+          Gender:
+          <div style="padding:5px; display:inline">
+            <input type="radio" name="gender" id="male" value="M">
+            <label for='male'>Male</label>
+          </div>
+          
+          <div style="padding:5px; display:inline">
+            <input type="radio" name="gender" id="female" value="F">
+            <label for='female'>Female</label>
+          </div>
+
+          <div style="padding:5px; display:inline">
+            <input type="radio" name="gender" id="other" value="O">
+            <label for='other'>Other</label><br>
+          </div>
+
+        </div>
+
+        <div style="text-align:center; padding:10px;">
+          User Type:
           <div style="padding:10px; display:inline">
-            <input type="radio" name="categ" id="student" value="Student">
-            <label for='student'>Student</label>
+            <input type="radio" name="userType" id="worker" value="W">
+            <label for='worker'>Worker</label>
           </div>
           
           <div style="padding:10px; display:inline">
-            <input type="radio" name="categ" id="teacher" value="Teacher">
-            <label for='teacher'>Teacher</label><br>
+            <input type="radio" name="userType" id="client" value="C">
+            <label for='client'>Client</label><br>
           </div>
         </div>
             
+        <label for="dOB">Date Of Birth</label><br>
+        <input type="date" id="dOB" name="dOB"><br>
+
+        <label for="pincode">Pincode</label><br>
+        <input type="number" id="pincode" name="pincode" min="100000" max="999999" placeholder="Eg: 600025"><br>
     
-        <label for="uid">College ID</label><br>
-        <input type="number" id="uid" name="uid" min="1000000000" max="9999999999" placeholder="1234567890"><br>
+        <label for="aadhaar">Aadhaar ID</label><br>
+        <input type="number" id="aadhaar" name="aadhaar" min="1000000000000000" max="9999999999999999" placeholder="Eg: 2567776585865650"><br>
 
         <label for="pwd1">Password</label><br>
         <input type="password" id="pwd1" name="pwd1"  minlength="8" pattern="[0-9a-fA-F!@#$%^&*_-.\|/><,';:]" placeholder="Must have atleast 8 characters"><br>

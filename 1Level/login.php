@@ -6,34 +6,41 @@ include '../config.php';
 if ( isset($_POST['submit'])){ 
     //Getting the form data.
 
-    $em = $conn->real_escape_string($_POST["em"]) ; // Sanitizing upon arrival. 
+    $phoneNumber = $conn->real_escape_string($_POST["phoneNumber"]) ; // Sanitizing upon arrival. 
     $pwd1 = $conn->real_escape_string($_POST["pwd1"]) ;
     $pwd1 = md5($pwd1); 
 
     //query the database. 
-    $resultSet = $conn->query("SELECT * FROM users WHERE Email = '$em' AND Password1 = '$pwd1' LIMIT 1") ; 
+    $resultSet = $conn->query("SELECT * FROM account WHERE phoneNumber = '$phoneNumber' AND password = '$pwd1' LIMIT 1") ; 
     
     if( $resultSet->num_rows ){ 
         //Process Login. 
         $row = $resultSet->fetch_assoc() ; 
-        $verified = $row['Verified'] ; 
-        $em_database = $row['Email'] ; 
-        $CollegeID = $row['CollegeID'] ; 
-        $Password1 = $row['Password1'] ; 
-        $createdDate = $row['CreatedDate'] ;
-        $Category = $row['Category'] ; 
-        $FullName = $row['FullName'] ;  
+        $accountStatus = $row['accountStatus'] ; 
+        $ID = $row['ID'] ; 
+        $userType = $row['userType'] ;
 
-        $_SESSION['CollegeID'] = $CollegeID ;
-        $_SESSION['Password1'] = $Password1 ; 
-        $_SESSION['FullName'] = $FullName ;   
-        $_SESSION['Category'] = $Category ; 
+        //$em_database = $row['Email'] ; 
+        //$CollegeID = $row['CollegeID'] ; 
+        //$Password1 = $row['Password1'] ; 
+        //$createdDate = $row['CreatedDate'] ;
+        //$Category = $row['Category'] ; 
+        //$FullName = $row['FullName'] ;  
+
+        //$_SESSION['CollegeID'] = $CollegeID ;
+        //$_SESSION['Password1'] = $Password1 ; 
+        //$_SESSION['FullName'] = $FullName ;   
+        //$_SESSION['Category'] = $Category ;
+        $_SESSION['ID'] = $ID ; 
+        $_SESSION['userType'] = $userType ;
+
     
-        if ( $verified ){ // if it is a verifed account.
+        if ( $accountStatus ){ // if it is a verifed account.
             header('location:../mainlobby.php');
         }
         else{ 
-            $error .= "This account needs to be verified.<br>Mail: '$em_database'<br>Date Created : '$createdDate'. "; 
+            //$error .= "This account needs to be verified.<br>Mail: '$em_database'<br>Date Created : '$createdDate'. "; 
+            $error .= "This account needs to be verified.<br>";
         }
     }
     else{
@@ -48,7 +55,7 @@ $conn->close() ;
 
     <head>
         <title>Login</title>
-        <link rel="stylesheet" type="text/css" href="style2.css">
+        <link rel="stylesheet" type="text/css" href="darkTheme.css">
         <script src="validation.js"></script>
     </head>
 
@@ -56,19 +63,19 @@ $conn->close() ;
         <form  action="" method="POST" autocomplete="off">
             <div class="form">
 
-                <h2>Where Have You Been?</h2>
-                <p>Let's continue eduvating!</p>
+                <h2>(to be filled)</h2>
+                <p>(to be filled)</p>
 
                 <p style="color:red; line-height: 120%; "><?php echo $error ; ?></p>
             
                 <div class="email">
-                    <label for="em">E-mail</label><br>
-                    <input type = "email" id="em" name="em" required><br>
+                    <label for="phoneNumber">Phone Number</label><br>
+                    <input type = "number" id="phoneNumber" name="phoneNumber" required><br>
                 </div>
       
                 <label for="pwd1">Password</label><br>
                 <input type="password" id="pwd1" name="pwd1" minlength="8" pattern="[0-9a-fA-F!@#$%^&*_-.]" required >
-                <a href="resetpassword.php" style="text-decoration:none; font-size: 15px;">Forgot Password?</a><br><br>
+                <!--<a href="resetpassword.php" style="text-decoration:none; font-size: 15px;">Forgot Password?</a><br><br> -->
 
                 <button type="button" onclick="newCaptcha()" id="cap" title="Give a new Captcha.">New Captcha</button>
                 <input type="text"  id="captcha" class="searchBox" readonly>

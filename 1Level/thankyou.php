@@ -1,7 +1,7 @@
 <?php
 
-if($_GET['Status'] != "Sent"){ 
-    header("location:../index.html") ; 
+if($_GET['Status'] != "success"){ 
+    header("location: ../index.html") ; 
 }
 
 ?>
@@ -10,13 +10,13 @@ if($_GET['Status'] != "Sent"){
 <html>
     <head>
         <title>Thank You</title>
-        <link href="style2.css" rel="stylesheet" type="text/css">
+        <link href="darkTheme.css" rel="stylesheet" type="text/css">
     </head>
     <body>
 
         <div style="text-align:center; margin:5%">
-            <h1 style="color:white;">Thank you. Go check your inbox.</h1>
-            <img src="envelope.png" width="20%" >
+            <h1 style="color:white;">Thank you. Go Login Now.</h1>
+            <input type="button" id="submit-button" onclick="location.href='login.php';" value="Login" />
         </div>
         
     </body>
