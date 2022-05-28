@@ -15,10 +15,10 @@ if( isset($_POST['submit'])){ //Checking if the form is submitted.
 
 
   if( $phoneNumberResult->fetch_assoc()){
-    echo "<script>alert('This Email already exists. Go to login page.')</script>" ; 
+    echo "<script>alert('This Phone Number already exists. Go to login page.')</script>" ; 
   }
   else if( $aadhaarIDResult->fetch_assoc()){
-    echo "<script>alert('This College Id already exists. Go to login page.')</script>" ; 
+    echo "<script>alert('This Aadhaar ID Id already exists. Go to login page.')</script>" ; 
   }
   else if( $pwd1 != $pwd2 ){ 
     echo "<script>alert('Passwords do not match.')</script>";

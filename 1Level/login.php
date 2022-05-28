@@ -19,6 +19,7 @@ if ( isset($_POST['submit'])){
         $accountStatus = $row['accountStatus'] ; 
         $ID = $row['ID'] ; 
         $userType = $row['userType'] ;
+        $name=$row['name'];
 
         //$em_database = $row['Email'] ; 
         //$CollegeID = $row['CollegeID'] ; 
@@ -31,6 +32,7 @@ if ( isset($_POST['submit'])){
         //$_SESSION['Password1'] = $Password1 ; 
         //$_SESSION['FullName'] = $FullName ;   
         //$_SESSION['Category'] = $Category ;
+        $_SESSION['name']=$name;
         $_SESSION['ID'] = $ID ; 
         $_SESSION['userType'] = $userType ;
 
