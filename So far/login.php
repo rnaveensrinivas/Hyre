@@ -27,6 +27,7 @@ if ( isset($_POST['login'])){
         $userType = $row['userType'] ;
 
         $_SESSION['userType'] = $userType ; 
+
         /*
         $_SESSION['CollegeID'] = $CollegeID ;
         $_SESSION['Password1'] = $Password1 ; 
@@ -44,6 +45,7 @@ if ( isset($_POST['login'])){
         }
     }
     else{
+
         $error .= "Invalid Username or password. Try Again. " ; 
     }
 }
