@@ -97,32 +97,32 @@ else{
 
         <label for="workType">Job</label><br>
         <select name="workType" id="workType" required>
-        <option value="Assault">Assault</option>
-        <option value="Money Related">Money Related</option>
+        <option value="Carpentry">Carpenter</option>
+        <option value="Cook">Cook</option>
         <option value="Other">Other</option>
         </select><br>
 
-        <label for="date">Date</label><br>
+        <label for="date">Date of Job</label><br>
         <input type="date" id="date" name="date" reqired><br>
 
-        <label for="time">Time</label><br>
+        <label for="time">Time of Job</label><br>
         <input type = "text" id="time" name="time" placeholder="Eg: 3pm to -5pm" required> <br>
 
-        <label for="description">Wrok description</label><br>
-        <textarea id="description" name="description" required rows="10" cols="40" ></textarea>
+        <label for="description">Work description</label><br>
+        <textarea id="description" name="description" required rows="10" cols="40" ></textarea><br>
            
         <label for="pincode">Pincode</label><br>
-        <input type = "text" id="pincode" name="pincode" placeholder="Eg:600025" required> <br>
+        <input type="number" id="pincode" name="pincode" min="100000" max="999999" placeholder="Eg: 600025"><br>
 
-        <label for="landmark">Time</label><br>
+        <label for="landmark">Landmark</label><br>
         <input type = "text" id="landmark" name="landmark" placeholder="Eg: Opposite to Copper Kitchen" required> <br>
 
         <button type="button" onclick="newCaptcha()" id="cap" title="Give a new Captcha.">New Captcha</button>
         <input type="text"  id="captcha" class="searchBox" readonly>
         <input type="text" id="enteredCaptcha" placeholder="Enter Above Captcha" style="text-align:center; font-size: 17px;"><br><br>
         
-        <button type="submit" onclick="return validCaptcha()" name="submit" id="submit-button">Create Account</button>
-        <p style="font-size :15px; " >Already a user ? <a href="login.php" style="text-decoration:none; font-size: 15px;">Login</a></p>
+        <button type="submit" onclick="return validCaptcha()" name="submit" id="submit-button">Request Worker</button>
+        
         
 
       </div> 

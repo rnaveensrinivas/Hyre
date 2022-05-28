@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: May 28, 2022 at 07:54 AM
--- Server version: 10.4.19-MariaDB
--- PHP Version: 8.0.6
+-- Host: 127.0.0.1
+-- Generation Time: May 28, 2022 at 10:57 AM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `Hyre`
+-- Database: `hyre`
 --
 
 -- --------------------------------------------------------
@@ -33,26 +33,21 @@ CREATE TABLE `account` (
   `gender` char(1) NOT NULL DEFAULT 'M',
   `dOB` date NOT NULL,
   `pincode` int(6) NOT NULL,
-  `aadhar` bigint(16) NOT NULL,
+  `aadhaar` bigint(16) NOT NULL,
   `password` varchar(32) NOT NULL,
   `userType` char(1) NOT NULL DEFAULT 'W',
   `ID` varchar(32) NOT NULL,
-  `accountStatus` tinyint(4) NOT NULL DEFAULT 0,
+  `accountStatus` tinyint(4) NOT NULL DEFAULT 1,
   `reportCount` smallint(6) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `carpenter`
+-- Dumping data for table `account`
 --
 
-CREATE TABLE `carpenter` (
-  `workerID` varchar(32) NOT NULL,
-  `woodType` varchar(100) NOT NULL,
-  `basicPay` int(11) NOT NULL,
-  `costPerKG` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+INSERT INTO `account` (`name`, `phoneNumber`, `gender`, `dOB`, `pincode`, `aadhaar`, `password`, `userType`, `ID`, `accountStatus`, `reportCount`) VALUES
+('Naveen ', 1234567890, 'M', '2022-05-05', 100000, 1000000000000000, 'c44a471bd78cc6c2fea32b9fe028d30a', 'W', 'aa7372eaa327ee4372711da7f26f73c5', 1, 0),
+('Rithvik', 1234567899, 'M', '2022-04-29', 100000, 1000000000000001, 'c44a471bd78cc6c2fea32b9fe028d30a', 'C', 'f56a9e630b931e993bc1ecdd3b0ba853', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -64,6 +59,13 @@ CREATE TABLE `client` (
   `clientID` varchar(32) NOT NULL,
   `clientRating` smallint(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `client`
+--
+
+INSERT INTO `client` (`clientID`, `clientRating`) VALUES
+('f56a9e630b931e993bc1ecdd3b0ba853', 0);
 
 -- --------------------------------------------------------
 
@@ -80,60 +82,23 @@ CREATE TABLE `comments` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cook`
---
-
-CREATE TABLE `cook` (
-  `workerID` varchar(32) NOT NULL,
-  `costPerPlate` int(11) NOT NULL,
-  `speciality` varchar(400) NOT NULL,
-  `foodPreference` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `job`
 --
 
 CREATE TABLE `job` (
+  `jobID` int(11) NOT NULL,
   `clientID` varchar(32) NOT NULL,
   `workerID` varchar(32) NOT NULL,
-  `locationNumber` varchar(50) NOT NULL,
-  `locationStreetname` varchar(50) NOT NULL,
-  `locationPincode` mediumint(6) NOT NULL,
+  `landmark` varchar(50) NOT NULL,
+  `pincode` mediumint(6) NOT NULL,
   `time` varchar(40) NOT NULL,
   `date` date NOT NULL,
+  `workType` varchar(30) NOT NULL,
   `description` varchar(500) NOT NULL,
-  `bookingStatus` tinyint(4) NOT NULL,
-  `jobStatus` tinyint(4) NOT NULL,
-  `clientRating` float NOT NULL,
-  `workerRating` float NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `maid`
---
-
-CREATE TABLE `maid` (
-  `workerID` varchar(32) NOT NULL,
-  `hourlyCharge` int(11) NOT NULL,
-  `description` varchar(500) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `painter`
---
-
-CREATE TABLE `painter` (
-  `workerID` varchar(32) NOT NULL,
-  `paintType` varchar(200) NOT NULL,
-  `basicPay` float NOT NULL,
-  `costPerSqft` float NOT NULL
+  `bookingStatus` tinyint(4) NOT NULL DEFAULT 0,
+  `jobStatus` tinyint(4) NOT NULL DEFAULT 0,
+  `clientRating` float NOT NULL DEFAULT 0,
+  `workerRating` float NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -157,12 +122,21 @@ CREATE TABLE `report` (
 
 CREATE TABLE `worker` (
   `workerID` varchar(32) NOT NULL,
-  `workingHours` varchar(15) NOT NULL,
+  `job` varchar(30) NOT NULL,
+  `workingHours` varchar(20) NOT NULL DEFAULT '9am to 6pm',
   `experience` tinyint(11) NOT NULL,
+  `paymentDetails` varchar(100) NOT NULL,
   `photo` blob NOT NULL,
   `reputationCount` int(11) NOT NULL,
   `averageRating` smallint(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `worker`
+--
+
+INSERT INTO `worker` (`workerID`, `job`, `workingHours`, `experience`, `paymentDetails`, `photo`, `reputationCount`, `averageRating`) VALUES
+('aa7372eaa327ee4372711da7f26f73c5', '', '9am to 6pm', 0, '', '', 0, 0);
 
 --
 -- Indexes for dumped tables
@@ -175,34 +149,32 @@ ALTER TABLE `account`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `carpenter`
---
-ALTER TABLE `carpenter`
-  ADD PRIMARY KEY (`workerID`);
-
---
 -- Indexes for table `client`
 --
 ALTER TABLE `client`
   ADD PRIMARY KEY (`clientID`);
 
 --
--- Indexes for table `cook`
+-- Indexes for table `job`
 --
-ALTER TABLE `cook`
-  ADD PRIMARY KEY (`workerID`);
-
---
--- Indexes for table `maid`
---
-ALTER TABLE `maid`
-  ADD PRIMARY KEY (`workerID`);
+ALTER TABLE `job`
+  ADD PRIMARY KEY (`jobID`);
 
 --
 -- Indexes for table `worker`
 --
 ALTER TABLE `worker`
   ADD PRIMARY KEY (`workerID`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `job`
+--
+ALTER TABLE `job`
+  MODIFY `jobID` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
