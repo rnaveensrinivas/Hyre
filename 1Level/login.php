@@ -35,12 +35,16 @@ if ( isset($_POST['submit'])){
         $_SESSION['userType'] = $userType ;
 
     
-        if ( $accountStatus ){ // if it is a verifed account.
+        if ( $accountStatus == 1 ){ // if it is a verifed account.
             header('location:../mainlobby.php');
+        }
+        else  if ( $accountStatus == 0 ){ 
+            //$error .= "This account needs to be verified.<br>Mail: '$em_database'<br>Date Created : '$createdDate'. "; 
+            $error .= "This account needs to be verified.<br>";
         }
         else{ 
             //$error .= "This account needs to be verified.<br>Mail: '$em_database'<br>Date Created : '$createdDate'. "; 
-            $error .= "This account needs to be verified.<br>";
+            $error .= "This account has been disabled. Go to contact page and apporach the team.<br>";
         }
     }
     else{
