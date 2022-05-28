@@ -8,6 +8,7 @@
 
     <body>
         <div class="logout">
+        <button type="button" onclick="location.href='report.php'" name="report" id="submit-button" style="background-color: white; color:rgb(95, 108, 255);">Report</button>
         <button type="button" onclick="location.href='logout.php'" name="Logout" id="submit-button" style="background-color: white; color:rgb(95, 108, 255);">Sign Out</button>
         </div>
         <div class="form">
