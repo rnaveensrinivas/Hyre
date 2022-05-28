@@ -15,40 +15,38 @@ if( $_SESSION['userType'] == "C" ){
 
         $workerID = $_POST['workerID'] ;
         
+        //we can another query here to check if the job matches with the worker.
+        //have to implement this later.
+
         $query = "SELECT * FROM worker WHERE workerID = '$workerID' " ; 
         $result = $conn->query($query) ; 
 
         if( $result->num_rows ){ // ($resultSet->num_rows != 0)
-            //If there exist a team like that, then process.
+            //If there exist a worker with that id, continue.
 
             $row = mysqli_fetch_assoc($result) ; 
-            $TeamName = $row['TeamName'] ; 
 
-            $tablename = $_SESSION['studenttablename'] ; 
+            $workerID = $_POST['workerID'] ; 
+            $workType = $_POST['workType'] ;
+            $date = $_POST['date'] ; 
+            $time = $_POST['time'] ; 
+            $description = $_POST['description'] ;
+            $pincode = $_POST['pincode'] ; 
+            $landmark = $_POST['landmark'] ; 
+            $clientID = $_SESSION['ID'] ;
 
-
-            //Going to check if the student already enrolled in that particular team or not. 
-            $query = "SELECT * FROM $tablename WHERE Keycode = '$Keycode' " ; 
+            $query = "insert into job values('$clientID', '$workerID', '$landmark' , '$pincode', '$time', '$date', '$workType', '$description', 0 , 0 , 0 , 0 )" ; 
             $result = $conn->query($query) ; 
 
-            if( $result->num_rows ){
-                //Student has already enrolled.
-                echo"<script>alert('You have already enrolled in this team channel.Redirecting to main lobby.') </script>" ; 
+            if( $result ){ 
+                echo"<script>alert('Request made successfully. Redirecting to main lobby.') </script>" ; 
                 echo"<script>document.location='mainlobby.php'</script>" ;
-            }
-            else{
-                $query = "INSERT INTO $tablename VALUES('$TeamName' , '$Keycode') " ; 
-                $result = mysqli_query($conn, $query);
 
-                if( $result ){ 
-                    echo"<script>alert('Joined team succesfully.Redirecting to main lobby.') </script>" ; 
-                    echo"<script>document.location='mainlobby.php'</script>" ;
-
-                }else{ 
-                    echo"<script>alert('Unable to join team. Try again Late.Redirecting to main lobby.')</script>" ; 
-                    echo"<script>document.location='mainlobby.php'</script>" ;
-                }   
+            }else{ 
+                echo"<script>alert('Unable to make a request. Try again Late.Redirecting to main lobby.')</script>" ; 
+                echo"<script>document.location='mainlobby.php'</script>" ;
             }  
+
         }
         else{ 
             //echo mysqli_error($conn);
@@ -68,26 +66,66 @@ else{
 ?>
 
 
+
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Reset Password</title>
-        <link rel="stylesheet" type="text/css" href="1Level/style2.css">
-    </head>
-    <body>
-        <div class="logout">
-            <button type="button" onclick="location.href='logout.php'" name="Logout" id="submit-button" style="background-color: white; color:rgb(95, 108, 255);">Sign Out</button>
+  <head>
+    <title>Request</title>
+    <link rel="stylesheet" type="text/css" href="1Level/darkTheme.css">
+    <script src="1Level/validation.js"></script>
+  </head>
+
+
+  <body onload="newCaptcha()">
+    <form action="" method="POST" autocomplete="off" >
+      <div class="form">
+
+        <h2>(to be filled)</h2>
+        <p>(to be filled)</p>
+        
+        <!--
+        <div class="email">
+          <label for="em">E-mail</label><br>
+          <input type = "email" id="em" name="em" required placeholder="abcd@gmail.com"><br>
         </div>
-        <form action="" method="POST" autocorrect="OFF">
-            <div class="form">
-                <h2>JoinTeam</h2>
-                <p style="color:red; line-height: 120%; "> <?php  echo $error ; ?> </p>
-                <div class="email">
-                <label for="Keycode">Keycode : </label><br>
-                <input type="Text" id="Keycode" name='Keycode' required ><br>
-                </div>
-                <button type="submit" name="submit" id="submit-button">Join Team</button>
-            </div> 
-        </form>
-    </body>
- </html> 
+        -->
+            
+        <div class="fname">
+          <label for="workerID">Worker ID</label><br>
+          <input type = "text" id="workerID" name="workerID" placeholder="Eg: fhsd8sfdfkj242Gsf23423" value="<?php echo $workerID?>" required> <br>
+        </div>
+
+        <label for="workType">Job</label><br>
+        <select name="workType" id="workType" required>
+        <option value="Assault">Assault</option>
+        <option value="Money Related">Money Related</option>
+        <option value="Other">Other</option>
+        </select><br>
+
+        <label for="date">Date</label><br>
+        <input type="date" id="date" name="date" reqired><br>
+
+        <label for="time">Time</label><br>
+        <input type = "text" id="time" name="time" placeholder="Eg: 3pm to -5pm" required> <br>
+
+        <label for="description">Wrok description</label><br>
+        <textarea id="description" name="description" required rows="10" cols="40" ></textarea>
+           
+        <label for="pincode">Pincode</label><br>
+        <input type = "text" id="pincode" name="pincode" placeholder="Eg:600025" required> <br>
+
+        <label for="landmark">Time</label><br>
+        <input type = "text" id="landmark" name="landmark" placeholder="Eg: Opposite to Copper Kitchen" required> <br>
+
+        <button type="button" onclick="newCaptcha()" id="cap" title="Give a new Captcha.">New Captcha</button>
+        <input type="text"  id="captcha" class="searchBox" readonly>
+        <input type="text" id="enteredCaptcha" placeholder="Enter Above Captcha" style="text-align:center; font-size: 17px;"><br><br>
+        
+        <button type="submit" onclick="return validCaptcha()" name="submit" id="submit-button">Create Account</button>
+        <p style="font-size :15px; " >Already a user ? <a href="login.php" style="text-decoration:none; font-size: 15px;">Login</a></p>
+        
+
+      </div> 
+    </form>
+  </body>
+</html>
