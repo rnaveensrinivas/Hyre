@@ -1,8 +1,61 @@
+
 <?php
 session_start() ; 
 include 'config.php' ; 
 
 if( $_SESSION['userType'] == "C" ){
+
+?>
+
+
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Search Workers</title>
+        <link rel="stylesheet" type="text/css" href="1Level/darkTheme.css">
+    </head>
+
+    <body>
+        
+        <div class="logout">
+            <button type="button" onclick="location.href='logout.php'" name="Logout" id="submit-button" style="background-color: white; color:rgb(95, 108, 255);">Sign Out</button>
+        </div>
+        <form method="POST" action="" autocomplete="off">
+            <div class="form">
+                <h2>(to be filled)</h2>
+                <p style="color:red; line-height: 120%;"> <?php echo $error ; ?></p>
+
+                <div class="email">
+                <label for="pincode">Pincode</label><br>
+                <input type="number" id="pincode" name="pincode" min="100000" max="999999" placeholder="Eg: 600025" required><br>
+                </div>
+
+                <label for="jobType">Type of job</label><br>
+                <select name="jobType" id="jobType" >
+                <option value="NULL" selected hidden>Select an Option</option>
+                <option value="Carpenter">Carpenter</option>
+                <option value="Cook">Cook</option>
+                <option value="Maid">Maid</option>
+                <option value="Painter">Painter</option>
+                </select><br>
+
+                <label for="gender">Gender</label><br>
+                <select name="gender" id="gender">
+                <option value="NULL" selected hidden>Select an Option</option>
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+                <option value="O">Other</option>
+                </select>
+                <button type="submit" name="submit" id="submit-button">Search</button>
+
+
+            </div> 
+        </form>
+<?php
+
+
+
     if(isset($_POST['submit'])){ 
 
 
@@ -10,7 +63,6 @@ if( $_SESSION['userType'] == "C" ){
         $pincode = $_POST['pincode']; 
         $gender = $_POST['gender'];
         $jobType = $_POST['jobType']; 
-        echo"$gender" ;
 
         if( $gender == "NULL"){
             if( $jobType == "NULL"){
@@ -27,22 +79,19 @@ if( $_SESSION['userType'] == "C" ){
                 $selectWorkers = "SELECT * FROM worker,account where worker.workerID=account.ID and pincode = '$pincode' and gender = '$gender' and jobType = '$jobType' ";
             }
         }
-
         if ( $result = mysqli_query( $conn, $selectWorkers ) ) { 
             while ( $row = mysqli_fetch_assoc($result) ) { 
                 $printName = $row['name'] ;
                 $printAverageRating = $row['averageRating'] ;
                 $printExperience = $row['experience'] ;
                 $workerID = $row['workerID'] ; 
+                echo "<div class='form'>" ;
                 echo "<h3>Name : $printName "; 
                 echo "<p>Average Rating : $printAverageRating<br>Experience : $printExperience</p>" ;
-        
-                echo "<a href='workerProfile.php?=$workerID' id='submit-button'><button>Worker Profile</button></a></h3>" ;
+                echo "<a href='workerProfile.php?workerID=$workerID' id='submit-button'><button>Worker Profile</button></a></h3>" ;
+                echo "</div>" ;
                 //Joining a specific team page. And we are passing the team name using GET to that teams page.
             }
-        }
-        else{ 
-            //echo "<script>alert('You have to join a new team.')</script>" ; 
         }
 
 
@@ -92,52 +141,5 @@ else{
 }
 ?>
 
-<!DOCTYPE html>
-<html>
-
-    <head>
-        <title>Search Workers</title>
-        <link rel="stylesheet" type="text/css" href="1Level/style2.css">
-    </head>
-
-    <body>
-        
-        <div class="logout">
-            <button type="button" onclick="location.href='logout.php'" name="Logout" id="submit-button" style="background-color: white; color:rgb(95, 108, 255);">Sign Out</button>
-        </div>
-        <form method="POST" action="" autocomplete="off">
-            <div class="form">
-                <h2>(to be filled)</h2>
-                <p style="color:red; line-height: 120%;"> <?php echo $error ; ?></p>
-
-                <div class="email">
-                <label for="pincode">Pincode</label><br>
-                <input type="number" id="pincode" name="pincode" min="100000" max="999999" placeholder="Eg: 600025" required><br>
-                </div>
-
-                <label for="jobType">Type of job:</label>
-                <select name="jobType" id="jobType" >
-                <option value="NULL" selected disabled hidden>Select an Option</option>
-                <option value="Carpenter">Carpenter</option>
-                <option value="Cook">Cook</option>
-                <option value="Maid">Maid</option>
-                <option value="Painter">Painter</option>
-                </select><br>
-
-                <label for="gender">Gender:</label>
-                <select name="gender" id="gender" >
-                <option value="NULL" selected disabled hidden>Select an Option</option>
-                <option value="M">Male</option>
-                <option value="F">Female</option>
-                <option value="O">Other</option>
-                </select>
-
-
-            
-
-
-                <button type="submit" name="submit" id="submit-button">Search</button>
-            </div> 
-        </form>
     </body>
  </html> 

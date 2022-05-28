@@ -2,10 +2,10 @@
 session_start() ; 
 include 'config.php' ; 
 
-if( $_SESSION['userType'] == "C" ){
+if( $_SESSION['userType'] ){
     $workerID = "" ;
-    if( isset($_GET['ID']) ){
-        $workerID = $_GET['id'] ; 
+    if( isset($_GET['workerID']) ){
+        $workerID = $_GET['workerID'] ; 
     }
     else{
         //bring in java script here with alernt and then redirect.
@@ -23,8 +23,7 @@ if( $_SESSION['userType'] == "C" ){
     $printAverageRating = $row['averageRating'] ;
     $printExperience = $row['experience'] ;
     $workerID = $row['workerID'] ; 
-    echo "<h3>Name : $printName "; 
-    echo "<p>Average Rating : $printAverageRating<br>Experience : $printExperience</p>" ;
+    
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +31,7 @@ if( $_SESSION['userType'] == "C" ){
 
     <head>
         <title>Search Workers</title>
-        <link rel="stylesheet" type="text/css" href="1Level/style2.css">
+        <link rel="stylesheet" type="text/css" href="1Level/darkTheme.css">
     </head>
 
     <body>
@@ -43,7 +42,14 @@ if( $_SESSION['userType'] == "C" ){
             <div class="form">
                 <h2>(to be filled)</h2>
                 <h3>Worker Profile below</h3>
-                
+                <?php
+                echo "<h3>Name : $printName "; 
+                echo "<p>Average Rating : $printAverageRating<br>Experience : $printExperience</p>" ;
+                if( $_SESSION['userType'] == "C" ){
+                    echo "<a href='book.php?workerID=$workerID' id='submit-button'><button>Book Request</button></a></h3>" ;
+                }
+
+                ?>
             </div> 
         
     </body>
