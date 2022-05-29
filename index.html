@@ -1,46 +1,44 @@
-
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta name="viewport" content="width=device-width,initial-scale=1">
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <!-- CSS only -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-        <link href="style.css" rel = "stylesheet">
-        <title>Hyre</title>
-    </head>
-    <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <!--navbar-expand aligns all components horizontally displayed-->
-            <a class="navbar-brand ms-4" href="">Hyre</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleButton" aria-controls="navbarToggleButton" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-            <div class="collapse navbar-collapse" id="#navbarToggleButton">
 
-            <ul class="navbar-nav px-4 ms-auto"> <!--from documentation-->
-              <li class="nav-item"><a class="nav-link" href="1Level/contact.html">Contact</a></li>
-          </ul>
-            <ul class="navbar-nav "> <!--from documentation-->
-                <li class="nav-item"><a class="nav-link" href="1Level/login.php">Login</a></li>
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="homeDarkTheme.css">
+
+    <title>Hyre</title>
+
+</head>
+
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <a href="" class="nav-logo" title="Logo.">HYRE</a>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="1Level/about.html" class="nav-link" title="Origin of the app.">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="1Level/login.php" class="nav-link" title="Take me to Login page.">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a href="1Level/signup.php" class="nav-link" title="Take me to Signup Page.">Signup</a>
+                </li>
+                <li class="nav-item">
+                    <a href="1Level/contact.html" class="nav-link" title="Reach us.">Contact</a>
+                </li>
             </ul>
-            <ul class="navbar-nav px-4"> <!--from documentation-->
-                <li class="nav-item"><a class="nav-link" href="1Level/signup.php">Signup</a></li>
-            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
             </div>
         </nav>
-           
-        <main class="px-3 text-center pt-4">
-            <div><h1 style="font-size: 100px;">Hyre.</h1></div>
-            <p class="lead">An app that connects unorganised workers to clients.</p>
-           
-           
-          </main>
-    
-    </body>
-    </html>
-      
+    </header>
+
+</body>
+<script src="homepg.js"></script>
+
+</html>
