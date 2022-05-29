@@ -1,5 +1,11 @@
 <?php
+session_start() ;
 include '../config.php';
+
+//If the user already signed in and trys to signup.
+if( isset($_SESSION['ID'])){
+  header("location: ../mainlobby.php") ;
+}
 
 if( isset($_POST['submit'])){ //Checking if the form is submitted. 
 

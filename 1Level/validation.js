@@ -1,12 +1,12 @@
 function newCaptcha() {
     var alphabets = 'abcdefghijkmnopqrstuvwxyzABCDEFGHJKMNOPQRSTUVWXYZ234567890'.split('');
 
-    var a = alphabets[Math.floor(Math.random() * 56)];
-    var b = alphabets[Math.floor(Math.random() * 56)];
-    var c = alphabets[Math.floor(Math.random() * 56)];
-    var d = alphabets[Math.floor(Math.random() * 56)];
-    var e = alphabets[Math.floor(Math.random() * 56)];
-    var f = alphabets[Math.floor(Math.random() * 56)];
+    var a = alphabets[Math.floor(Math.random() * 58)];
+    var b = alphabets[Math.floor(Math.random() * 58)];
+    var c = alphabets[Math.floor(Math.random() * 58)];
+    var d = alphabets[Math.floor(Math.random() * 58)];
+    var e = alphabets[Math.floor(Math.random() * 58)];
+    var f = alphabets[Math.floor(Math.random() * 58)];
 
     var captcha = a + b + c + d + e + f;
 

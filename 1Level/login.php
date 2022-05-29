@@ -3,6 +3,11 @@ session_start() ;
 
 include '../config.php'; 
 
+//If the user already signed in and trys to login.
+if( isset($_SESSION['ID'])){
+    header("location: ../mainlobby.php") ;
+}
+
 if ( isset($_POST['submit'])){ 
     //Getting the form data.
 
@@ -86,13 +91,13 @@ $conn->close() ;
                 <!--<a href="resetpassword.php" style="text-decoration:none; font-size: 15px;">Forgot Password?</a><br><br> -->
 
                 <button type="button" onclick="newCaptcha()" id="cap" title="Give a new Captcha.">New Captcha</button>
-                <input type="text"  id="captcha" class="searchBox" readonly>
-                <input type="text" id="enteredCaptcha" placeholder="Enter Above Captcha" style="text-align:center; font-size: 17px;"><br><br>
+                <input type="text"  id="captcha" oncopy="return false" class="searchBox" readonly>
+                <input type="text" id="enteredCaptcha" onpaste="return false" placeholder="Enter Above Captcha" style="text-align:center; font-size: 17px;"><br><br>
 
                 <!-- Below validate captcha is not working. -->
                 <button type="submit" onclick="return validCaptcha()" name="submit" id="submit-button">Login</button>
                 <p style="font-size :15px; " >New User ? <a href="signup.php" style="text-decoration:none; font-size: 15px;">Sign-Up</a></p>
-
+                <!--
                 <script>
                     function validCaptcha(){ 
                         var captcha = document.getElementById('captcha').value ; 
@@ -107,7 +112,7 @@ $conn->close() ;
                             return false ; 
                         }
                     }
-                </script>
+                </script> -->
             </div> 
         </form>
     </body>
