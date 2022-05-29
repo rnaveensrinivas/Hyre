@@ -54,7 +54,7 @@ if( isset($_POST['submit'])){ //Checking if the form is submitted.
     //generate ID
     $ID = md5($aadhaar) ; 
       
-    $insert = "INSERT INTO account(name,phoneNumber,gender,dOB,pincode,aadhaar,password,userType,ID,accountStatus,reportCount) VALUES ('$fname','$phoneNumber','$gender','$dOB','$pincode','$aadhaar','$pwd1','$userType','$ID',0,0)";
+    $insert = "INSERT INTO account(name,phoneNumber,gender,dOB,pincode,aadhaar,password,userType,ID,accountStatus,reportCount) VALUES ('$fname','$phoneNumber','$gender','$dOB','$pincode','$aadhaar','$pwd1','$userType','$ID',1,0)";
 
     if ($conn->query($insert)){ 
 
@@ -62,7 +62,7 @@ if( isset($_POST['submit'])){ //Checking if the form is submitted.
         $conn->query("INSERT INTO client( clientID) values('$ID') ") ;
       }
       else{
-        $conn->query("INSERT INTO worker workerID values('$ID',) ") ;
+        $conn->query("INSERT INTO worker(workerID) values('$ID') ") ;
 
 
       }
