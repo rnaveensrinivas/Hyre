@@ -90,7 +90,7 @@ $conn->close() ;
                 <input type="password" id="pwd1" name="pwd1" minlength="8" pattern="[0-9a-fA-F!@#$%^&*_-.]" required >
                 <!--<a href="resetpassword.php" style="text-decoration:none; font-size: 15px;">Forgot Password?</a><br><br> -->
 
-                <button type="button" onclick="newCaptcha()" id="cap" title="Give a new Captcha.">New Captcha</button>
+                <button type="button" onclick="newCaptcha()" id="cap" title="Give a new Captcha." style="margin-top:25px">New Captcha</button>
                 <input type="text"  id="captcha" oncopy="return false" class="searchBox" readonly>
                 <input type="text" id="enteredCaptcha" onpaste="return false" placeholder="Enter Above Captcha" style="text-align:center; font-size: 17px;"><br><br>
 
