@@ -29,21 +29,20 @@ if( $_SESSION['userType'] == "C" ){
             //If there exist a worker with that id, continue.
 
             $row = mysqli_fetch_assoc($result) ; 
-            echo "hello" ; 
             $workerID = $_POST['workerID'] ; 
             $description = $_POST['description'] ;
             $jobID = $_POST['jobID'] ;
             $clientID = $_SESSION['ID'] ;
-            echo "hell2" ;
-            echo $workerID ;
-            echo $clientID ;
-            echo $description ;
+            echo $workerID . "-------" ;
+            echo $clientID . "-------" ;
+            echo $description . "-------" ;
             echo $jobID ;
             //not working.
-            $insertCommentQuery = "INSERT INTO comment(jobID, workerID, clientID, description) values($jobID, $workerID', '$clientID', '$description')"  ; 
-            $in = "insert into comment values( 1,1,'sdff','asdf',adf') ";
-            
-            if( $result2 = $conn->query($in)  ){ 
+            $insertCommentQuery = "INSERT INTO comment (jobID, workerID, clientID, description) values($jobID, '$workerID', '$clientID', '$description') "  ; 
+            $in = "insert into comment values(1,'sdff','asdf',adf') ";
+            $result2 = $conn->query($insertCommentQuery) ;
+            echo("Error description: " . $conn->error);
+            if( $result2  ){ 
                 echo "hellw" ;
                 echo"<script>alert('Comment made successfully. Redirecting to worker's profile.') </script>" ; 
                 echo"<script>document.location='workerProfile.php?workerID=$workerID'</script>" ;
@@ -78,7 +77,7 @@ else{
 <html>
   <head>
     <title>Comment</title>
-    <link rel="stylesheet" type="text/css" href="1Level/style2.css">
+    <link rel="stylesheet" type="text/css" href="1Level/darkTheme.css">
     <script src="1Level/validation.js"></script>
   </head>
 

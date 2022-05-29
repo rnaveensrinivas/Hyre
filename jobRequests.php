@@ -39,7 +39,7 @@ if( $_SESSION['userType'] == "W"){
             echo "<input type='submit' value='Reject' name='reject' id='submit-button'>" ;
             echo "</form>" ;
             if( isset($_POST['accept'])){
-                unset($_POST['accept']) ;
+                $_POST = array() ;
                 $acceptRequestQuery = "update job set bookingStatus = 1, jobStatus = 1 where jobID ='$jobID'" ;
                 if( $result = mysqli_query( $conn, $acceptRequestQuery ) ){
                     echo "<script>alert('Request for $printClientID accepted.')</script>" ;
@@ -47,7 +47,7 @@ if( $_SESSION['userType'] == "W"){
                 }
             }
             else if( isset($_POST['reject'])){
-                unset($_POST['reject']) ;
+                $_POST = array() ;
                 $rejectRequestQuery = "update job set bookingStatus = 2, jobStatus = 2 where jobID ='$jobID'" ;
                 if( $result = mysqli_query( $conn, $rejectRequestQuery ) ){
                     echo "<script>alert('Request for $printClientID canceled.')</script>" ;
