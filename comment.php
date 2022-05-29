@@ -8,6 +8,10 @@ if( isset($_GET['workerID'] ) ){
     $workerID = $_GET['workerID'] ; 
 }
 
+$jobID = 0 ;
+if( isset($_GET['jobID'] ) ){ 
+    $jobID = $_GET['jobID'] ; 
+}
 
 
 if( $_SESSION['userType'] == "C" ){
@@ -25,26 +29,29 @@ if( $_SESSION['userType'] == "C" ){
             //If there exist a worker with that id, continue.
 
             $row = mysqli_fetch_assoc($result) ; 
-
+            echo "hello" ; 
             $workerID = $_POST['workerID'] ; 
-            $workType = $_POST['workType'] ;
-            $date = $_POST['date'] ; 
-            $time = $_POST['time'] ; 
             $description = $_POST['description'] ;
-            $pincode = $_POST['pincode'] ; 
-            $landmark = $_POST['landmark'] ; 
+            $jobID = $_POST['jobID'] ;
             $clientID = $_SESSION['ID'] ;
-
-            $query = "insert into job(clientID, workerID, landmark, pincode, time, date, workType, description,bookingStatus, jobStatus, clientRating, workerRating) values('$clientID', '$workerID', '$landmark' , '$pincode', '$time', '$date', '$workType', '$description', 0 , 0 , 0 , 0 )" ; 
-            $result = $conn->query($query) ; 
-
-            if( $result ){ 
-                echo"<script>alert('Request made successfully. Redirecting to main lobby.') </script>" ; 
-                echo"<script>document.location='mainlobby.php'</script>" ;
+            echo "hell2" ;
+            echo $workerID ;
+            echo $clientID ;
+            echo $description ;
+            echo $jobID ;
+            //not working.
+            $insertCommentQuery = "INSERT INTO comment(jobID, workerID, clientID, description) values($jobID, $workerID', '$clientID', '$description')"  ; 
+            $in = "insert into comment values( 1,1,'sdff','asdf',adf') ";
+            
+            if( $result2 = $conn->query($in)  ){ 
+                echo "hellw" ;
+                echo"<script>alert('Comment made successfully. Redirecting to worker's profile.') </script>" ; 
+                echo"<script>document.location='workerProfile.php?workerID=$workerID'</script>" ;
 
             }else{ 
-                echo"<script>alert('Unable to make a request. Try again Late.Redirecting to main lobby.')</script>" ; 
-                echo"<script>document.location='mainlobby.php'</script>" ;
+                echo"<script>alert('Comment made successfully. Redirecting to worker's profile.') </script>" ; 
+                //echo"<script>alert('Unable to make a comment. Try again Late.Redirecting to main lobby.')</script>" ; 
+                //echo"<script>document.location='mainlobby.php'</script>" ;
             }  
 
         }
@@ -70,8 +77,8 @@ else{
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Request</title>
-    <link rel="stylesheet" type="text/css" href="1Level/darkTheme.css">
+    <title>Comment</title>
+    <link rel="stylesheet" type="text/css" href="1Level/style2.css">
     <script src="1Level/validation.js"></script>
   </head>
 
@@ -81,7 +88,7 @@ else{
       <div class="form">
 
         <h2>(to be filled)</h2>
-        <p>(to be filled)</p>
+        <p><?php echo $error ; ?></p>
         
         <!--
         <div class="email">
@@ -94,34 +101,19 @@ else{
           <label for="workerID">Worker ID</label><br>
           <input type = "text" id="workerID" name="workerID" placeholder="Eg: fhsd8sfdfkj242Gsf23423" value='<?php echo $workerID ?>' required readonly> <br>
         </div>
+        <div class="fname">
+          <label for="jobID">job ID</label><br>
+          <input type = "text" id="jobID" name="jobID"  value='<?php echo $jobID ?>' required readonly> <br>
+        </div>
 
-        <label for="workType">Job</label><br>
-        <select name="workType" id="workType" required>
-        <option value="Carpentry">Carpenter</option>
-        <option value="Cook">Cook</option>
-        <option value="Other">Other</option>
-        </select><br>
-
-        <label for="date">Date of Job</label><br>
-        <input type="date" id="date" name="date" reqired><br>
-
-        <label for="time">Time of Job</label><br>
-        <input type = "text" id="time" name="time" placeholder="Eg: 3pm to -5pm" required> <br>
-
-        <label for="description">Work description</label><br>
+        <label for="description">Comment Description</label><br>
         <textarea id="description" name="description" required rows="10" cols="40" ></textarea><br>
-           
-        <label for="pincode">Pincode</label><br>
-        <input type="number" id="pincode" name="pincode" min="100000" max="999999" placeholder="Eg: 600025"><br>
-
-        <label for="landmark">Landmark</label><br>
-        <input type = "text" id="landmark" name="landmark" placeholder="Eg: Opposite to Copper Kitchen" required> <br>
 
         <button type="button" onclick="newCaptcha()" id="cap" title="Give a new Captcha.">New Captcha</button>
         <input type="text"  id="captcha" class="searchBox" readonly>
         <input type="text" id="enteredCaptcha" placeholder="Enter Above Captcha" style="text-align:center; font-size: 17px;"><br><br>
         
-        <button type="submit" onclick="return validCaptcha()" name="submit" id="submit-button">Request Worker</button>
+        <button type="submit" onclick="return validCaptcha()" name="submit" id="submit-button">Submit Comment</button>
         
         
 

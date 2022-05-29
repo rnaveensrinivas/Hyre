@@ -28,6 +28,9 @@ if( $_SESSION['userType'] == "W"){
     echo "Welcome $name, this is workers lab." ;
 ?>
         <div>
+        <button type="button" onclick="location.href='workerProfile.php'" name="workerProfile" id="submit-button" style="background-color: white; color:rgb(95, 108, 255);">My Profile</button>
+        </div>
+        <div>
         <button type="button" onclick="location.href='editWorkerDetails.php'" name="editWorkerDetails" id="submit-button" style="background-color: white; color:rgb(95, 108, 255);">Edit my info.</button>
         </div>
         <div>

@@ -7,6 +7,9 @@ if( $_SESSION['userType'] ){
     if( isset($_GET['workerID']) ){
         $workerID = $_GET['workerID'] ; 
     }
+    else if( $_SESSION['userType'] == "W"){
+        $workerID = $_SESSION['ID'] ;
+    }
     else{
         //bring in java script here with alernt and then redirect.
         header("location:searchWorker.php") ;
@@ -51,7 +54,26 @@ if( $_SESSION['userType'] ){
 
                 ?>
             </div> 
-        
+            <div class="form">
+                <h1>Comments</h1>
+                <?php
+                $selectAllComments = "SELECT * FROM comment where workerID='$workerID' " ; 
+                if ( $result = mysqli_query( $conn, $selectAllComments) ) { 
+                    while ( $row = mysqli_fetch_assoc($result) ) { 
+            
+                        $printClientID = $row['clientID'] ;
+                        $printDescription = $row['description'] ;  
+                        $jobID = $row['jobID'] ; 
+            
+                        echo "<h3>Client ID : $printClientID<br>Description : $printDescription<br>"; 
+                        
+                        //echo "<a href='teams.php?TeamName=$teams' id='submit-button'><button> Join </button></a></h3>" ;
+                        //Joining a specific team page. And we are passing the team name using GET to that teams page.
+                    }
+                }
+
+                ?>
+            </div> 
     </body>
  </html> 
 
