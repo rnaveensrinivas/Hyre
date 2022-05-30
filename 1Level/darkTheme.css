@@ -67,6 +67,7 @@ select {
 textarea {
     border: 2px solid rgb(213, 213, 213);
     border-radius: 7px;
+    width:100%;
 }
  
  h3 {
@@ -79,6 +80,11 @@ textarea {
      border-color:#91D6FF ;
      box-shadow: 0 0 5px #91D6FF;
  }
+textarea:focus { /*removes the automatic blue highlight*/
+    outline: none;
+    border-color:#91D6FF ;
+    box-shadow: 0 0 5px #91D6FF;
+}
  button{
      font-size: 17px;
      padding: 15px;
