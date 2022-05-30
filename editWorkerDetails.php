@@ -48,16 +48,15 @@ else{
 
 <body>
     <div class="logout">
-        <button type="button" onclick="location.href='logout.php'" name="Logout" id="submit-button"
-            style="background-color: white; color:rgb(95, 108, 255);">Sign Out</button>
+        <button type="button" onclick="location.href='logout.php'" name="Logout" id="submit-button" style="margin-right:20px">Sign Out</button>
     </div>
     <div class="form">
-        <h2>Welcome to home Page.</h2>
+        <h2>Welcome to Home Page</h2>
 
         <div class="container rounded bg-white mt-5 mb-5">
             <div class="row">
                 <div class="col-md-3 border-right">
-                    <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img
+                    <div class="d-flex flex-column align-items-center text-center p-3 py-5" style="text-align:center"><img
                             class="rounded-circle mt-5" width="150px"
                             src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span
                             class="font-weight-bold">
@@ -66,7 +65,7 @@ else{
                 </div>
                 <div class="col-md-5 border-right">
                     <div class="p-3 py-5">
-                        <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="d-flex justify-content-between align-items-center mb-3" style="text-align:center">
                             <h4 class="text-right">Edit Profile</h4>
                         </div>
 
@@ -80,7 +79,7 @@ else{
                                 <div class="col-md-12"><label class="labels">Experience</label><input type="text"
                                         id="exp" class="form-control" placeholder="enter experience" value=""></div>
                                 <div class="col-md-12">
-                                    <label for="job">Choose job:</label>
+                                    <label for="job">Choose job</label>
                                     <select name="job" id="job">
                                         <option value="Carpenter">Carpenter</option>
                                         <option value="Cook">Cook</option>
@@ -94,7 +93,7 @@ else{
                                         placeholder="enter payment description" value=""></div>
                             </div>
                             <br>
-                            <div class="mt-5 text-center"><button class="btn btn-primary profile-button"
+                            <div class="mt-5 text-center" style="text-align:center"><button class="btn btn-primary profile-button" 
                                     type="submit">Edit Profile</button></div>
                         </form>
 
