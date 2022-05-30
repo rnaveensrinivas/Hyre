@@ -87,14 +87,13 @@ if( $_SESSION['userType'] == "C" ){
                 echo "<p>Average Rating : $printAverageRating<br>Experience : $printExperience</p>" ;
                 echo "<a href='workerProfile.php?workerID=$workerID' id='submit-button'><button>Worker Profile</button></a></h3>" ;
                 echo "</div>" ;
-                //Joining a specific team page. And we are passing the team name using GET to that teams page.
             }
         }
     }
     $conn->close();
 }
 else if( $_SESSION['userType'] == "W" ){
-    header("locatoin:mainlobby.php") ;
+    header("location:mainlobby.php") ;
 }
 else{ 
     header("location:index.html") ; 

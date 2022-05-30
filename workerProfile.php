@@ -97,8 +97,6 @@ if( $_SESSION['userType'] ){
             
                         echo "<h3>Client ID : $printClientID<br>Description : $printDescription<br>"; 
                         
-                        //echo "<a href='teams.php?TeamName=$teams' id='submit-button'><button> Join </button></a></h3>" ;
-                        //Joining a specific team page. And we are passing the team name using GET to that teams page.
                     }
                 }
 
