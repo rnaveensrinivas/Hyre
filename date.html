@@ -16,9 +16,11 @@ var difference=Date.now() - birthDate.getTime();
      
 var  ageDate = new Date(difference); 
 var calculatedAge=   Math.abs(ageDate.getUTCFullYear() - 1970);
-alert(calculatedAge+" years ols");
+
+if(calculatedAge<18)
+alert("less than 18 years");
+if(calculatedAge>=18)
+alert("more than 18 years");
 }
 
 </script>
-
-
