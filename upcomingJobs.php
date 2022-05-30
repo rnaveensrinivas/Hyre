@@ -18,89 +18,45 @@
 session_start() ; 
 include 'config.php' ; 
 
-// Displaying student main lobby
 if( $_SESSION['userType'] == "W"){ 
 
-    //To get the student table name. 
     $workerID = $_SESSION['ID'] ; 
 
-    //For displaying all the teams they have enrolled in. 
-    $selectAllUpcomingJobs = "SELECT * FROM job where workerID='$workerID' and bookingStatus = 1 and jobstatus = 1" ; 
-    if ( $result = mysqli_query( $conn, $selectAllUpcomingJobs) ) { 
-        while ( $row = mysqli_fetch_assoc($result) ) { 
-
-            $printClientID = $row['clientID'] ;
-            $printDescription = $row['description'] ;  
-            $jobID = $row['jobID'] ; 
-
-            echo "<h3>Client ID : $printClientID<br>Description : $printDescription<br>"; 
-            echo "<form action='' method='POST'>";
-            echo "<input type='submit' value='Cancel Job' name='cancelJob' id='submit-button'>" ; 
-            echo "</form>" ;
-            if( isset($_POST['cancelJob'])){
-                unset($_POST['cancelJob']) ;
-                $cancelBookingByWorkerQuery = "update job set jobStatus = 3 where jobID ='$jobID'" ;
-                if( $result = mysqli_query( $conn, $cancelBookingByWorkerQuery ) ){
-                    echo "<script>alert('Booked job for $printClientID Cancelled.')</script>" ;
-                    echo "<script>location.reload()</script>" ;
-                }
-                
-            }
-            //echo "<a href='teams.php?TeamName=$teams' id='submit-button'><button> Join </button></a></h3>" ;
-            //Joining a specific team page. And we are passing the team name using GET to that teams page.
-        }
-    }
-    else{ 
-        //echo "<script>alert('You have to join a new team.')</script>" ; 
-    }
-    $conn->close();
-    //Joining team below. 
-?>
-
-    <!--<button onclick="location.href='jointeam.php'" id="submit-button">Join Team</button> -->
-
-<?php
-
-}   // Displaying teacher main lobby
-else if( $_SESSION['userType'] == "C"){ 
-
-    //To get the student table name. 
-    $clientID = $_SESSION['ID'] ; 
-
-    //For displaying all the teams they have enrolled in. 
-    $selectAllUpcomingJobs = "SELECT * FROM job where clientID='$clientID' and jobstatus = 1" ; 
+    $selectAllUpcomingJobs = "SELECT * FROM job where workerID='$workerID' and jobStatus = 1" ; 
     if ( $result = mysqli_query( $conn, $selectAllUpcomingJobs ) ) { 
         while ( $row = mysqli_fetch_assoc($result) ) { 
 
-            $printWorkerID = $row['workerID'] ;
-            $printDescription = $row['description'] ;  
-            $jobID = $row['jobID'] ; 
+            $clientID = $row['clientID'] ;
+            $description = $row['description'] ;  
+            $jobID = $row['jobID'] ;
+            $jobStatus = $row['jobStatus'] ;  
 
-            echo "<h3>Worker ID : $printWorkerID<br>Description : $printDescription<br>"; 
-            echo "<form action='' method='POST'>";
-            echo "<input type='submit' value='Cancel Job' name='cancelJob' id='submit-button'>" ; 
-            //echo "<input type='submit' value='Reject' name='reject' id='submit-button'>" ;
-            echo "</form>" ;
-            if( isset($_POST['cancelJob'])){
-                unset($_POST['cancelJob']) ;
-                $withdrawRequestQuery = "update job set, jobStatus = 4 where jobID ='$jobID'" ;
-                if( $result = mysqli_query( $conn, $withdrawRequestQuery ) ){
-                    echo "<script>alert('Booked Job for $printWorkerID cancelled.')</script>" ;
-                    echo "<script>location.reload()</script>" ;
-                }
-            }
-            //echo "<a href='teams.php?TeamName=$teams' id='submit-button'><button> Join </button></a></h3>" ;
-            //Joining a specific team page. And we are passing the team name using GET to that teams page.
+            
+            echo "<h3>Client ID : $clientID<br>Description : $description<br>"; 
+            echo "<a href='viewUpcomingJob.php?jobID=$jobID&workerID=$workerID&clientID=$clientID&jobStatus=$jobStatus' id='submit-button'><button>View Job</button></a></h3>" ;
         }
     }
-    else{ 
-        //echo "<script>alert('You have to join a new team.')</script>" ; 
+    
+    $conn->close();
+}   
+else if( $_SESSION['userType'] == "C"){ 
+
+    $clientID = $_SESSION['ID'] ; 
+
+    $selectAllUpcomingJobs = "SELECT * FROM job where clientID='$clientID' and jobStatus = 1" ; 
+    if ( $result = mysqli_query( $conn, $selectAllUpcomingJobs ) ) { 
+        while ( $row = mysqli_fetch_assoc($result) ) { 
+
+            $workerID = $row['workerID'] ;
+            $description = $row['description'] ;  
+            $jobID = $row['jobID'] ; 
+            $jobStatus = $row['jobStatus'] ;  
+
+
+            echo "<h3>Worker ID : $workerID<br>Description : $description<br>"; 
+            echo "<a href='viewUpcomingJob.php?jobID=$jobID&workerID=$workerID&clientID=$clientID&jobStatus=$jobStatus' id='submit-button'><button>View Job</button></a></h3>" ;
+        }
     }
-?>
-
-    <!--<button onclick="location.href='createteam.php'" id='submit-button'>Create Team</a></button>-->
-
-<?php
 $conn->close();
 }else{ 
 //Invalid access detected.

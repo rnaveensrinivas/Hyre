@@ -10,29 +10,29 @@ $jobID = "" ;
 if( isset($_GET['workerID'] ) ){ 
     $workerID = $_GET['workerID'] ; 
 }else{
-    header("location:jobRequests.php") ; 
+    header("location:upcomingJobs.php") ; 
 }
 
 if( isset($_GET['clientID'] ) ){ 
     $clientID = $_GET['clientID'] ; 
 }else{
-    header("location:jobRequests.php") ; 
+    header("location:upcomingJobs.php") ; 
 }
 
 if( isset($_GET['jobID'] ) ){ 
     $jobID = $_GET['jobID'] ; 
 }else{
-    header("location:jobRequests.php") ; 
+    header("location:upcomingJobs.php") ; 
 }
 
-if( isset($_GET['bookingStatus']) && $_GET['bookingStatus'] == 0 ){ 
-    
+if( isset($_GET['jobID']) && $_GET['jobStatus'] == 1 ){ 
+    $jobID = $_GET['jobID'] ; 
 }else{
-    header("location:jobRequests.php") ;
+    header("location:upcomingJobs.php") ; 
 }
 
-$selectAllRequests = "SELECT * FROM job where jobID = '$jobID'" ; 
-$result = mysqli_query( $conn, $selectAllRequests ) ;
+$selectThatJobQuery = "SELECT * FROM job where jobID = '$jobID'" ; 
+$result = mysqli_query( $conn, $selectThatJobQuery ) ;
 $row = mysqli_fetch_assoc($result) ;
 
 $landmark = $row['landmark'] ; 
@@ -44,14 +44,14 @@ $description =  $row['description'] ;
 
 if( $_SESSION['userType'] == "C" ){
 
-    if(isset($_POST['withdrawRequest'])){ 
+    if(isset($_POST['cancelJob'])){ 
     
-        $withdrawRequestQuery = "update job set bookingStatus = 3, jobStatus = 2 where jobID ='$jobID'" ;
-        if( $result = mysqli_query( $conn, $withdrawRequestQuery ) ){
-            echo "<script>alert('Request for $workerID has been withdrawn. Redirecting you to job requests page.')</script>" ;
-            header("location:jobRequests.php") ; 
+        $cancelJobQuery = "update job set jobStatus = 4 where jobID ='$jobID'" ;
+        if( $result = mysqli_query( $conn, $cancelJobQuery ) ){
+            echo "<script>alert('Booked Job for $workerID cancelled. Redirecting to upcoming jobs page.')</script>" ;
+            header("location:upcomingJobs.php") ;
         }else{
-            echo "<script>alert('Unable to withdraw request for worker $workerID.')</script>" ;
+            echo "<script>alert('Unable to cancel request for worker $workerID.')</script>" ;
         }
         $conn->close();
 
@@ -59,38 +59,28 @@ if( $_SESSION['userType'] == "C" ){
 }
 else if( $_SESSION['userType'] == "W" ){
 
-    if( isset($_POST['acceptRequest'])){
-        $acceptRequestQuery = "update job set bookingStatus = 1, jobStatus = 1 where jobID ='$jobID'" ;
-        if( $result = mysqli_query( $conn, $acceptRequestQuery ) ){
-            echo "<script>alert('Request for $clientID accepted.')</script>" ;
-            header("location:jobRequests.php") ; 
+    if(isset($_POST['cancelJob'])){ 
+        $cancelJobQuery = "update job set jobStatus = 3 where jobID ='$jobID'" ;
+        if( $result = mysqli_query( $conn, $cancelJobQuery ) ){
+            echo "<script>alert('Booked Job for $clientID cancelled. Redirecting to upcoming jobs page.')</script>" ;
+            header("location:upcomingJobs.php") ;
+        }else{
+            echo "<script>alert('Unable to cancel request for worker $clientID.')</script>" ;
         }
+        $conn->close();
     }
-    else if( isset($_POST['rejectRequest'])){
-        $rejectRequestQuery = "update job set bookingStatus = 2, jobStatus = 2 where jobID ='$jobID'" ;
-        if( $result = mysqli_query( $conn, $rejectRequestQuery ) ){
-            echo "<script>alert('Request for $clientID canceled.')</script>" ;
-            header("location:jobRequests.php") ; 
-        }
-    }
-
-    $conn->close();
 
 }
-    
-
 else{ 
     header("location:index.html") ; 
 }
 
 ?>
 
-
-
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Request</title>
+    <title>Upcoming Job </title>
     <link rel="stylesheet" type="text/css" href="1Level/darkTheme.css">
     <script src="1Level/validation.js"></script>
   </head>
@@ -100,7 +90,7 @@ else{
     <form action="" method="POST" autocomplete="off" >
       <div class="form">
 
-        <h2>Job Request</h2>
+        <h2>Upcoming Job</h2>
 
         <?php 
         if( $_SESSION['userType'] == "C" ){
@@ -148,23 +138,8 @@ else{
         <label for="description">Work description</label><br>
         <textarea id="description" name="description" required rows="10" cols="40" readonly><?php echo $description ?></textarea><br>
 
-        <?php 
-
-
-
-        if( $_SESSION['userType'] == "C" ){
-        ?>
-        <button type="submit" name="withdrawRequest" id="submit-button">Withdraw Request</button>
-        <?php 
-        }
-        else
-        if( $_SESSION['userType'] == "W" ){
-        ?>
-        <button type="submit" name="acceptRequest" id="submit-button">Accept</button>
-        <button type="submit" name="rejectRequest" id="submit-button">Reject</button>
-        <?php 
-        }
-        ?>
+       
+        <button type="submit" name="cancelJob" id="submit-button">Cancel Job</button>
       </div> 
     </form>
   </body>

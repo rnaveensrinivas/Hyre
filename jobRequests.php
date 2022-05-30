@@ -29,10 +29,11 @@ if( $_SESSION['userType'] == "W"){
             $clientID = $row['clientID'] ;
             $description = $row['description'] ;  
             $jobID = $row['jobID'] ; 
+            $bookingStatus = $row['bookingStatus'] ;
 
             
-            echo "<h3>Client ID : $ClientID<br>Description : $Description<br>"; 
-            echo "<a href='viewRequest.php?jobID=$jobID&workerID=$workerID&clientID=$clientID' id='submit-button'><button>View Request</button></a></h3>" ;
+            echo "<h3>Client ID : $clientID<br>Description : $description<br>"; 
+            echo "<a href='viewRequest.php?jobID=$jobID&workerID=$workerID&clientID=$clientID&bookingStatus=$bookingStatus' id='submit-button'><button>View Request</button></a></h3>" ;
         }
     }
     
@@ -49,9 +50,11 @@ else if( $_SESSION['userType'] == "C"){
             $workerID = $row['workerID'] ;
             $description = $row['description'] ;  
             $jobID = $row['jobID'] ; 
+            $bookingStatus = $row['bookingStatus'] ;
+
 
             echo "<h3>Worker ID : $workerID<br>Description : $description<br>"; 
-            echo "<a href='viewRequest.php?jobID=$jobID&workerID=$workerID&clientID=$clientID' id='submit-button'><button>View Request</button></a></h3>" ;
+            echo "<a href='viewRequest.php?jobID=$jobID&workerID=$workerID&clientID=$clientID&bookingStatus=$bookingStatus' id='submit-button'><button>View Request</button></a></h3>" ;
         }
     }
 $conn->close();
