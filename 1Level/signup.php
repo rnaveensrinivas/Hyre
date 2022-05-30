@@ -24,7 +24,7 @@ if( isset($_POST['submit'])){ //Checking if the form is submitted.
   else if( $aadhaarIDResult->fetch_assoc()){
     echo "<script>alert('This Aadhaar ID Id already exists. Go to login page.')</script>" ; 
   }
-  else{    //Server Side validation is done. 
+  else{    
 
     //Getting rest of the details here. 
     $fname=$_POST["fname"];
@@ -33,13 +33,12 @@ if( isset($_POST['submit'])){ //Checking if the form is submitted.
     $userType=$_POST["userType"];
     $pincode=$_POST["pincode"];
 
-      
     $pwd1 = md5($pwd1) ; 
     $ID = md5($aadhaar) ; 
       
-    $insert = "INSERT INTO account(name,phoneNumber,gender,dOB,pincode,aadhaar,password,userType,ID,accountStatus,reportCount) VALUES ('$fname','$phoneNumber','$gender','$dOB','$pincode','$aadhaar','$pwd1','$userType','$ID',1,0)";
+    $insertQuery = "INSERT INTO account(name,phoneNumber,gender,dOB,pincode,aadhaar,password,userType,ID,accountStatus,reportCount) VALUES ('$fname','$phoneNumber','$gender','$dOB','$pincode','$aadhaar','$pwd1','$userType','$ID',1,0)";
 
-    if ($conn->query($insert)){ 
+    if ($conn->query($insertQuery)){ 
 
       if( $userType == "C" ){
         $conn->query("INSERT INTO client(clientID) values('$ID') ") ;
