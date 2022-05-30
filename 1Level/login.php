@@ -100,8 +100,7 @@ $conn->close() ;
         <form  action="" method="POST" autocomplete="off">
             <div class="form" style="margin-top:20px">
 
-                <h2>(to be filled)</h2>
-                <p>(to be filled)</p>
+                <h2>Login</h2>
 
                 <p style="color:red; line-height: 120%; "><?php echo $error ; ?></p>
             
