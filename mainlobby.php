@@ -57,19 +57,19 @@ if( $_SESSION['userType'] == "W"){
     echo "<p>Welcome, $name.</p>" ;
 ?>
         <div>
-        <button type="button" onclick="location.href='workerProfile.php'" name="workerProfile" id="submit-button" style="margin-top:15px" >My profile</button>
+        <button type="button" onclick="location.href='workerProfile.php'" name="workerProfile" id="submit-button" style="margin-top:15px;  border-radius:5px" >My profile</button>
         </div>
         <div>
-        <button type="button" onclick="location.href='editWorkerDetails.php'" name="editWorkerDetails" id="submit-button" style="margin-top:15px">Edit my info</button>
+        <button type="button" onclick="location.href='editWorkerDetails.php'" name="editWorkerDetails" id="submit-button" style="margin-top:15px;  border-radius:5px">Edit my info</button>
         </div>
         <div>
-        <button type="button" onclick="location.href='jobRequests.php'" name="jobRequests" id="submit-button" style="margin-top:15px">Job requests</button>
+        <button type="button" onclick="location.href='jobRequests.php'" name="jobRequests" id="submit-button" style="margin-top:15px;  border-radius:5px">Job requests</button>
         </div>
         <div>
-        <button type="button" onclick="location.href='upcomingJobs.php'" name="upcomingJobs" id="submit-button" style="margin-top:15px">Upcoming jobs</button>
+        <button type="button" onclick="location.href='upcomingJobs.php'" name="upcomingJobs" id="submit-button" style="margin-top:15px;  border-radius:5px">Upcoming jobs</button>
         </div>
         <div>
-        <button type="button" onclick="location.href='jobHistory.php'" name="jobHistory" id="submit-button" style="margin-top:15px" >Job history</button>
+        <button type="button" onclick="location.href='jobHistory.php'" name="jobHistory" id="submit-button" style="margin-top:15px;  border-radius:5px" >Job history</button>
         </div>
 
 <?php
@@ -78,7 +78,7 @@ if( $_SESSION['userType'] == "W"){
 else if( $_SESSION['userType'] == "C"){ 
     
     $name = $_SESSION['name'];
-    echo "Welcome $name, this is client's Portfolio." ;
+    echo "<div style='text-align:center'>Welcome $name, this is Client's Portfolio.</div>" ;
 
 ?>
         <div>

@@ -3,10 +3,33 @@
     <head>
         <title>Job History</title>
         <link rel="stylesheet" type="text/css" href="1Level/darkTheme.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+     
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">   
+      
     </head>
 
 
     <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <!--navbar-expand aligns all components horizontally displayed-->
+            <a class="navbar-brand ms-4" href="">Hyre</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleButton" aria-controls="navbarToggleButton" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            <div class="collapse navbar-collapse" id="#navbarToggleButton">
+              <ul class="navbar-nav px-4 ms-auto"> <!--from documentation-->
+                <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+            </ul>
+            <ul class="navbar-nav px-4"> <!--from documentation-->
+              <li class="nav-item"><a class="nav-link" href="">Contact</a></li>
+          </ul>
+          <ul class="navbar-nav px-4"> <!--from documentation-->
+                <li class="nav-item"><a class="nav-link" href="">Signout</a></li>
+            </ul>
+
+            </div>
+        </nav>
         <div class="logout">
         <button type="button" onclick="location.href='logout.php'" name="Logout" id="submit-button" style="background-color: white; color:rgb(95, 108, 255);">Sign Out</button>
         </div>
@@ -33,7 +56,7 @@ if( $_SESSION['userType'] == "W"){
             $printDescription = $row['description'] ;  
             $jobID = $row['jobID'] ; 
 
-            echo "<h3>Client ID : $printClientID<br>Description : $printDescription<br>"; 
+            echo "<div style='text-align:center'><h3 style='font-size:1.25rem;font-weight:300; margin-top:20px; margin-bottom:20px' >Client ID : $printClientID<br>Description : $printDescription<br></div>"; 
             //echo "<a href='teams.php?TeamName=$teams' id='submit-button'><button> Join </button></a></h3>" ;
             //Joining a specific team page. And we are passing the team name using GET to that teams page.
         }
@@ -64,8 +87,8 @@ else if( $_SESSION['userType'] == "C"){
             $printDescription = $row['description'] ;  
             $jobID = $row['jobID'] ; 
 
-            echo "<h3>Worker ID : $printWorkerID<br>Description : $printDescription<br>"; 
-            echo "<a href='comment.php?workerID=$printWorkerID&jobID=$jobID' id='submit-button'><button>comment</button></a></h3>" ;
+            echo "<div style='text-align:center'><h3 style='font-size:1.25rem;font-weight:300; margin-top:20px; margin-bottom:20px' >Worker ID: $printWorkerID<br>Description: $printDescription<br></div>"; 
+            echo "<a href='comment.php?workerID=$printWorkerID&jobID=$jobID' id='submit-button'><div style='text-align:center'><button style='border-radius:5px'>Comment</button></div></a></h3>" ;
             //echo "<a href='teams.php?TeamName=$teams' id='submit-button'><button> Join </button></a></h3>" ;
             //Joining a specific team page. And we are passing the team name using GET to that teams page.
         }
