@@ -128,7 +128,7 @@ else{
         </select><br>
 
         <label for="date">Date of Job</label><br>
-        <input type="date" id="date" name="date" reqired><br>
+        <input type="date" id="date" name="date" required><br>
 
         <label for="time">Time of Job</label><br>
         <input type = "text" id="time" name="time" placeholder="Eg: 3pm to -5pm" required> <br>
@@ -137,14 +137,14 @@ else{
         <textarea id="description" name="description" required rows="10" cols="40" style="height:200px" ></textarea><br>
            
         <label for="pincode">Pincode</label><br>
-        <input type="number" id="pincode" name="pincode" min="100000" max="999999" placeholder="Eg: 600025"><br>
+        <input type="number" id="pincode" name="pincode" min="100000" max="999999" placeholder="Eg: 600025" required><br>
 
         <label for="landmark">Landmark</label><br>
         <input type = "text" id="landmark" name="landmark" placeholder="Eg: Opposite to Copper Kitchen" required> <br>
 
         <button type="button" onclick="newCaptcha()" id="cap" title="Give a new Captcha." style="border-radius:5px">New Captcha</button>
         <input type="text"  id="captcha" class="searchBox" readonly>
-        <input type="text" id="enteredCaptcha" placeholder="Enter Above Captcha" style="text-align:center; font-size: 17px;"><br><br>
+        <input type="text" id="enteredCaptcha" placeholder="Enter Above Captcha" style="text-align:center; font-size: 17px;" required><br><br>
         
         <button type="submit" onclick="return validCaptcha()" name="submit" id="submit-button" style="border-radius:5px">Request Worker</button>
       </div> 

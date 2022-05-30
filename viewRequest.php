@@ -160,8 +160,8 @@ else{
         else
         if( $_SESSION['userType'] == "W" ){
         ?>
-        <button type="submit" name="acceptRequest" id="submit-button">Accept</button>
-        <button type="submit" name="rejectRequest" id="submit-button">Reject</button>
+        <button type="submit" name="acceptRequest" id="submit-button" style="margin-top:5px">Accept</button>
+        <button type="submit" name="rejectRequest" id="submit-button" style="margin-top:15px">Reject</button>
         <?php 
         }
         ?>

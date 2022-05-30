@@ -71,8 +71,13 @@ textarea {
 }
  
  h3 {
-     text-align: center;
-     color: rgb(112, 112, 112);
+    font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    
+    font-weight: normal;
+    font-stretch: narrower;
+    color: rgb(33, 37, 41);
+    font-size:1.25rem;
+
  }
 
  input:focus { /*removes the automatic blue highlight*/
