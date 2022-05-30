@@ -1,15 +1,24 @@
+<input type="date" id="txtDOB" /> 
+<button id="btnCalculate"  onclick="fnCalculateAge();" >Calculate Age</button>
+
+
 <script>
 
-var year_born = prompt("Please enter your date of birth:", "Type here");
-var d = new Date();
-var n = d.getFullYear();
-function getAge(birthYear){
-	var currentDate = new Date();
-    var currentYear = currentDate.getFullYear();
-    age = currentYear - birthYear;
-    return age;
+function fnCalculateAge(){
+
+var userDateinput = document.getElementById("txtDOB").value;  
+console.log(userDateinput);
+
+var birthDate = new Date(userDateinput);
+ console.log(" birthDate"+ birthDate);
+
+var difference=Date.now() - birthDate.getTime(); 
+     
+var  ageDate = new Date(difference); 
+var calculatedAge=   Math.abs(ageDate.getUTCFullYear() - 1970);
+alert(calculated+" years ols");
 }
-calculatedAge = getAge(year_born);
-alert("Hello, " + "you are " + calculatedAge + " years old!");
 
 </script>
+
+
