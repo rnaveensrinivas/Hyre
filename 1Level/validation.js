@@ -17,7 +17,8 @@ function newCaptcha() {
 function validCaptcha() {
 
     var check = checkPassword(); // application of stack. 
-    if (!check) {
+    var check2=checkAge();
+    if (!check||!check2) {
         return false;
     }
 
@@ -50,4 +51,45 @@ function checkPassword() {
         return false;
     }
 
+
+}
+
+
+function checkAge(){
+
+    var userDateinput = document.getElementById("dOB").value;  
+    console.log(userDateinput);
+    
+    var birthDate = new Date(userDateinput);
+     console.log(" birthDate"+ birthDate);
+    
+    var difference=Date.now() - birthDate.getTime();
+    
+    var  ageDate = new Date(difference);
+    
+    var calculatedAge=   Math.abs(ageDate.getUTCFullYear() - 1970);
+    
+    if(calculatedAge<18){
+        alert("Age must be over 18.");
+
+        return false;
+    }
+    else
+        return true;
+}
+
+function checkDate(){
+
+    var userDateinput = document.getElementById("date").value;  
+    
+    var userdate = new Date(userDateinput);
+    
+    var difference=Date.now() - userdate.getTime();
+    if(difference>0){
+        alert("Enter valid date");
+        return false;
+    }
+    else{
+        return true;
+    }
 }
