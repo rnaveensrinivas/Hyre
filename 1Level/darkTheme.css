@@ -2,19 +2,22 @@
 h2 {
     font-weight: 400;
     margin-bottom: 35px;
-    color: #595959;
+    color: rgb(33, 37, 41);
     font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
     text-align: center;
     margin-bottom: 10px;
 }
 h1 {
     font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-    font-weight: 400;
+    font-size: 50px;
+    font-weight: normal;
+    font-stretch: narrower;
+    color: rgb(33, 37, 41);
 }
 
 
 body {
-    background-color: rgb(17, 17, 17);
+    background-color: rgb(255, 255, 255);
  }
  .form {
      margin: auto; 
@@ -30,12 +33,14 @@ body {
      according to content inside the div tag*/
      width: 40%;
      border-radius: 15px;
-     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 30px 0 rgba(0,0,0,0.2);
+     /* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 30px 0 rgba(0,0,0,0.2); */
      /*gives the shadow effect of the div element*/
      font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
      line-height: 180%; /*the spacing between the two lines */
-     color: rgb(112, 112, 112);
+     color: rgb(33, 37, 41);
      font-size: 17px;
+     font-size: 1.25rem;
+     font-weight: 300;
  }
  input {
      border-radius: 7px;
@@ -59,17 +64,31 @@ body {
      border-color:#91D6FF ;
      box-shadow: 0 0 5px #91D6FF;
  }
- button , .button{
+ button{
      font-size: 17px;
      padding: 15px;
      top:50%;
-     background-color: rgb(17, 17, 17);
+     background-color: rgb(33, 37, 41);
      color: white;
      border: none;
      border-radius: 5px;
      box-shadow: 0 4px 5px 0 rgba(0,0,0,0.2), 0 5px 5px 0 rgba(0,0,0,0.1);
      font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
      color: rgb(255, 255, 255);
+     width: 30%;
+ }
+ .button {
+    font-size: 17px;
+    padding: 15px;
+    top:50%;
+    background-color: rgb(33, 37, 41);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 4px 5px 0 rgba(0,0,0,0.2), 0 5px 5px 0 rgba(0,0,0,0.1);
+    font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    color: rgb(255, 255, 255);
+    width: 30%;
  }
 
  ::placeholder {
@@ -87,16 +106,17 @@ body {
      width: 100%;
 }
 p {
-    color: rgb(112, 112, 112);
+    color: rgb(33, 37, 41);
     text-align: center;
-    font-size: 15px;
-    line-height: 15px;
+    font-size: 20px;
+    line-height: 30px;
+    font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
 }
-* {/*to set the captcha button to same width as the input field*/
+*{/*to set the captcha button to same width as the input field*/
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-}
+} 
 
 button {
     transition-duration: 0.4s;
@@ -114,7 +134,7 @@ button:hover {
   text-align:center; 
   margin-bottom:8px; 
   font-size:25px;
-  color: black;
+  color: rgb(33, 37, 41);
 }
 input[type=radio] {
     width: 15px;
@@ -129,3 +149,139 @@ input[type=radio] {
     top:2px;
     right: 0;
 }
+/* @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+
+* {
+    margin: 0;
+    padding: 0;
+
+}
+
+
+
+li {
+    list-style: none;
+    background-color: #f8f9fa;
+}
+ul{
+    background-color:#f8f9fa;
+
+}
+
+a {
+    text-decoration: none;
+    background-color:#f8f9fa;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif    ;
+}
+
+.header{
+    border-bottom: 1px solid #f8f9fa;
+    background-color: #f8f9fa;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    background-color: #f8f9fa;
+}
+
+.hamburger {
+    display: none;
+    background-color: white;
+}
+
+.bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    background-color: #ffffff;
+}
+
+.nav-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-item {
+    margin-left: 5rem;
+    text-decoration: none !important;
+    color: #00000080;
+}
+
+.nav-link{
+    font-size: 25px;
+    font-weight: 400;
+    color: rgb(33, 37, 41);
+    background-color: white;
+}
+.vid{
+    display: block; margin: 0 auto;
+width: 50%;
+height: 50%;
+}
+
+.nav-link:hover{
+    color:  rgb(18, 18, 18);
+}
+
+.nav-logo {
+    font-size: 30px;
+    font-weight: 500;
+    color:  rgb(18, 18, 18);
+    background-color: white;
+}
+*/
+@media only screen and (max-width: 768px) {   /* media query that will get executed only if screen size less than 768px*/
+    .nav-menu {
+        position: fixed;
+        left: -100%;                /*hide th nav menu*/
+        top: 5rem;
+        flex-direction: column;
+        background-color: #fff;
+        width: 100%;
+        border-radius: 10px;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow:
+            0 10px 27px rgba(0, 0, 0, 0.05);
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .nav-item {
+        margin: 2.5rem 0;
+    }
+
+    .hamburger {
+        display: block;         /*display the hamburger menu*/
+        cursor: pointer;
+    }
+
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active .bar:nth-child(1) {
+        -webkit-transform: translateY(8px) rotate(45deg);
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .hamburger.active .bar:nth-child(3) {
+        -webkit-transform: translateY(-8px) rotate(-45deg);
+        transform: translateY(-8px) rotate(-45deg);
+    }
+}
+
+a, a:hover, a:focus, a:active {
+    text-decoration: none;
+    color: inherit;
+} 
