@@ -38,8 +38,8 @@
         <!--COMPLETE THIS REPORT AND SIGN OUT WITH NAVEEN -->
     </nav>
         <div class="logout">
-        <button type="button" onclick="location.href='report.php'" name="report" id="submit-button" style="background-color: white; color:rgb(95, 108, 255);">Report</button>
-        <button type="button" onclick="location.href='logout.php'" name="Logout" id="submit-button" style="background-color: white; color:rgb(95, 108, 255);">Sign Out</button>
+        <button type="button" onclick="location.href='report.php'" name="report" id="submit-button" sty>Report</button>
+        <button type="button" onclick="location.href='logout.php'" name="Logout" id="submit-button" style="margin-top:15px">Sign Out</button>
         </div>
 
         <div class="form" style="margin-top:100px">
@@ -54,7 +54,7 @@ include 'config.php' ;
 if( $_SESSION['userType'] == "W"){ 
     
     $name = $_SESSION['name'];
-    echo "<p>Welcome $name, this is workers lab.</p>" ;
+    echo "<p>Welcome, $name.</p>" ;
 ?>
         <div>
         <button type="button" onclick="location.href='workerProfile.php'" name="workerProfile" id="submit-button" style="margin-top:15px" >My profile</button>
@@ -63,7 +63,7 @@ if( $_SESSION['userType'] == "W"){
         <button type="button" onclick="location.href='editWorkerDetails.php'" name="editWorkerDetails" id="submit-button" style="margin-top:15px">Edit my info</button>
         </div>
         <div>
-        <button type="button" onclick="location.href='jobRequests.php'" name="jobRequests" id="submit-button" style="margin-top:15px">My job requests</button>
+        <button type="button" onclick="location.href='jobRequests.php'" name="jobRequests" id="submit-button" style="margin-top:15px">Job requests</button>
         </div>
         <div>
         <button type="button" onclick="location.href='upcomingJobs.php'" name="upcomingJobs" id="submit-button" style="margin-top:15px">Upcoming jobs</button>
@@ -73,30 +73,8 @@ if( $_SESSION['userType'] == "W"){
         </div>
 
 <?php
-    /*
-    //For displaying all the teams they have enrolled in. 
-    $selectAllTeamNames = "SELECT * FROM $tablename " ; 
-    if ( $result = mysqli_query( $conn, $selectAllTeamNames ) ) { 
-        while ( $row = mysqli_fetch_assoc($result) ) { 
-            $teams = $row['TeamName'] ; 
-            $PrintTeamName = substr($teams,0,-11) ;
-            echo "<h3>Team : $PrintTeamName "; 
-            echo "<a href='teams.php?TeamName=$teams' id='submit-button'><button> Join </button></a></h3>" ;
-            //Joining a specific team page. And we are passing the team name using GET to that teams page.
-        }
-    }
-    else{ 
-        //echo "<script>alert('You have to join a new team.')</script>" ; 
-    }
-
-    //Joining team below. 
-?>
-
-    <button onclick="location.href='jointeam.php'" id="submit-button">Join Team</button>
-
-<?php
-    */
-}   // Displaying teacher main lobby
+    
+}   
 else if( $_SESSION['userType'] == "C"){ 
     
     $name = $_SESSION['name'];
@@ -120,32 +98,10 @@ else if( $_SESSION['userType'] == "C"){
 <?php
 
 
-
-    /*
-    $CollegeID  = $_SESSION['CollegeID'] ; 
-
-    // Trying to display all the teams teacher has created.
-    $selectAllTeam = "SELECT * FROM teams where TeacherID = '$CollegeID' " ; 
-    if ( $result = mysqli_query( $conn, $selectAllTeam ) ) { 
-        while ( $row = mysqli_fetch_assoc($result) ) { 
-            $teams = $row['TeamName'] ; 
-            $PrintTeamName = substr($teams,0,-11) ;
-            echo "<h3>Team : $PrintTeamName "; 
-            echo "<a href='teams.php?TeamName=$teams' id='submit-button'><button> Join </button></a></h3>" ;
-            //Joining a specific team page. And we are passing the team name using GET to that teams page.
-        }
-    }
-    //creating team below. 
-?>
-
-    <button onclick="location.href='createteam.php'" id='submit-button'>Create Team</a></button>
-
-<?php
-     */
 }else{ 
-//Invalid access detected.
-$conn->close();
-header("location:index.html") ; 
+    //Invalid access detected.
+    $conn->close();
+    header("location:index.html") ; 
 
 }
 

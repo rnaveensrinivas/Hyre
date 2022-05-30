@@ -1,4 +1,3 @@
-
 <?php
 session_start() ; 
 include 'config.php' ; 
@@ -6,8 +5,6 @@ include 'config.php' ;
 if( $_SESSION['userType'] == "C" ){
 
 ?>
-
-
 <!DOCTYPE html>
 <html>
 
@@ -93,48 +90,11 @@ if( $_SESSION['userType'] == "C" ){
                 //Joining a specific team page. And we are passing the team name using GET to that teams page.
             }
         }
-
-
-
-
-
-
-        /*
-        $TeacherID = $_SESSION['CollegeID'] ; 
-        $TeamName = $_POST['TeamName'] ;
-        $TeamName .= "_" ; 
-        $TeamName .= $TeacherID ; //So that the team names for a teacher remains unique.
-
-        //Checking if the class exists or not. 
-        $query = "SELECT * FROM teams WHERE TeamName = '$TeamName' " ; 
-        $result = $conn->query($query) ; 
-
-        if( $result->num_rows ){
-            //Team already exists.
-            $error .= "This team Name already exists.Try again." ; 
-        }
-        else{
-            $TeacherName = $_SESSION['FullName']  ;
-
-            $Keycode = md5(time().$TeamName) ; //Creating an encryption Keycode.
-            $Keycode = substr($Keycode,0,10) ; //Taking only the first 10 char of encryption created. 
-
-            $query = "INSERT INTO teams(TeamName, TeacherName , TeacherID , Keycode ) VALUES('$TeamName', '$TeacherName' , '$TeacherID' , '$Keycode')" ; 
-            $result = $conn->query($query) ; 
-
-            if( $result ){
-                echo"<script>alert('Team channel created succesfully.Redirecting to main lobby.') </script>" ; 
-                echo"<script>document.location='mainlobby.php'</script>" ;
-            }
-            else{ 
-                //echo mysqli_error($conn);
-                echo"<script>alert('Unable to create team channel.Redirecting to main lobby.') </script>" ; 
-                echo"<script>document.location='mainlobby.php'</script>" ; 
-            }
-        }
-        */
     }
     $conn->close();
+}
+else if( $_SESSION['userType'] == "W" ){
+    header("locatoin:mainlobby.php") ;
 }
 else{ 
     header("location:index.html") ; 
