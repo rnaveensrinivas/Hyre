@@ -88,13 +88,6 @@ else{
 
         <h2>(to be filled)</h2>
         <p><?php echo $error ; ?></p>
-        
-        <!--
-        <div class="email">
-          <label for="em">E-mail</label><br>
-          <input type = "email" id="em" name="em" required placeholder="abcd@gmail.com"><br>
-        </div>
-        -->
             
         <div class="fname">
           <label for="workerID">Worker ID</label><br>
