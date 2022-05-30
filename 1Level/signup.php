@@ -11,7 +11,6 @@ if( isset($_POST['submit'])){ //Checking if the form is submitted.
   $phoneNumber = $_POST["phoneNumber"];
   $aadhaar = $_POST["aadhaar"];
   $pwd1 = $_POST["pwd1"]; 
-  $pwd2 = $_POST["pwd2"];
 
   $checkPhoneNumberIfExistsQuery = "SELECT * FROM account WHERE phoneNumber = '$phoneNumber'" ; //Checking if phone already exists. 
   $checkAadhaarIDIfExistsQuery = "SELECT * FROM account WHERE aadhaar = '$aadhaar'" ; //Checking if aadhaar ID already exists. 
@@ -20,43 +19,41 @@ if( isset($_POST['submit'])){ //Checking if the form is submitted.
 
 
   if( $phoneNumberResult->fetch_assoc()){
-    echo "<script>alert('An account is already associated with this phone number. Go to login.')</script>" ; 
+    echo "<script>alert('This Phone Number already exists. Go to login page.')</script>" ; 
   }
-  if( $aadhaarIDResult->fetch_assoc()){
-    echo "<script>alert('An account is already associated with this Aadhaar ID. Go to login.')</script>" ; 
+  else if( $aadhaarIDResult->fetch_assoc()){
+    echo "<script>alert('This Aadhaar ID Id already exists. Go to login page.')</script>" ; 
   }
+  else{    //Server Side validation is done. 
 
-  //Getting rest of the details here. 
-  $fname=$_POST["fname"];
-  $gender=$_POST["gender"] ;
-  $dOB=$_POST["dOB"];
-  //Check if date of birth is greater than 18 years old.
-  $userType=$_POST["userType"];
-  //Check if the pincode is valid. By importing data set.
-  $pincode=$_POST["pincode"];
-  
-  $pwd1 = md5($pwd1) ; //encrypting the password. 
-  $ID = md5($aadhaar) ; //generate ID
+    //Getting rest of the details here. 
+    $fname=$_POST["fname"];
+    $gender=$_POST["gender"] ;
+    $dOB=$_POST["dOB"];
+    $userType=$_POST["userType"];
+    $pincode=$_POST["pincode"];
+
       
-  $insertToAccountQuery = "INSERT INTO account(name,phoneNumber,gender,dOB,pincode,aadhaar,password,userType,ID,accountStatus,reportCount) VALUES ('$fname','$phoneNumber','$gender','$dOB','$pincode','$aadhaar','$pwd1','$userType','$ID',1,0)";
+    $pwd1 = md5($pwd1) ; 
+    $ID = md5($aadhaar) ; 
+      
+    $insert = "INSERT INTO account(name,phoneNumber,gender,dOB,pincode,aadhaar,password,userType,ID,accountStatus,reportCount) VALUES ('$fname','$phoneNumber','$gender','$dOB','$pincode','$aadhaar','$pwd1','$userType','$ID',1,0)";
 
-  if($conn->query($insertToAccountQuery)){ 
+    if ($conn->query($insert)){ 
 
-    if( $userType == "C" ){
-      $conn->query("INSERT INTO client(clientID) values('$ID') ") ;
-    }
-    else{
-      $conn->query("INSERT INTO worker(workerID) values('$ID') ") ;
-    }
+      if( $userType == "C" ){
+        $conn->query("INSERT INTO client(clientID) values('$ID') ") ;
+      }
+      else{
+        $conn->query("INSERT INTO worker(workerID) values('$ID') ") ;
+      }
+
+      echo "<script>alert('Account successfully created.')";
+      
+      header('location:thankyou.php?Status=success');
     
-    echo "<script>alert('Account successfully created. Click Ok to login.')";
-    header('location:thankyou.php?Status=success');
-    
-  }  
-  else{
-    echo "<script>alert('Unable to create account at this moment. Try again later.')";
+    }  
   }
-
   $conn->close();
 }
 
