@@ -32,7 +32,7 @@ if( isset($_SESSION['ID'])){
             $type = $_POST['type'] ;
             $description = $_POST['description'] ; 
 
-            $query = "insert into report values( '$ID', '$reportedID', '$type', '$description')" ; 
+            $query = "insert into report(reporterID, reportedID, type, description) values( '$ID', '$reportedID', '$type', '$description')" ; 
             $result = $conn->query($query) ; 
 
 
