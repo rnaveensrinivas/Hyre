@@ -8,56 +8,43 @@ if( isset($_SESSION['ID'])){
     header("location: ../mainlobby.php") ;
 }
 
+//Getting the form data.
 if ( isset($_POST['submit'])){ 
-    //Getting the form data.
+    
 
-    $phoneNumber = $conn->real_escape_string($_POST["phoneNumber"]) ; // Sanitizing upon arrival. 
-    $pwd1 = $conn->real_escape_string($_POST["pwd1"]) ;
-    $pwd1 = md5($pwd1); 
+    $phoneNumber = $_POST["phoneNumber"] ; 
+    $pwd1 = md5($_POST["pwd1"]) ; //getting and encrypting the password.
 
-    //query the database. 
-    $resultSet = $conn->query("SELECT * FROM account WHERE phoneNumber = '$phoneNumber' AND password = '$pwd1' LIMIT 1") ; 
+    //Query for checking if phone Number and password exist.
+    $isExistingAccountQuery = "SELECT * FROM account WHERE phoneNumber = '$phoneNumber' AND password = '$pwd1' LIMIT 1" ;
+    $resultSet = $conn->query($isExistingAccountQuery) ; 
     
     if( $resultSet->num_rows ){ 
-        //Process Login. 
+        //Account Exists.
+
         $row = $resultSet->fetch_assoc() ; 
+
+        $_SESSION['name']=$row['name'];
+        $_SESSION['ID'] = $row['ID'] ; 
+        $_SESSION['userType'] = $row['userType'] ;
+
+
         $accountStatus = $row['accountStatus'] ; 
-        $ID = $row['ID'] ; 
-        $userType = $row['userType'] ;
-        $name=$row['name'];
 
-        
-
-        //$em_database = $row['Email'] ; 
-        //$CollegeID = $row['CollegeID'] ; 
-        //$Password1 = $row['Password1'] ; 
-        //$createdDate = $row['CreatedDate'] ;
-        //$Category = $row['Category'] ; 
-        //$FullName = $row['FullName'] ;  
-
-        //$_SESSION['CollegeID'] = $CollegeID ;
-        //$_SESSION['Password1'] = $Password1 ; 
-        //$_SESSION['FullName'] = $FullName ;   
-        //$_SESSION['Category'] = $Category ;
-        $_SESSION['name']=$name;
-        $_SESSION['ID'] = $ID ; 
-        $_SESSION['userType'] = $userType ;
-
-    
         if ( $accountStatus == 1 ){ // if it is a verifed account.
             header('location:../mainlobby.php');
         }
         else  if ( $accountStatus == 0 ){ 
-            //$error .= "This account needs to be verified.<br>Mail: '$em_database'<br>Date Created : '$createdDate'. "; 
             $error .= "This account needs to be verified.<br>";
         }
         else{ 
-            //$error .= "This account needs to be verified.<br>Mail: '$em_database'<br>Date Created : '$createdDate'. "; 
             $error .= "This account has been disabled. Go to contact page and apporach the team.<br>";
         }
+
+
     }
     else{
-        $error .= "Invalid Username or password. Try Again. " ; 
+        $error .= "Invalid Username or password. Try Again." ; 
     }
 }
 $conn->close() ; 
