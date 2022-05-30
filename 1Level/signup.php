@@ -30,7 +30,9 @@ if( isset($_POST['submit'])){ //Checking if the form is submitted.
   $fname=$_POST["fname"];
   $gender=$_POST["gender"] ;
   $dOB=$_POST["dOB"];
+  //Check if date of birth is greater than 18 years old.
   $userType=$_POST["userType"];
+  //Check if the pincode is valid. By importing data set.
   $pincode=$_POST["pincode"];
   
   $pwd1 = md5($pwd1) ; //encrypting the password. 
