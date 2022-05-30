@@ -60,9 +60,8 @@ if( $_SESSION['userType'] ){
         <ul class="navbar-nav px-4"> <!--from documentation-->
             <li class="nav-item"><a class="nav-link" href="">Signup</a></li>
         </ul>
-        <ul class="navbar-nav px-4"> <!--from documentation-->
-            <li class="nav-item"><a class="nav-link" href="">Report</a></li>
-        </ul>
+        
+       
         <ul class="navbar-nav px-4"> <!--from documentation-->
             <li class="nav-item"><a class="nav-link" href="">Sign out</a></li>
         </ul>
