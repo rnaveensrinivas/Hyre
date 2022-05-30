@@ -82,16 +82,16 @@ else if( $_SESSION['userType'] == "C"){
 
 ?>
         <div>
-        <button type="button" onclick="location.href='searchWorker.php'" name="searchWorker" id="submit-button" style="margin-top:15px">Search Worker</button>
+        <button type="button" onclick="location.href='searchWorker.php'" name="searchWorker" id="submit-button" style="margin-top:15px; border-radius:5px">Search Worker</button>
         </div>
         <div>
-        <button type="button" onclick="location.href='jobRequests.php'" name="jobRequests" id="submit-button" style="margin-top:15px">Sent Requests</button>
+        <button type="button" onclick="location.href='jobRequests.php'" name="jobRequests" id="submit-button" style="margin-top:15px;border-radius:5px">Sent Requests</button>
         </div>
         <div>
-        <button type="button" onclick="location.href='upcomingJobs.php'" name="upcomingJobs" id="submit-button" style="margin-top:15px">Upcoming jobs</button>
+        <button type="button" onclick="location.href='upcomingJobs.php'" name="upcomingJobs" id="submit-button" style="margin-top:15px;border-radius:5px">Upcoming jobs</button>
         </div>
         <div>
-        <button type="button" onclick="location.href='jobHistory.php'" name="jobHistory" id="submit-button" style="margin-top:15px">Job History</button>
+        <button type="button" onclick="location.href='jobHistory.php'" name="jobHistory" id="submit-button" style="margin-top:15px;border-radius:5px">Job History</button>
         </div>
         
 
