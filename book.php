@@ -105,16 +105,9 @@ else{
     <form action="" method="POST" autocomplete="off" >
       <div class="form">
 
-        <h2>(to be filled)</h2>
-        <p>(to be filled)</p>
+        <h2>Book a Request</h2>
         
-        <!--
-        <div class="email">
-          <label for="em">E-mail</label><br>
-          <input type = "email" id="em" name="em" required placeholder="abcd@gmail.com"><br>
-        </div>
-        -->
-            
+    
         <div class="fname">
           <label for="workerID">Worker ID</label><br>
           <input type = "text" id="workerID" name="workerID" placeholder="Eg: fhsd8sfdfkj242Gsf23423" value='<?php echo $workerID ?>' required readonly> <br>
@@ -131,7 +124,7 @@ else{
         <input type="date" id="date" name="date" required><br>
 
         <label for="time">Time of Job</label><br>
-        <input type = "text" id="time" name="time" placeholder="Eg: 3pm to -5pm" required> <br>
+        <input type = "text" id="time" name="time" placeholder="Eg: 3pm to 5pm" required> <br>
 
         <label for="description">Work description</label><br>
         <textarea id="description" name="description" required rows="10" cols="40" style="height:200px" ></textarea><br>
@@ -146,7 +139,7 @@ else{
         <input type="text"  id="captcha" class="searchBox" readonly>
         <input type="text" id="enteredCaptcha" placeholder="Enter Above Captcha" style="text-align:center; font-size: 17px;" required><br><br>
         
-        <button type="submit" onclick="return validCaptcha()" name="submit" id="submit-button" style="border-radius:5px">Request Worker</button>
+        <button type="submit" onclick="return validationBooking()" name="submit" id="submit-button" style="border-radius:5px">Request Worker</button>
       </div> 
     </form>
   </body>

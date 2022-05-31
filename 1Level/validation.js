@@ -14,12 +14,25 @@ function newCaptcha() {
 
 }
 
+function validationBooking(){
+
+    var check = checkCaptcha() ; 
+    var check2 = checkDate() ; 
+
+    if( !check || !check2 ){
+        return false ;
+    }
+
+    return true ;
+
+}
+
 function validationSignup(){
     var check = checkPassword() ;  
     var check2 = checkAge();
     var check3 = checkCaptcha() ; 
 
-    if (!check || !check2 || !check3 ) {
+    if ( !check || !check2 || !check3 ) {
         return false;
     }
     return true ;
@@ -87,16 +100,14 @@ function checkAge(){
 
 function checkDate(){
 
-    var userDateinput = document.getElementById("date").value;  
+    var userDateInput = document.getElementById("date").value;  
+
+    var userDate = new Date(userDateInput);
     
-    var userdate = new Date(userDateinput);
-    
-    var difference=Date.now() - userdate.getTime();
-    if(difference>0){
-        alert("Enter valid date");
+    if( userDate < Date.now() ){
+        alert("Enter valid date.");
         return false;
     }
-    else{
-        return true;
-    }
+    
+    return true ;
 }
