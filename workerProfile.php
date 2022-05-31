@@ -77,7 +77,7 @@ if( $_SESSION['userType'] ){
                 echo "<p style='text-align:center'>Name : $printName<br>"; 
                 echo "Average Rating : $printAverageRating<br>Experience : $printExperience</p>" ;
                 if( $_SESSION['userType'] == "C" ){
-                    echo "<div style='text-align:center'><h3 style='font-size:1.25rem;font-weight:300; margin-top:20px; margin-bottom:20px'><button>Book Request</button></a></h3></div>" ;
+                    echo "<div style='text-align:center'><h3 style='font-size:1.25rem;font-weight:300; margin-top:20px; margin-bottom:20px'><a href='book.php?workerID=$workerID' id='submit-button'><button>Book Request</button></a></h3></div>" ;
                 }
 
                 ?>
