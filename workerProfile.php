@@ -72,19 +72,19 @@ if( $_SESSION['userType'] ){
             <button type="button" onclick="location.href='logout.php'" name="Logout" id="submit-button" style="background-color: white; color:rgb(95, 108, 255);">Sign Out</button>
         </div>
             <div class="form">
-                <h2>(to be filled)</h2>
-                <h3>Worker Profile below</h3>
+                <h2 style='text-align:center'>(to be filled)</h2>
+                <h3 style='text-align:center'>Worker Profile below</h3>
                 <?php
-                echo "<h3>Name : $printName "; 
+                echo "<h3 style='text-align:center'>Name : $printName "; 
                 echo "<p>Average Rating : $printAverageRating<br>Experience : $printExperience</p>" ;
                 if( $_SESSION['userType'] == "C" ){
-                    echo "<a href='book.php?workerID=$workerID' id='submit-button'><button>Book Request</button></a></h3>" ;
+                    echo "<div style='text-align:center'><h3 style='font-size:1.25rem;font-weight:300; margin-top:20px; margin-bottom:20px'><button>Book Request</button></a></h3></div>" ;
                 }
 
                 ?>
             </div> 
             <div class="form">
-                <h1>Comments</h1>
+                <h1 style='text-align:center'>Comments</h1>
                 <?php
                 $selectAllComments = "SELECT * FROM comment where workerID='$workerID' " ; 
                 if ( $result = mysqli_query( $conn, $selectAllComments) ) { 
@@ -94,15 +94,14 @@ if( $_SESSION['userType'] ){
                         $printDescription = $row['description'] ;  
                         $jobID = $row['jobID'] ; 
             
-                        echo "<h3>Client ID : $printClientID<br>Description : $printDescription<br>"; 
+                        echo "<div style='text-align:center'><h3 style='font-size:1.25rem;font-weight:300; margin-top:20px; margin-bottom:20px'>Worker ID: $printClientID<br>Description: $printDescription<br></div>"; 
                         
                     }
                 }
-
                 ?>
             </div> 
     </body>
- </html> 
+ </html>
 
  <?php
     
