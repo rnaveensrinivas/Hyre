@@ -54,7 +54,7 @@ if( isset($_POST['submit'])){ //Checking if the form is submitted.
     }  
   }
   else{ 
-    echo "<script>alert('This pincode is Tamil Nadu')</script>" ; 
+    echo "<script>alert('This pincode is not in Tamil Nadu')</script>" ; 
   }
   $conn->close();
 }
@@ -154,7 +154,7 @@ if( isset($_POST['submit'])){ //Checking if the form is submitted.
         <input type="text"  id="captcha" class="searchBox" readonly>
         <input type="text" id="enteredCaptcha" placeholder="Enter Above Captcha" style="text-align:center; font-size: 17px;"><br><br>
         
-        <button type="submit" onclick="return validCaptcha()" name="submit" id="submit-button">Create Account</button>
+        <button type="submit" onclick="return validationSignup()" name="submit" id="submit-button">Create Account</button>
         <p style="font-size :15px; " >Already a user ? <a href="login.php" style="text-decoration:none; font-size: 15px;">Login</a></p>
         
 

@@ -14,13 +14,18 @@ function newCaptcha() {
 
 }
 
-function validCaptcha() {
+function validationSignup(){
+    var check = checkPassword() ;  
+    var check2 = checkAge();
+    var check3 = checkCaptcha() ; 
 
-    var check = checkPassword(); // application of stack. 
-    var check2=checkAge();
-    if (!check||!check2) {
+    if (!check || !check2 || !check3 ) {
         return false;
     }
+    return true ;
+}
+
+function checkCaptcha() {
 
     var captcha = document.getElementById('captcha').value;
     var enteredCaptcha = document.getElementById('enteredCaptcha').value;
@@ -33,6 +38,7 @@ function validCaptcha() {
         alert("Wrong captcha Try again.");
         return false;
     }
+    return true ;
 }
 
 function checkPassword() {
@@ -47,35 +53,27 @@ function checkPassword() {
         }
         return true;
     }
-    else {
-        return false;
-    }
-
-
+    return false ;
 }
 
 
 function checkAge(){
 
     var userDateinput = document.getElementById("dOB").value;  
-    console.log(userDateinput);
     
     var birthDate = new Date(userDateinput);
-     console.log(" birthDate"+ birthDate);
     
     var difference=Date.now() - birthDate.getTime();
     
     var  ageDate = new Date(difference);
     
-    var calculatedAge=   Math.abs(ageDate.getUTCFullYear() - 1970);
+    var calculatedAge = Math.abs(ageDate.getUTCFullYear() - 1970);
     
     if(calculatedAge<18){
-        alert("Age must be over 18.");
-
+        alert("Age must be over 18");
         return false;
     }
-    else
-        return true;
+    return true ;
 }
 
 function checkDate(){
