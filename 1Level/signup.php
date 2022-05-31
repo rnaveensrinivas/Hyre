@@ -54,7 +54,7 @@ if( isset($_POST['submit'])){ //Checking if the form is submitted.
     }  
   }
   else{ 
-    echo "<script>alert('This Pincode doesn't exist in Tamil Nadu. Retry.')</script>" ; 
+    echo "<script>alert('This pincode is Tamil Nadu')</script>" ; 
   }
   $conn->close();
 }
