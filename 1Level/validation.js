@@ -59,9 +59,16 @@ function checkPassword() {
 
 function checkAge(){
 
-    var userDateinput = document.getElementById("dOB").value;  
+    var userDateInput = document.getElementById("dOB").value;  
     
-    var birthDate = new Date(userDateinput);
+    var birthDate = new Date(userDateInput);
+
+    var userYearInput = birthDate.getYear() ; 
+
+    if(userYearInput <= 1900 ){
+        alert('Enter a valid date of birth.') ; 
+        return false ; 
+    }
     
     var difference=Date.now() - birthDate.getTime();
     
