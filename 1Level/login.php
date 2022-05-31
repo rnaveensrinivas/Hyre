@@ -98,7 +98,7 @@ $conn->close() ;
                 <input type="text"  id="captcha" oncopy="return false" class="searchBox" readonly>
                 <input type="text" id="enteredCaptcha" onpaste="return false" placeholder="Enter Above Captcha" style="text-align:center; font-size: 17px;"><br><br>
 
-                <button type="submit" onclick="return validCaptcha()" name="submit" id="submit-button" style="border-radius:5px;">Login</button>
+                <button type="submit" onclick="return checkCaptcha()" name="submit" id="submit-button" style="border-radius:5px;">Login</button>
                 <p style="font-size :15px; " >New User ?<a href="signup.php" style="text-decoration:none; font-size: 15px;">Sign-Up</a></p>
 
             </div> 
