@@ -82,14 +82,12 @@ if( isset($_POST['submit'])){ //Checking if the form is submitted.
                 <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
             </ul>
             <ul class="navbar-nav px-4"> <!--from documentation-->
-              <li class="nav-item"><a class="nav-link" href="">Contact</a></li>
+              <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
           </ul>
             <ul class="navbar-nav "> <!--from documentation-->
-                <li class="nav-item"><a class="nav-link" href="">Login</a></li>
+                <li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
             </ul>
-            <ul class="navbar-nav px-4"> <!--from documentation-->
-                <li class="nav-item"><a class="nav-link" href="">Signup</a></li>
-            </ul>
+            
             </div>
         </nav>
   </head>
@@ -103,16 +101,16 @@ if( isset($_POST['submit'])){ //Checking if the form is submitted.
             
         <div class="fname">
           <label for="fname">Full Name</label><br>
-          <input type = "text" id="fname" name="fname" placeholder="Eg: Rithvik Senthil"><br>
+          <input type = "text" id="fname" name="fname" placeholder="Eg: Rithvik Senthil" required><br>
         </div>
 
         <label for="phoneNumber">Phone Number</label><br>
-        <input type = "text" id="phoneNumber" name="phoneNumber" placeholder="Eg: 73328 09723"><br>
+        <input type = "text" id="phoneNumber" name="phoneNumber" placeholder="Eg: 73328 09723" required ><br>
         
         <div style="text-align:center; padding:10px;">
           Gender:
           <div style="padding:5px; display:inline">
-            <input type="radio" name="gender" id="male" value="M">
+            <input type="radio" name="gender" id="male" value="M" required>
             <label for='male'>Male</label>
           </div>
           
@@ -125,7 +123,7 @@ if( isset($_POST['submit'])){ //Checking if the form is submitted.
         <div style="text-align:center; padding:10px;">
           User Type:
           <div style="padding:10px; display:inline">
-            <input type="radio" name="userType" id="worker" value="W">
+            <input type="radio" name="userType" id="worker" value="W" required>
             <label for='worker'>Worker</label>
           </div>
           
@@ -136,19 +134,19 @@ if( isset($_POST['submit'])){ //Checking if the form is submitted.
         </div>
             
         <label for="dOB">Date Of Birth</label><br>
-        <input type="date" id="dOB" name="dOB"><br>
+        <input type="date" id="dOB" name="dOB" required ><br>
 
         <label for="pincode">Pincode</label><br>
-        <input type="number" id="pincode" name="pincode" min="100000" max="999999" placeholder="Eg: 600025"><br>
+        <input type="number" id="pincode" name="pincode" min="100000" max="999999" placeholder="Eg: 600025" required><br>
     
         <label for="aadhaar">Aadhaar ID</label><br>
-        <input type="number" id="aadhaar" name="aadhaar" min="1000000000000000" max="9999999999999999" placeholder="Eg: 2567 7765 8586 5650"><br>
+        <input type="number" id="aadhaar" name="aadhaar" min="1000000000000000" max="9999999999999999" placeholder="Eg: 2567 7765 8586 5650" required><br>
 
         <label for="pwd1">Password</label><br>
-        <input type="password" id="pwd1" name="pwd1"  minlength="8" pattern="[0-9a-fA-F!@#$%^&*_-.\|/><,';:]" placeholder="Must have atleast 8 characters"><br>
+        <input type="password" id="pwd1" name="pwd1"  minlength="8" pattern="[0-9a-fA-F!@#$%^&*_-.\|/><,';:]" placeholder="Must have atleast 8 characters" required><br>
 
         <label for="pwd2">Confirm Password</label><br>
-        <input type="password" id="pwd2" name="pwd2"  minlength="8" pattern="[0-9a-fA-F!@#$%^&*_-.\|/><,';:]" placeholder="Must have atleast 8 characters"><br><br>
+        <input type="password" id="pwd2" name="pwd2"  minlength="8" pattern="[0-9a-fA-F!@#$%^&*_-.\|/><,';:]" placeholder="Must have atleast 8 characters" required><br><br>
 
         <button type="button" onclick="newCaptcha()" id="cap" title="Give a new Captcha.">New Captcha</button>
         <input type="text"  id="captcha" class="searchBox" readonly>

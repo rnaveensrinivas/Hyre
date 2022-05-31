@@ -69,13 +69,11 @@ $conn->close() ;
                 <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
             </ul>
             <ul class="navbar-nav px-4"> <!--from documentation-->
-              <li class="nav-item"><a class="nav-link" href="">Contact</a></li>
+              <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
           </ul>
-            <ul class="navbar-nav "> <!--from documentation-->
-                <li class="nav-item"><a class="nav-link" href="">Login</a></li>
-            </ul>
+            
             <ul class="navbar-nav px-4"> <!--from documentation-->
-                <li class="nav-item"><a class="nav-link" href="">Signup</a></li>
+                <li class="nav-item"><a class="nav-link" href="signup.php">Signup</a></li>
             </ul>
             </div>
         </nav>

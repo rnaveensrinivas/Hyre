@@ -63,13 +63,15 @@ function checkAge(){
     
     var birthDate = new Date(userDateInput);
 
+    /*
     var userYearInput = birthDate.getYear() ; 
 
     if(userYearInput <= 1900 ){
         alert('Enter a valid date of birth.') ; 
         return false ; 
     }
-    
+    */
+
     var difference=Date.now() - birthDate.getTime();
     
     var  ageDate = new Date(difference);
