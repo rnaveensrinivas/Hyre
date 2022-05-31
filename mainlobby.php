@@ -16,31 +16,20 @@
             <span class="navbar-toggler-icon"></span>
           </button>
         <div class="collapse navbar-collapse" id="#navbarToggleButton">
-          <ul class="navbar-nav px-4 ms-auto"> <!--from documentation-->
-            <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          
+        <ul class="navbar-nav px-4 ms-auto"> <!--from documentation-->
+            <li class="nav-item"><a class="nav-link" href="report.php">Report</a></li>
         </ul>
         <ul class="navbar-nav px-4"> <!--from documentation-->
-          <li class="nav-item"><a class="nav-link" href="">Contact</a></li>
-      </ul>
-        <ul class="navbar-nav "> <!--from documentation-->
-            <li class="nav-item"><a class="nav-link" href="">Login</a></li>
+            <li class="nav-item"><a class="nav-link" href="workerProfile.php">My Profile</a></li>
         </ul>
         <ul class="navbar-nav px-4"> <!--from documentation-->
-            <li class="nav-item"><a class="nav-link" href="">Signup</a></li>
-        </ul>
-        <ul class="navbar-nav px-4"> <!--from documentation-->
-            <li class="nav-item"><a class="nav-link" href="">Report</a></li>
-        </ul>
-        <ul class="navbar-nav px-4"> <!--from documentation-->
-            <li class="nav-item"><a class="nav-link" href="">Sign out</a></li>
+            <li class="nav-item"><a class="nav-link" href="logout.php">Sign out</a></li>
         </ul>
         </div>
         <!--COMPLETE THIS REPORT AND SIGN OUT WITH NAVEEN -->
     </nav>
-        <div class="logout">
-        <button type="button" onclick="location.href='report.php'" name="report" id="submit-button" sty>Report</button>
-        <button type="button" onclick="location.href='logout.php'" name="Logout" id="submit-button" style="margin-top:15px">Sign Out</button>
-        </div>
+        
 
         <div class="form" style="margin-top:100px">
             <h2>Hi there.</h2>
