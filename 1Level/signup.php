@@ -11,11 +11,14 @@ if( isset($_POST['submit'])){ //Checking if the form is submitted.
   $phoneNumber = $_POST["phoneNumber"];
   $aadhaar = $_POST["aadhaar"];
   $pwd1 = $_POST["pwd1"]; 
+  $pincode=$_POST["pincode"];
 
+  $checkPincodeIfExists = "SELECT * from tamilnadupincodes where pincode = '$pincode'" ; 
   $checkPhoneNumberIfExistsQuery = "SELECT * FROM account WHERE phoneNumber = '$phoneNumber'" ; //Checking if phone already exists. 
   $checkAadhaarIDIfExistsQuery = "SELECT * FROM account WHERE aadhaar = '$aadhaar'" ; //Checking if aadhaar ID already exists. 
-  $phoneNumberResult = mysqli_query($conn , $checkPhoneNumberIfExistsQuery) ; 
-  $aadhaarIDResult =  mysqli_query($conn , $checkAadhaarIDIfExistsQuery) ; 
+  $pincodeResult = mysqli_query( $conn , $checkPincodeIfExists ) ;
+  $phoneNumberResult = mysqli_query( $conn , $checkPhoneNumberIfExistsQuery ) ; 
+  $aadhaarIDResult =  mysqli_query( $conn , $checkAadhaarIDIfExistsQuery ) ; 
 
 
   if( $phoneNumberResult->fetch_assoc()){
@@ -24,14 +27,14 @@ if( isset($_POST['submit'])){ //Checking if the form is submitted.
   else if( $aadhaarIDResult->fetch_assoc()){
     echo "<script>alert('This Aadhaar ID Id already exists. Go to login page.')</script>" ; 
   }
-  else{    
+  else if( $pincodeResult->fetch_assoc()){
 
     //Getting rest of the details here. 
     $fname=$_POST["fname"];
     $gender=$_POST["gender"] ;
     $dOB=$_POST["dOB"];
     $userType=$_POST["userType"];
-    $pincode=$_POST["pincode"];
+    
 
     $pwd1 = md5($pwd1) ; 
     $ID = md5($aadhaar) ; 
@@ -46,12 +49,12 @@ if( isset($_POST['submit'])){ //Checking if the form is submitted.
       else{
         $conn->query("INSERT INTO worker(workerID) values('$ID') ") ;
       }
-
-      echo "<script>alert('Account successfully created.')";
-      
+      echo "<script>alert('Account successfully created.')</script>";
       header('location:thankyou.php?Status=success');
-    
     }  
+  }
+  else{ 
+    echo "<script>alert('This Pincode doesn't exist in Tamil Nadu. Retry.')</script>" ; 
   }
   $conn->close();
 }

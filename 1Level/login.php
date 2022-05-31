@@ -11,7 +11,6 @@ if( isset($_SESSION['ID'])){
 //Getting the form data.
 if ( isset($_POST['submit'])){ 
     
-
     $phoneNumber = $_POST["phoneNumber"] ; 
     $pwd1 = md5($_POST["pwd1"]) ; //getting and encrypting the password.
 
@@ -27,8 +26,6 @@ if ( isset($_POST['submit'])){
         $_SESSION['name']=$row['name'];
         $_SESSION['ID'] = $row['ID'] ; 
         $_SESSION['userType'] = $row['userType'] ;
-
-
         $accountStatus = $row['accountStatus'] ; 
 
         if ( $accountStatus == 1 ){ // if it is a verifed account.
@@ -40,8 +37,6 @@ if ( isset($_POST['submit'])){
         else{ 
             $error .= "This account has been disabled. Go to contact page and apporach the team.<br>";
         }
-
-
     }
     else{
         $error .= "Invalid Username or password. Try Again." ; 
@@ -98,31 +93,14 @@ $conn->close() ;
       
                 <label for="pwd1">Password</label><br>
                 <input type="password" id="pwd1" name="pwd1" minlength="8" pattern="[0-9a-fA-F!@#$%^&*_-.]" required >
-                <!--<a href="resetpassword.php" style="text-decoration:none; font-size: 15px;">Forgot Password?</a><br><br> -->
 
                 <button type="button" onclick="newCaptcha()" id="cap" title="Give a new Captcha." style="margin-top:25px; border-radius:5px">New Captcha</button>
                 <input type="text"  id="captcha" oncopy="return false" class="searchBox" readonly>
                 <input type="text" id="enteredCaptcha" onpaste="return false" placeholder="Enter Above Captcha" style="text-align:center; font-size: 17px;"><br><br>
 
-                <!-- Below validate captcha is not working. -->
                 <button type="submit" onclick="return validCaptcha()" name="submit" id="submit-button" style="border-radius:5px;">Login</button>
-                <p style="font-size :15px; " >New User ? <a href="signup.php" style="text-decoration:none; font-size: 15px;">Sign-Up</a></p>
-                <!--
-                <script>
-                    function validCaptcha(){ 
-                        var captcha = document.getElementById('captcha').value ; 
-                        var enteredCaptcha = document.getElementById('enteredCaptcha').value ; 
-                        
-                        if( enteredCaptcha == '' ){ 
-                            alert("Enter the captcha.") ; 
-                            return false ; 
-                        }
-                        else if( captcha != enteredCaptcha ){ 
-                            alert("Wrong captcha Try again.") ; 
-                            return false ; 
-                        }
-                    }
-                </script> -->
+                <p style="font-size :15px; " >New User ?<a href="signup.php" style="text-decoration:none; font-size: 15px;">Sign-Up</a></p>
+
             </div> 
         </form>
     </body>
