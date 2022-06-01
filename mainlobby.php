@@ -17,11 +17,18 @@
           </button>
         <div class="collapse navbar-collapse" id="#navbarToggleButton">
           
-        <ul class="navbar-nav px-4 ms-auto"> <!--from documentation-->
-            <li class="nav-item"><a class="nav-link" href="report.php">Report</a></li>
+        
+        <ul class="navbar-nav px-4  ms-auto"> <!--from documentation-->
+            <li class="nav-item"><a class="nav-link" href="jobRequests.php">Job Requests</a></li>
         </ul>
         <ul class="navbar-nav px-4"> <!--from documentation-->
-            <li class="nav-item"><a class="nav-link" href="workerProfile.php">My Profile</a></li>
+            <li class="nav-item"><a class="nav-link" href="upcomingJobs.php">Upcoming Jobs</a></li>
+        </ul>
+        <ul class="navbar-nav px-4"> <!--from documentation-->
+            <li class="nav-item"><a class="nav-link" href="jobHistory.php">Job History</a></li>
+        </ul>
+        <ul class="navbar-nav px-4"> <!--from documentation-->
+            <li class="nav-item"><a class="nav-link" href="report.php">Report User</a></li>
         </ul>
         <ul class="navbar-nav px-4"> <!--from documentation-->
             <li class="nav-item"><a class="nav-link" href="logout.php">Sign out</a></li>
@@ -43,22 +50,11 @@ include 'config.php' ;
 if( $_SESSION['userType'] == "W"){ 
     
     $name = $_SESSION['name'];
-    echo "<p>Welcome, $name.</p>" ;
+    $ID = $_SESSION['ID'] ; 
+    echo "<p>Welcome, $name.<br>User ID : $ID</p>" ;
 ?>
         <div>
         <button type="button" onclick="location.href='workerProfile.php'" name="workerProfile" id="submit-button" style="margin-top:15px;  border-radius:5px" >My profile</button>
-        </div>
-        <div>
-        <button type="button" onclick="location.href='editWorkerDetails.php'" name="editWorkerDetails" id="submit-button" style="margin-top:15px;  border-radius:5px">Edit my info</button>
-        </div>
-        <div>
-        <button type="button" onclick="location.href='jobRequests.php'" name="jobRequests" id="submit-button" style="margin-top:15px;  border-radius:5px">Job requests</button>
-        </div>
-        <div>
-        <button type="button" onclick="location.href='upcomingJobs.php'" name="upcomingJobs" id="submit-button" style="margin-top:15px;  border-radius:5px">Upcoming jobs</button>
-        </div>
-        <div>
-        <button type="button" onclick="location.href='jobHistory.php'" name="jobHistory" id="submit-button" style="margin-top:15px;  border-radius:5px" >Job history</button>
         </div>
 
 <?php
@@ -72,17 +68,7 @@ else if( $_SESSION['userType'] == "C"){
 ?>
         <div>
         <button type="button" onclick="location.href='searchWorker.php'" name="searchWorker" id="submit-button" style="margin-top:15px; border-radius:5px">Search Worker</button>
-        </div>
-        <div>
-        <button type="button" onclick="location.href='jobRequests.php'" name="jobRequests" id="submit-button" style="margin-top:15px;border-radius:5px">Sent Requests</button>
-        </div>
-        <div>
-        <button type="button" onclick="location.href='upcomingJobs.php'" name="upcomingJobs" id="submit-button" style="margin-top:15px;border-radius:5px">Upcoming jobs</button>
-        </div>
-        <div>
-        <button type="button" onclick="location.href='jobHistory.php'" name="jobHistory" id="submit-button" style="margin-top:15px;border-radius:5px">Job History</button>
-        </div>
-        
+        </div>        
 
 <?php
 
