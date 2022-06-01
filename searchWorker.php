@@ -56,12 +56,13 @@ if( $_SESSION['userType'] == "C" ){
                 </select><br>
 
                 <label for="gender">Gender</label><br>
-                <select name="gender" id="gender">
+                <select name="gender" id="gender" style="margin-bottom:20px">
                 <option value="NULL" selected hidden>Select an Option</option>
                 <option value="M">Male</option>
                 <option value="F">Female</option>
                 </select>
-                <button type="submit" name="submit" id="submit-button" style="margin-top:20px">Search</button>
+
+                    <button type="submit" name="submit" id="submit-button" style="margin-top:20px ; border-radius:10px; width:30%; margin:auto; display:block;">Search</button>
 
 
             </div> 
@@ -103,12 +104,15 @@ if( $_SESSION['userType'] == "C" ){
                     $printAverageRating = $row['averageRating'] ;
                     $printExperience = $row['experience'] ;
                     $workerID = $row['workerID'] ; 
-                    echo "<div class='form'>" ;
-                    echo "<h3>$printName "; 
-                    echo "<p>Average Rating : $printAverageRating<br>Experience : $printExperience</p>" ;
-                    echo "<a href='workerProfile.php?workerID=$workerID' id='submit-button'><button>View Worker</button></a></h3>" ;
+                    echo "<div class='card' style='width:18rem; margin: 20px'>" ;
+                    echo "<div class='card-body' style='text-align:center'>";
+                    echo "<h5 class='card-title' >$printName</h5>"; 
+                    echo "<p class='card-text' style='font-weight:300; font-size:1.25rem'>Average Rating: $printAverageRating<br>Experience: $printExperience</p>" ;
+                    echo "<a href='workerProfile.php?workerID=$workerID' id='submit-button' style='text-decoration:none;'><button style='width:50%; border-radius:7px; margin:auto; display:block;'>View Worker</button></a></h3>" ;
+                    echo "</div>" ;
                     echo "</div>" ;
                 }
+
             }
             
             if( $isAvailableWorker == 0 ){
@@ -133,3 +137,6 @@ else{
 
     </body>
  </html> 
+
+
+
