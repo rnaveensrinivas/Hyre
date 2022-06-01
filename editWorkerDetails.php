@@ -32,8 +32,6 @@ else if( $_SESSION['userType'] == "C"){
 else{
     header("location:index.html") ; 
 }
-
-
 ?>
 
 

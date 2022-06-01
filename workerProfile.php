@@ -68,12 +68,12 @@ if( $_SESSION['userType'] ){
             <div class="form">
                 <h2 style='text-align:center'>Worker Profile</h2>
                 <?php
-                echo "<p style='text-align:center'>Name : $name<br> workerID : $workerID<br>"; 
+                echo "<p>Name : $name<br> workerID : $workerID<br>"; 
                 echo "Job Type : $jobType<br> Phone Number : $phoneNumber<br>Gender : $gender<br>Working Hours : $workingHours<br>" ;
                 echo "Payment Mode : $paymentMode<br>Average Rating : $averageRating<br>Experience : $experience<br>Pincode : $pincode<br>" ;
 
                 if( $_SESSION['userType'] == "C" ){
-                    echo "<div style='text-align:center'><h3 style='font-size:1.25rem;font-weight:300; margin-top:20px; margin-bottom:20px'><a href='book.php?workerID=$workerID' id='submit-button'><button>Book Request</button></a></h3></div>" ;
+                    echo "<div><h3 style='font-size:1.25rem;font-weight:300; margin-top:20px; margin-bottom:20px'><a href='book.php?workerID=$workerID' id='submit-button'><button>Book Request</button></a></h3></div>" ;
                 }
                 else{
                     ?>
@@ -92,9 +92,9 @@ if( $_SESSION['userType'] ){
             
                         $printClientID = $row['clientID'] ;
                         $printDescription = $row['description'] ;  
-                        $jobID = $row['jobID'] ; 
+                        $jobID = $row['jobID']; 
             
-                        echo "<div style='text-align:center'><h3 style='font-size:1.25rem;font-weight:300; margin-top:20px; margin-bottom:20px'>Client ID: $printClientID<br>Description: $printDescription<br></div>"; 
+                        echo "<div><h3 style='font-size:1.25rem;font-weight:300; margin-top:20px; margin-bottom:20px'>Client ID: $printClientID<br>Description: $printDescription<br></div>"; 
                         
                     }
                 }
