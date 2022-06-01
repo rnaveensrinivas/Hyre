@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 31, 2022 at 06:17 AM
+-- Generation Time: Jun 01, 2022 at 08:31 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -46,9 +46,37 @@ CREATE TABLE `account` (
 --
 
 INSERT INTO `account` (`name`, `phoneNumber`, `gender`, `dOB`, `pincode`, `aadhaar`, `password`, `userType`, `ID`, `accountStatus`, `reportCount`) VALUES
-('Naveen ', 1234567890, 'M', '2022-05-05', 100000, 1000000000000000, 'c44a471bd78cc6c2fea32b9fe028d30a', 'W', 'aa7372eaa327ee4372711da7f26f73c5', 1, 1),
-('nav', 1234567898, 'F', '2022-04-29', 100000, 1000000000000003, 'c44a471bd78cc6c2fea32b9fe028d30a', 'W', 'dc070d60065de53cf71548cfcbab9fce', 1, 0),
-('Rithvik', 1234567899, 'M', '2022-04-29', 100000, 1000000000000001, 'c44a471bd78cc6c2fea32b9fe028d30a', 'C', 'f56a9e630b931e993bc1ecdd3b0ba853', 1, 2);
+('Naveen Srinivas', 1234567890, 'M', '2003-03-12', 600129, 1000000000000000, 'c44a471bd78cc6c2fea32b9fe028d30a', 'W', 'aa7372eaa327ee4372711da7f26f73c5', 1, 0),
+('Rithvik Senthil', 1234567899, 'M', '2001-10-25', 600090, 1000000000000001, 'c44a471bd78cc6c2fea32b9fe028d30a', 'C', 'f56a9e630b931e993bc1ecdd3b0ba853', 1, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `carpenter`
+-- (See below for the actual view)
+--
+CREATE TABLE `carpenter` (
+`name` varchar(30)
+,`phoneNumber` bigint(10)
+,`gender` char(1)
+,`dOB` date
+,`pincode` int(6)
+,`aadhaar` bigint(16)
+,`password` varchar(32)
+,`userType` char(1)
+,`ID` varchar(32)
+,`accountStatus` tinyint(4)
+,`reportCount` smallint(6)
+,`workerID` varchar(32)
+,`workerName` varchar(30)
+,`jobType` varchar(30)
+,`workingHours` varchar(20)
+,`experience` tinyint(11)
+,`paymentMode` varchar(50)
+,`photo` blob
+,`reputationCount` int(11)
+,`averageRating` float
+);
 
 -- --------------------------------------------------------
 
@@ -58,6 +86,7 @@ INSERT INTO `account` (`name`, `phoneNumber`, `gender`, `dOB`, `pincode`, `aadha
 
 CREATE TABLE `client` (
   `clientID` varchar(32) NOT NULL,
+  `clientName` varchar(30) NOT NULL,
   `clientRating` smallint(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -65,8 +94,8 @@ CREATE TABLE `client` (
 -- Dumping data for table `client`
 --
 
-INSERT INTO `client` (`clientID`, `clientRating`) VALUES
-('f56a9e630b931e993bc1ecdd3b0ba853', 0);
+INSERT INTO `client` (`clientID`, `clientName`, `clientRating`) VALUES
+('f56a9e630b931e993bc1ecdd3b0ba853', 'Rithvik Senthil', 0);
 
 -- --------------------------------------------------------
 
@@ -78,19 +107,40 @@ CREATE TABLE `comment` (
   `commentID` int(11) NOT NULL,
   `jobID` int(11) NOT NULL,
   `workerID` varchar(32) NOT NULL,
+  `workerName` varchar(30) NOT NULL,
   `clientID` varchar(32) NOT NULL,
+  `clientName` varchar(30) NOT NULL,
   `description` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `comment`
---
+-- --------------------------------------------------------
 
-INSERT INTO `comment` (`commentID`, `jobID`, `workerID`, `clientID`, `description`) VALUES
-(1, 1, 'aa7372eaa327ee4372711da7f26f73c5', 'f56a9e630b931e993bc1ecdd3b0ba853', 'good worker.Hard working person.'),
-(3, 1, 'aa7372eaa327ee4372711da7f26f73c5', 'f56a9e630b931e993bc1ecdd3b0ba853', ' '),
-(4, 1, 'aa7372eaa327ee4372711da7f26f73c5', 'f56a9e630b931e993bc1ecdd3b0ba853', 'the worker has cancelled my job due to lame reasons, highly unsuggestive.'),
-(5, 6, 'dc070d60065de53cf71548cfcbab9fce', 'f56a9e630b931e993bc1ecdd3b0ba853', 'he is asking for too much money.');
+--
+-- Stand-in structure for view `cook`
+-- (See below for the actual view)
+--
+CREATE TABLE `cook` (
+`name` varchar(30)
+,`phoneNumber` bigint(10)
+,`gender` char(1)
+,`dOB` date
+,`pincode` int(6)
+,`aadhaar` bigint(16)
+,`password` varchar(32)
+,`userType` char(1)
+,`ID` varchar(32)
+,`accountStatus` tinyint(4)
+,`reportCount` smallint(6)
+,`workerID` varchar(32)
+,`workerName` varchar(30)
+,`jobType` varchar(30)
+,`workingHours` varchar(20)
+,`experience` tinyint(11)
+,`paymentMode` varchar(50)
+,`photo` blob
+,`reputationCount` int(11)
+,`averageRating` float
+);
 
 -- --------------------------------------------------------
 
@@ -101,7 +151,9 @@ INSERT INTO `comment` (`commentID`, `jobID`, `workerID`, `clientID`, `descriptio
 CREATE TABLE `job` (
   `jobID` int(11) NOT NULL,
   `clientID` varchar(32) NOT NULL,
+  `clientName` varchar(30) NOT NULL,
   `workerID` varchar(32) NOT NULL,
+  `workerName` varchar(30) NOT NULL,
   `landmark` varchar(50) NOT NULL,
   `pincode` mediumint(6) NOT NULL,
   `time` varchar(40) NOT NULL,
@@ -114,16 +166,63 @@ CREATE TABLE `job` (
   `workerRating` float NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `job`
---
+-- --------------------------------------------------------
 
-INSERT INTO `job` (`jobID`, `clientID`, `workerID`, `landmark`, `pincode`, `time`, `date`, `workType`, `description`, `bookingStatus`, `jobStatus`, `clientRating`, `workerRating`) VALUES
-(7, 'f56a9e630b931e993bc1ecdd3b0ba853', 'aa7372eaa327ee4372711da7f26f73c5', 'Opposite to Kottur gate.', 100000, '5pm - 10pm', '2022-06-05', 'Carpentry', 'Chumma come here.', 3, 2, 0, 0),
-(8, 'f56a9e630b931e993bc1ecdd3b0ba853', 'aa7372eaa327ee4372711da7f26f73c5', 'adsf', 100000, 'asdf', '2022-05-13', 'Carpentry', 'asdf', 1, 3, 0, 0),
-(9, 'f56a9e630b931e993bc1ecdd3b0ba853', 'dc070d60065de53cf71548cfcbab9fce', 'ghbgfhfghdfghdghdgfhdfgh', 100000, 'hjkgj', '2022-03-10', 'Carpentry', 'sfgsdfgs', 3, 2, 0, 0),
-(10, 'f56a9e630b931e993bc1ecdd3b0ba853', 'aa7372eaa327ee4372711da7f26f73c5', 'asdfasdfasdfasdf', 100000, 'ZCv', '2022-06-02', 'Carpentry', 'sdfasdfasdf', 1, 4, 0, 0),
-(11, 'f56a9e630b931e993bc1ecdd3b0ba853', 'dc070d60065de53cf71548cfcbab9fce', 'dsfsdf', 100000, 'sdf', '2022-05-19', 'Carpentry', 'asdxfsdf', 0, 0, 0, 0);
+--
+-- Stand-in structure for view `maid`
+-- (See below for the actual view)
+--
+CREATE TABLE `maid` (
+`name` varchar(30)
+,`phoneNumber` bigint(10)
+,`gender` char(1)
+,`dOB` date
+,`pincode` int(6)
+,`aadhaar` bigint(16)
+,`password` varchar(32)
+,`userType` char(1)
+,`ID` varchar(32)
+,`accountStatus` tinyint(4)
+,`reportCount` smallint(6)
+,`workerID` varchar(32)
+,`workerName` varchar(30)
+,`jobType` varchar(30)
+,`workingHours` varchar(20)
+,`experience` tinyint(11)
+,`paymentMode` varchar(50)
+,`photo` blob
+,`reputationCount` int(11)
+,`averageRating` float
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `painter`
+-- (See below for the actual view)
+--
+CREATE TABLE `painter` (
+`name` varchar(30)
+,`phoneNumber` bigint(10)
+,`gender` char(1)
+,`dOB` date
+,`pincode` int(6)
+,`aadhaar` bigint(16)
+,`password` varchar(32)
+,`userType` char(1)
+,`ID` varchar(32)
+,`accountStatus` tinyint(4)
+,`reportCount` smallint(6)
+,`workerID` varchar(32)
+,`workerName` varchar(30)
+,`jobType` varchar(30)
+,`workingHours` varchar(20)
+,`experience` tinyint(11)
+,`paymentMode` varchar(50)
+,`photo` blob
+,`reputationCount` int(11)
+,`averageRating` float
+);
 
 -- --------------------------------------------------------
 
@@ -134,19 +233,12 @@ INSERT INTO `job` (`jobID`, `clientID`, `workerID`, `landmark`, `pincode`, `time
 CREATE TABLE `report` (
   `reportID` int(11) NOT NULL,
   `reporterID` varchar(32) NOT NULL,
+  `reporterName` varchar(30) NOT NULL,
   `reportedID` varchar(32) NOT NULL,
+  `reportedName` varchar(30) NOT NULL,
   `type` varchar(32) NOT NULL,
   `description` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `report`
---
-
-INSERT INTO `report` (`reportID`, `reporterID`, `reportedID`, `type`, `description`) VALUES
-(1, 'f56a9e630b931e993bc1ecdd3b0ba853', 'aa7372eaa327ee4372711da7f26f73c5', 'Money Related', 'He is asking for too much money.'),
-(2, 'dc070d60065de53cf71548cfcbab9fce', 'f56a9e630b931e993bc1ecdd3b0ba853', 'Money Related', 'he is telling lies.'),
-(3, 'f56a9e630b931e993bc1ecdd3b0ba853', 'f56a9e630b931e993bc1ecdd3b0ba853', 'Assault', 'He assaulted me.');
 
 -- --------------------------------------------------------
 
@@ -2228,10 +2320,11 @@ INSERT INTO `tamilnadupincodes` (`pincode`, `district`) VALUES
 
 CREATE TABLE `worker` (
   `workerID` varchar(32) NOT NULL,
+  `workerName` varchar(30) NOT NULL,
   `jobType` varchar(30) NOT NULL,
   `workingHours` varchar(20) NOT NULL DEFAULT '9am to 6pm',
   `experience` tinyint(11) NOT NULL,
-  `paymentDetails` varchar(100) NOT NULL,
+  `paymentMode` varchar(50) NOT NULL DEFAULT 'Cash',
   `photo` blob NOT NULL,
   `reputationCount` int(11) NOT NULL DEFAULT 0,
   `averageRating` float NOT NULL DEFAULT 0
@@ -2241,9 +2334,44 @@ CREATE TABLE `worker` (
 -- Dumping data for table `worker`
 --
 
-INSERT INTO `worker` (`workerID`, `jobType`, `workingHours`, `experience`, `paymentDetails`, `photo`, `reputationCount`, `averageRating`) VALUES
-('aa7372eaa327ee4372711da7f26f73c5', '', '9am to 6pm', 0, '', '', 0, 0),
-('dc070d60065de53cf71548cfcbab9fce', '', '9am to 6pm', 0, '', '', 0, 0);
+INSERT INTO `worker` (`workerID`, `workerName`, `jobType`, `workingHours`, `experience`, `paymentMode`, `photo`, `reputationCount`, `averageRating`) VALUES
+('aa7372eaa327ee4372711da7f26f73c5', 'Naveen Srinivas', '', '9am to 6pm', 0, 'Cash', '', 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `carpenter`
+--
+DROP TABLE IF EXISTS `carpenter`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `carpenter`  AS SELECT `account`.`name` AS `name`, `account`.`phoneNumber` AS `phoneNumber`, `account`.`gender` AS `gender`, `account`.`dOB` AS `dOB`, `account`.`pincode` AS `pincode`, `account`.`aadhaar` AS `aadhaar`, `account`.`password` AS `password`, `account`.`userType` AS `userType`, `account`.`ID` AS `ID`, `account`.`accountStatus` AS `accountStatus`, `account`.`reportCount` AS `reportCount`, `worker`.`workerID` AS `workerID`, `worker`.`workerName` AS `workerName`, `worker`.`jobType` AS `jobType`, `worker`.`workingHours` AS `workingHours`, `worker`.`experience` AS `experience`, `worker`.`paymentMode` AS `paymentMode`, `worker`.`photo` AS `photo`, `worker`.`reputationCount` AS `reputationCount`, `worker`.`averageRating` AS `averageRating` FROM (`account` join `worker`) WHERE `account`.`ID` = `worker`.`workerID` AND `worker`.`jobType` = 'carpenter''carpenter'  ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `cook`
+--
+DROP TABLE IF EXISTS `cook`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `cook`  AS SELECT `account`.`name` AS `name`, `account`.`phoneNumber` AS `phoneNumber`, `account`.`gender` AS `gender`, `account`.`dOB` AS `dOB`, `account`.`pincode` AS `pincode`, `account`.`aadhaar` AS `aadhaar`, `account`.`password` AS `password`, `account`.`userType` AS `userType`, `account`.`ID` AS `ID`, `account`.`accountStatus` AS `accountStatus`, `account`.`reportCount` AS `reportCount`, `worker`.`workerID` AS `workerID`, `worker`.`workerName` AS `workerName`, `worker`.`jobType` AS `jobType`, `worker`.`workingHours` AS `workingHours`, `worker`.`experience` AS `experience`, `worker`.`paymentMode` AS `paymentMode`, `worker`.`photo` AS `photo`, `worker`.`reputationCount` AS `reputationCount`, `worker`.`averageRating` AS `averageRating` FROM (`account` join `worker`) WHERE `account`.`ID` = `worker`.`workerID` AND `worker`.`jobType` = 'cook''cook'  ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `maid`
+--
+DROP TABLE IF EXISTS `maid`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `maid`  AS SELECT `account`.`name` AS `name`, `account`.`phoneNumber` AS `phoneNumber`, `account`.`gender` AS `gender`, `account`.`dOB` AS `dOB`, `account`.`pincode` AS `pincode`, `account`.`aadhaar` AS `aadhaar`, `account`.`password` AS `password`, `account`.`userType` AS `userType`, `account`.`ID` AS `ID`, `account`.`accountStatus` AS `accountStatus`, `account`.`reportCount` AS `reportCount`, `worker`.`workerID` AS `workerID`, `worker`.`workerName` AS `workerName`, `worker`.`jobType` AS `jobType`, `worker`.`workingHours` AS `workingHours`, `worker`.`experience` AS `experience`, `worker`.`paymentMode` AS `paymentMode`, `worker`.`photo` AS `photo`, `worker`.`reputationCount` AS `reputationCount`, `worker`.`averageRating` AS `averageRating` FROM (`account` join `worker`) WHERE `account`.`ID` = `worker`.`workerID` AND `worker`.`jobType` = 'maid''maid'  ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `painter`
+--
+DROP TABLE IF EXISTS `painter`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `painter`  AS SELECT `account`.`name` AS `name`, `account`.`phoneNumber` AS `phoneNumber`, `account`.`gender` AS `gender`, `account`.`dOB` AS `dOB`, `account`.`pincode` AS `pincode`, `account`.`aadhaar` AS `aadhaar`, `account`.`password` AS `password`, `account`.`userType` AS `userType`, `account`.`ID` AS `ID`, `account`.`accountStatus` AS `accountStatus`, `account`.`reportCount` AS `reportCount`, `worker`.`workerID` AS `workerID`, `worker`.`workerName` AS `workerName`, `worker`.`jobType` AS `jobType`, `worker`.`workingHours` AS `workingHours`, `worker`.`experience` AS `experience`, `worker`.`paymentMode` AS `paymentMode`, `worker`.`photo` AS `photo`, `worker`.`reputationCount` AS `reputationCount`, `worker`.`averageRating` AS `averageRating` FROM (`account` join `worker`) WHERE `account`.`ID` = `worker`.`workerID` AND `worker`.`jobType` = 'painter''painter'  ;
 
 --
 -- Indexes for dumped tables
@@ -2305,7 +2433,7 @@ ALTER TABLE `comment`
 -- AUTO_INCREMENT for table `job`
 --
 ALTER TABLE `job`
-  MODIFY `jobID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `jobID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `report`
