@@ -17,21 +17,26 @@
             <span class="navbar-toggler-icon"></span>
           </button>
         <div class="collapse navbar-collapse" id="#navbarToggleButton">
-          <ul class="navbar-nav px-4 ms-auto"> <!--from documentation-->
-            <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          
+        
+        <ul class="navbar-nav px-4  ms-auto"> <!--from documentation-->
+            <li class="nav-item"><a class="nav-link" href="jobRequests.php">Job Requests</a></li>
         </ul>
         <ul class="navbar-nav px-4"> <!--from documentation-->
-          <li class="nav-item"><a class="nav-link" href="">Contact</a></li>
-      </ul>  
+            <li class="nav-item"><a class="nav-link" href="upcomingJobs.php">Upcoming Jobs</a></li>
+        </ul>
         <ul class="navbar-nav px-4"> <!--from documentation-->
-            <li class="nav-item"><a class="nav-link" href="">Sign out</a></li>
+            <li class="nav-item"><a class="nav-link" href="jobHistory.php">Job History</a></li>
+        </ul>
+        <ul class="navbar-nav px-4"> <!--from documentation-->
+            <li class="nav-item"><a class="nav-link" href="report.php">Report User</a></li>
+        </ul>
+        <ul class="navbar-nav px-4"> <!--from documentation-->
+            <li class="nav-item"><a class="nav-link" href="logout.php">Sign out</a></li>
         </ul>
         </div>
         <!--COMPLETE THIS REPORT AND SIGN OUT WITH NAVEEN -->
     </nav>
-        <div class="logout">
-        <button type="button" onclick="location.href='logout.php'" name="Logout" id="submit-button" style="background-color: white; color:rgb(95, 108, 255);">Sign Out</button>
-        </div>
         <div class="form">
             <h2>Upcoming Jobs</h2>
 
