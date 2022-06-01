@@ -104,9 +104,9 @@ if( $_SESSION['userType'] == "C" ){
                     $printExperience = $row['experience'] ;
                     $workerID = $row['workerID'] ; 
                     echo "<div class='form'>" ;
-                    echo "<h3>Name : $printName "; 
+                    echo "<h3>$printName "; 
                     echo "<p>Average Rating : $printAverageRating<br>Experience : $printExperience</p>" ;
-                    echo "<a href='workerProfile.php?workerID=$workerID' id='submit-button'><button>Worker Profile</button></a></h3>" ;
+                    echo "<a href='workerProfile.php?workerID=$workerID' id='submit-button'><button>View Worker</button></a></h3>" ;
                     echo "</div>" ;
                 }
             }
