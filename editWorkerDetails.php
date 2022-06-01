@@ -6,6 +6,7 @@ include 'config.php' ;
 
 // Displaying student main lobby
 if( $_SESSION['userType'] == "W"){ 
+    echo "Welcome worker." ;
     $name=$_SESSION['name'];
 
     if ( isset($_POST['submit'])){ 
@@ -31,6 +32,8 @@ else if( $_SESSION['userType'] == "C"){
 else{
     header("location:index.html") ; 
 }
+
+
 ?>
 
 
@@ -48,7 +51,7 @@ else{
         <button type="button" onclick="location.href='logout.php'" name="Logout" id="submit-button" style="margin-right:20px">Sign Out</button>
     </div>
     <div class="form">
-        <h2>Edit Profile</h2>
+        <h2>Welcome to Home Page</h2>
 
         <div class="container rounded bg-white mt-5 mb-5">
             <div class="row">
@@ -62,9 +65,11 @@ else{
                 </div>
                 <div class="col-md-5 border-right">
                     <div class="p-3 py-5">
-                        
+                        <div class="d-flex justify-content-between align-items-center mb-3" style="text-align:center">
+                            <h4 class="text-right">Edit Profile</h4>
+                        </div>
 
-                        <form action="" method="POST" role="form" class="form-horizontal">
+                        <form action="mainlobby.php" method="POST" role="form" class="form-horizontal">
 
 
                             <div class="row mt-3">
