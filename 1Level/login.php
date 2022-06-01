@@ -88,7 +88,7 @@ $conn->close() ;
             
                 <div class="email">
                     <label for="phoneNumber">Phone Number</label><br>
-                    <input type = "number" id="phoneNumber" name="phoneNumber" required><br>
+                    <input type = "number" id="phoneNumber" name="phoneNumber" min=1000000000 max=9999999999 required><br>
                 </div>
       
                 <label for="pwd1">Password</label><br>

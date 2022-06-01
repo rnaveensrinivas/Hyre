@@ -108,7 +108,7 @@ if( isset($_POST['submit'])){ //Checking if the form is submitted.
         </div>
 
         <label for="phoneNumber">Phone Number</label><br>
-        <input type = "text" id="phoneNumber" name="phoneNumber" placeholder="Eg: 73328 09723" required ><br>
+        <input type = "number" id="phoneNumber" name="phoneNumber" min=1000000000 max=9999999999 placeholder="Eg: 73328 09723" required ><br>
         
         <div style="text-align:center; padding:10px;">
           Gender:
