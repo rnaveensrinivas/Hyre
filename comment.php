@@ -131,7 +131,7 @@ else{
         <input type="text"  id="captcha" class="searchBox" readonly>
         <input type="text" id="enteredCaptcha" placeholder="Enter Above Captcha" style="text-align:center; font-size: 17px;"><br><br>
         
-        <button type="submit" onclick="return validCaptcha()" name="submit" id="submit-button" style="border-radius:5px">Submit Comment</button>
+        <button type="submit" onclick="return checkCaptcha()" name="submit" id="submit-button" style="border-radius:5px">Submit Comment</button>
         
         
 

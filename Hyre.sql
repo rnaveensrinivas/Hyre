@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 01, 2022 at 08:31 AM
+-- Generation Time: Jun 01, 2022 at 04:34 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -47,6 +47,9 @@ CREATE TABLE `account` (
 
 INSERT INTO `account` (`name`, `phoneNumber`, `gender`, `dOB`, `pincode`, `aadhaar`, `password`, `userType`, `ID`, `accountStatus`, `reportCount`) VALUES
 ('Naveen Srinivas', 1234567890, 'M', '2003-03-12', 600129, 1000000000000000, 'c44a471bd78cc6c2fea32b9fe028d30a', 'W', 'aa7372eaa327ee4372711da7f26f73c5', 1, 0),
+('Lakshana', 1234567898, 'F', '2003-01-12', 600097, 1000000000000003, 'c44a471bd78cc6c2fea32b9fe028d30a', 'C', 'dc070d60065de53cf71548cfcbab9fce', 1, 0),
+('Navu', 1234512345, 'M', '2000-03-12', 600117, 1000000000000053, 'c44a471bd78cc6c2fea32b9fe028d30a', 'W', 'dd333031f7439fd40b8fa1f5d4f53a33', 1, 0),
+('test', 1234123412, 'F', '2000-12-12', 600129, 1000000000000006, 'c44a471bd78cc6c2fea32b9fe028d30a', 'W', 'de18b9249fae37b4dc1f1fa8d49f2569', 1, 0),
 ('Rithvik Senthil', 1234567899, 'M', '2001-10-25', 600090, 1000000000000001, 'c44a471bd78cc6c2fea32b9fe028d30a', 'C', 'f56a9e630b931e993bc1ecdd3b0ba853', 1, 0);
 
 -- --------------------------------------------------------
@@ -95,6 +98,7 @@ CREATE TABLE `client` (
 --
 
 INSERT INTO `client` (`clientID`, `clientName`, `clientRating`) VALUES
+('dc070d60065de53cf71548cfcbab9fce', 'Lakshana', 0),
 ('f56a9e630b931e993bc1ecdd3b0ba853', 'Rithvik Senthil', 0);
 
 -- --------------------------------------------------------
@@ -2335,7 +2339,9 @@ CREATE TABLE `worker` (
 --
 
 INSERT INTO `worker` (`workerID`, `workerName`, `jobType`, `workingHours`, `experience`, `paymentMode`, `photo`, `reputationCount`, `averageRating`) VALUES
-('aa7372eaa327ee4372711da7f26f73c5', 'Naveen Srinivas', '', '9am to 6pm', 0, 'Cash', '', 0, 0);
+('aa7372eaa327ee4372711da7f26f73c5', 'Naveen Srinivas', 'maid', '0900-1600', 4, 'Card', '', 0, 0),
+('dd333031f7439fd40b8fa1f5d4f53a33', 'Navu', '', '9am to 6pm', 0, 'Cash', '', 0, 0),
+('de18b9249fae37b4dc1f1fa8d49f2569', 'test', 'painter', 'asdfasdf', 8, 'askjdf;askfj;askdfk;dsafks', '', 0, 0);
 
 -- --------------------------------------------------------
 
