@@ -76,8 +76,8 @@ $conn->close() ;
             </div>
         </nav>
         <form  action="" method="POST" autocomplete="off">
-            <div class="form" style="margin-top:20px">
-
+           <div class="form" style="margin-top:20px">
+ 
                 <h2>Login</h2>
 
                 <p style="color:red; line-height: 120%; "><?php echo $error ; ?></p>
