@@ -44,12 +44,12 @@ if( isset($_POST['submit'])){ //Checking if the form is submitted.
     if ($conn->query($insertQuery)){ 
 
       if( $userType == "C" ){
-        $conn->query("INSERT INTO client(clientID) values('$ID') ") ;
+        $conn->query("INSERT INTO client(clientID,clientName) values('$ID','$fname') ") ;
       }
       else{
-        $conn->query("INSERT INTO worker(workerID) values('$ID') ") ;
+        $conn->query("INSERT INTO worker(workerID, workerName) values('$ID','$fname') ") ;
       }
-      echo "<script>alert('Account successfully created.')</script>";
+      //echo "<script>alert('Account successfully created')</script>";
       header('location:thankyou.php?Status=success');
     }  
   }
