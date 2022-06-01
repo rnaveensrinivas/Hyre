@@ -140,7 +140,7 @@ if( isset($_POST['submit'])){ //Checking if the form is submitted.
         <input type="date" id="dOB" name="dOB" required ><br>
 
         <label for="pincode">Pincode</label><br>
-        <input type="number" id="pincode" name="pincode" min="100000" max="999999" placeholder="Eg: 600025" required><br>
+        <input type="number" id="pincode" name="pincode" min=600000 max=700000 placeholder="Eg: 600025" required><br>
     
         <label for="aadhaar">Aadhaar ID</label><br>
         <input type="number" id="aadhaar" name="aadhaar" min="1000000000000000" max="9999999999999999" placeholder="Eg: 2567 7765 8586 5650" required><br>
