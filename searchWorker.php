@@ -75,7 +75,7 @@ if( $_SESSION['userType'] == "C" ){
         $pincode = $_POST['pincode']; 
         $gender = $_POST['gender'];
         $jobType = $_POST['jobType']; 
-
+        $isAvailableWorker = 0 ; 
         $checkPincodeIfExistsQuery = "SELECT * from tamilnadupincodes where pincode = '$pincode'" ; 
         $pincodeResult = mysqli_query( $conn , $checkPincodeIfExistsQuery ) ;
 
@@ -98,6 +98,7 @@ if( $_SESSION['userType'] == "C" ){
             }
             if ( $result = mysqli_query( $conn, $selectWorkers ) ) { 
                 while ( $row = mysqli_fetch_assoc($result) ) { 
+                    $isAvailableWorker = 1 ;
                     $printName = $row['name'] ;
                     $printAverageRating = $row['averageRating'] ;
                     $printExperience = $row['experience'] ;
@@ -108,6 +109,13 @@ if( $_SESSION['userType'] == "C" ){
                     echo "<a href='workerProfile.php?workerID=$workerID' id='submit-button'><button>Worker Profile</button></a></h3>" ;
                     echo "</div>" ;
                 }
+            }
+            
+            if( $isAvailableWorker == 0 ){
+
+                echo "<div class='form'>" ;
+                echo "<p>Sorry, no worker availble for entered pincode.</p>" ;
+                echo "</div>" ;
             }
         }else{
             echo "<script>alert('This pincode is not in Tamil Nadu')</script>" ; 
