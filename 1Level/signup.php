@@ -13,10 +13,10 @@ if( isset($_POST['submit'])){ //Checking if the form is submitted.
   $pwd1 = $_POST["pwd1"]; 
   $pincode=$_POST["pincode"];
 
-  $checkPincodeIfExists = "SELECT * from tamilnadupincodes where pincode = '$pincode'" ; 
+  $checkPincodeIfExistsQuery = "SELECT * from tamilnadupincodes where pincode = '$pincode'" ; 
   $checkPhoneNumberIfExistsQuery = "SELECT * FROM account WHERE phoneNumber = '$phoneNumber'" ; //Checking if phone already exists. 
   $checkAadhaarIDIfExistsQuery = "SELECT * FROM account WHERE aadhaar = '$aadhaar'" ; //Checking if aadhaar ID already exists. 
-  $pincodeResult = mysqli_query( $conn , $checkPincodeIfExists ) ;
+  $pincodeResult = mysqli_query( $conn , $checkPincodeIfExistsQuery ) ;
   $phoneNumberResult = mysqli_query( $conn , $checkPhoneNumberIfExistsQuery ) ; 
   $aadhaarIDResult =  mysqli_query( $conn , $checkAadhaarIDIfExistsQuery ) ; 
 

@@ -12,15 +12,14 @@
     <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <!--navbar-expand aligns all components horizontally displayed-->
-        <a class="navbar-brand ms-4" href="">Hyre</a>
+        <a class="navbar-brand ms-4" href="index.html">Hyre</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleButton" aria-controls="navbarToggleButton" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
         <div class="collapse navbar-collapse" id="#navbarToggleButton">
-          
         
         <ul class="navbar-nav px-4  ms-auto"> <!--from documentation-->
-            <li class="nav-item"><a class="nav-link" href="jobRequests.php">Job Requests</a></li>
+            <li class="nav-item"><a class="nav-link" href="mainlobby.php">Lobby</a></li>
         </ul>
         <ul class="navbar-nav px-4"> <!--from documentation-->
             <li class="nav-item"><a class="nav-link" href="upcomingJobs.php">Upcoming Jobs</a></li>
