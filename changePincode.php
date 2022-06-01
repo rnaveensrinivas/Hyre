@@ -6,37 +6,36 @@ include 'config.php' ;
 
 // Displaying student main lobby
 if( $_SESSION['userType'] == "W"){ 
-    $name=$_SESSION['name'];
     $workerID = $_SESSION['ID'] ;
-    $getFeildsQuery = "SELECT * FROM worker WHERE workerID = '$workerID' " ;
+    $getFeildsQuery = "SELECT * FROM account WHERE ID = '$workerID' " ;
     $resultSet = $conn->query($getFeildsQuery) ; 
     
     if( $resultSet->num_rows ){ 
         $row = $resultSet->fetch_assoc() ; 
-        $workingHours = $row['workingHours'] ;
-        $experience = $row['experience'] ;
-        $jobType = $row['jobType'] ;
-        $paymentMode = $row['paymentMode'] ;
+        $pincode = $row['pincode'] ;
     }
 
 
     if ( isset($_POST['submit'])){ 
         //Getting the form data.
     
-        $workingHours = $_POST["workingHours"] ;
-        $experience = $_POST["experience"] ;
-        $jobType = $_POST["jobType"];
-        $paymentMode = $_POST["paymentMode"];
-        $ID = $_SESSION['ID'];
+        $pincode = $_POST['pincode'] ;
 
-    
-        //query the database. 
-        $resultSet = $conn->query("UPDATE worker set  workingHours='$workingHours', experience='$experience', jobType='$jobType', paymentMode='$paymentMode' where workerID='$ID'") ; 
-        if( $resultSet ){
-            header("location:workerProfile.php") ; 
+        $checkPincodeIfExistsQuery = "SELECT * from tamilnadupincodes where pincode = '$pincode'" ; 
+        $pincodeResult = mysqli_query( $conn , $checkPincodeIfExistsQuery ) ;
+
+        if( $pincodeResult->fetch_assoc()){
+
+            $resultSet = $conn->query("UPDATE account set pincode='$pincode' where ID='$workerID'") ; 
+            if( $resultSet ){
+                header("location:workerProfile.php") ; 
+            }
+            else{
+                echo "<script>alert('Unable to update')</script>" ;
+            }
         }
         else{
-            echo "<script>alert('Unable to update')</script>" ;
+            echo "<script>alert('This pincode is not present in Tamil Nadu')</script>" ;
         }
        
     }
@@ -81,37 +80,23 @@ else{
         <form  action="" method="POST" >
             <div class="form">
 
-                <h2>Edit Profile</h2>
-                <p>Change the necessary fields</p>
+                <h2>Change Pincode</h2>
 
                 <p style="color:red; line-height: 120%; "><?php echo $error ; ?></p>
+            
 
-                <p>Change Pincode : <a href="changePincode.php" style="text-decoration:none; ">Here</a></p>
+                <label for="currentPincode">Current Pincode</label><br>
+                <input type="number" id="currentPincode" name="currentPincode" value="<?php echo $pincode?>" readonly >
 
-                <label for="workingHours">Working Hours</label><br>
-                <input type="text" id="workingHours" name="workingHours" placeholder="Eg : 5am to 5pm" value="<?php echo $workingHours?>" required >
-
-                <label for="experience">Experience(in years)</label><br>
-                <input type="number" id="experience" name="experience" value="<?php echo $experience?>"min=0 max=60 placeholder="Eg : 4"  required >
-
-                <label for="jobType" style="margin-top:20px">Job Category</label><br>
-                <select name="jobType" id="jobType" style="width:100%; height:40px" value="<?php echo $jobType?>">
-                <option value="carpenter">Carpenter</option>
-                <option value="cook">Cook</option>
-                <option value="maid">Maid</option>
-                <option value="painter">Painter</option>
-                </select><br>
-
-                <label for="paymentMode">Payment Mode</label><br>
-                <input type="text" id="paymentMode" name="paymentMode" placeholder="Eg : Cash or GPay" value="<?php echo $paymentMode?>" required >
-
+                <label for="pincode">New Pincode</label><br>
+                <input type="number" id="pincode" name="pincode" min=600000 max=700000 placeholder="Eg : 600025"  >
                 
                 <button type="button" onclick="newCaptcha()" id="cap" title="Give a new Captcha." style="margin-top:25px; border-radius:5px">New Captcha</button>
                 <input type="text"  id="captcha" oncopy="return false" class="searchBox" readonly>
                 <input type="text" id="enteredCaptcha" onpaste="return false" placeholder="Enter Above Captcha" style="text-align:center; font-size: 17px;"><br><br>
 
                 <button type="submit" onclick="return checkCaptcha()" name="submit" id="submit-button" style="border-radius:5px">Save</button>
-                <button type="button" onclick="location.href='workerProfile.php'" style="border-radius:5px ; margin-top:  15px;" id="submit-button">Cancel</button>
+                <button type="button" onclick="location.href='workerProfile.php'" style="border-radius:5px; margin-top :15px;" id="submit-button">Cancel</button>
 
             </div> 
         </form>
