@@ -6,22 +6,26 @@ include 'config.php' ;
 
 // Displaying student main lobby
 if( $_SESSION['userType'] == "W"){ 
-    echo "Welcome worker." ;
     $name=$_SESSION['name'];
 
     if ( isset($_POST['submit'])){ 
         //Getting the form data.
     
-        $workingHours=$_POST["workhrs"] ;
-        $experience = $_POST["exp"] ;
-        $job=$_POST["job"];
-        $paymentDescription=$_POST["pymtDscpn"];
-        $ID=$_SESSION['ID'];
+        $workingHours = $_POST["workingHours"] ;
+        $experience = $_POST["experience"] ;
+        $jobType = $_POST["jobType"];
+        $paymentMode = $_POST["paymentMode"];
+        $ID = $_SESSION['ID'];
 
     
         //query the database. 
-        $resultSet = $conn->query("UPDATE worker set  workingHours='$workingHours', experience='$experience', job='$job', paymentDescription='$paymentDescription' where workerID='$ID'") ; 
-        
+        $resultSet = $conn->query("UPDATE worker set  workingHours='$workingHours', experience='$experience', jobType='$jobType', paymentMode='$paymentMode' where workerID='$ID'") ; 
+        if( $resultSet ){
+            header("location:workerProfile.php") ; 
+        }
+        else{
+            echo "<script>alert('Unable to update')</script>" ;
+        }
        
     }
     $conn->close();
@@ -51,7 +55,7 @@ else{
         <button type="button" onclick="location.href='logout.php'" name="Logout" id="submit-button" style="margin-right:20px">Sign Out</button>
     </div>
     <div class="form">
-        <h2>Welcome to Home Page</h2>
+        <h2>Edit Profile</h2>
 
         <div class="container rounded bg-white mt-5 mb-5">
             <div class="row">
@@ -65,36 +69,39 @@ else{
                 </div>
                 <div class="col-md-5 border-right">
                     <div class="p-3 py-5">
-                        <div class="d-flex justify-content-between align-items-center mb-3" style="text-align:center">
-                            <h4 class="text-right">Edit Profile</h4>
-                        </div>
+                        
 
-                        <form action="mainlobby.php" method="POST" role="form" class="form-horizontal">
+                        <form action="" method="POST" role="form" class="form-horizontal">
 
 
                             <div class="row mt-3">
-                                <div class="col-md-12"><label class="labels">Working hours</label><input type="text"
-                                        id="workhrs" class="form-control" placeholder="enter working hours" value="">
+                                <div class="col-md-12"><label class="labels">Working hours</label>
+                                <input type="text" id="workingHours" name="workingHours" class="form-control" placeholder="Eg : 5am to 5pm" >
                                 </div>
-                                <div class="col-md-12"><label class="labels">Experience</label><input type="text"
-                                        id="exp" class="form-control" placeholder="enter experience" value=""></div>
+
+                                <div class="col-md-12"><label class="labels">Experience(in years)</label>
+                                    <input type="number" id="experience" name="experience" min="0" max="100" class="form-control" placeholder="Eg : 4" >
+                                </div>
                                 <div class="col-md-12">
-                                    <label for="job">Choose job</label>
-                                    <select name="job" id="job">
-                                        <option value="Carpenter">Carpenter</option>
-                                        <option value="Cook">Cook</option>
-                                        <option value="Maid">Maid</option>
-                                        <option value="Painter">Painter</option>
+                                    <label for="jobType">Choose job</label>
+                                    <select name="jobType" id="jobType" name="jobType">
+                                        <option value="carpenter">Carpenter</option>
+                                        <option value="cook">Cook</option>
+                                        <option value="maid">Maid</option>
+                                        <option value="painter">Painter</option>
                                     </select>
                                 </div>
 
-                                <div class="col-md-12"><label class="labels">Payment Description</label><input
-                                        type="text" id="pymtDscpn" class="form-control"
-                                        placeholder="enter payment description" value=""></div>
-                            </div>
-                            <br>
-                            <div class="mt-5 text-center" style="text-align:center"><button class="btn btn-primary profile-button" 
-                                    type="submit">Edit Profile</button></div>
+                                <div class="col-md-12"><label for="paymentMode" class="labels" name="paymentMode">Payment Mode </label>
+                                <input type="text" id="paymentMode" class="form-control" placeholder="Eg : Cash, GPay" name="paymentMode"></div>
+                                </div>
+                                <br>
+                                <div class="mt-5 text-center" style="text-align:center">
+                                <button class="btn btn-primary profile-button" type="submit" name="submit">Save</button>
+                                </div>
+                                <div class="mt-5 text-center" style="text-align:center;  margin-top: 15px" >
+                                <button class="btn btn-primary profile-button" type="submit" onclick="location.href='mainlobby.php'">Cancel</button>
+                                </div>
                         </form>
 
                     </div>
