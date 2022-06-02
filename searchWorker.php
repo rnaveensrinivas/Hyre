@@ -49,10 +49,10 @@ if( $_SESSION['userType'] == "C" ){
                 <label for="jobType">Type of job</label><br>
                 <select name="jobType" id="jobType" >
                 <option value="NULL" selected hidden>Select an Option</option>
-                <option value="Carpenter">Carpenter</option>
-                <option value="Cook">Cook</option>
-                <option value="Maid">Maid</option>
-                <option value="Painter">Painter</option>
+                <option value="carpenter">Carpenter</option>
+                <option value="cook">Cook</option>
+                <option value="maid">Maid</option>
+                <option value="painter">Painter</option>
                 </select><br>
 
                 <label for="gender">Gender</label><br>
@@ -84,35 +84,36 @@ if( $_SESSION['userType'] == "C" ){
 
             if( $gender == "NULL"){
                 if( $jobType == "NULL"){
-                    //should be changed to view.
-                    $selectWorkers = "SELECT * FROM worker,account where worker.workerID=account.ID and pincode = '$pincode' ";
+                    $selectWorkers = "SELECT * FROM searchWorker where pincode = '$pincode' ";
                 }else{
-                    $selectWorkers = "SELECT * FROM worker,account where worker.workerID=account.ID and pincode = '$pincode' and jobType = '$jobType' ";
+                    $selectWorkers = "SELECT * FROM searchWorker where pincode = '$pincode' and jobType = '$jobType' ";
                 }
             }else{
                 if( $jobType == "NULL"){
-                    //should be changed to view.
-                    $selectWorkers = "SELECT * FROM worker,account where worker.workerID=account.ID and pincode = '$pincode' and gender = '$gender' " ;
+                    $selectWorkers = "SELECT * FROM searchWorker where pincode = '$pincode' and gender = '$gender' " ;
                 }else{
-                    $selectWorkers = "SELECT * FROM worker,account where worker.workerID=account.ID and pincode = '$pincode' and gender = '$gender' and jobType = '$jobType' ";
+                    $selectWorkers = "SELECT * FROM searchWorker where pincode = '$pincode' and gender = '$gender' and jobType = '$jobType' ";
                 }
             }
             if ( $result = mysqli_query( $conn, $selectWorkers ) ) { 
+                echo "<div style='margin:auto; display: block ; '>" ; 
                 while ( $row = mysqli_fetch_assoc($result) ) { 
                     $isAvailableWorker = 1 ;
                     $printName = $row['name'] ;
                     $printAverageRating = $row['averageRating'] ;
                     $printExperience = $row['experience'] ;
+                    $jobType = $row['jobType'] ;
                     $workerID = $row['workerID'] ; 
                     echo "<div class='card' style='width:300px; margin: 20px; float:left'>" ;
                     echo "<div class='card-body' style='text-align:center; '>";
                     echo "<h5 class='card-title' >$printName</h5>"; 
-                    echo "<p class='card-text' style='font-weight:300; font-size:1.25rem'>Average Rating: $printAverageRating<br>Experience: $printExperience</p>" ;
+                    echo "<p class='card-text' style='font-weight:300; font-size:1.25rem'>Job Type: $jobType<br>Average Rating: $printAverageRating<br>Experience: $printExperience<br></p>" ;
                     echo "<a href='workerProfile.php?workerID=$workerID' id='submit-button' style='text-decoration:none;'><button style='width:50%; border-radius:7px; margin:auto; display:block;'>View Worker</button></a></h3>" ;
                     echo "</div>" ;
                     echo "</div>" ;
-                }
 
+                }
+                echo "</div>" ; 
             }
             
             if( $isAvailableWorker == 0 ){
