@@ -315,3 +315,12 @@ a, a:hover, a:focus, a:active {
 .navbar-toggler {
     width:10%;
 }
+.search-worker {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 90%;
+    margin: 10px auto;
+    position: relative;
+    text-align:center;
+}

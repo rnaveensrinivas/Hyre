@@ -41,11 +41,26 @@ $time = $row['time'] ;
 $date = $row['date'] ;
 $workType = $row['workType'] ;
 $description =  $row['description'] ; 
+$bookingStatus = $row['bookingStatus'] ; 
+$clientName = $row['clientName'] ; 
+$workerName = $row['workerName'] ; 
+
+
+if( $bookingStatus != 0 ){
+  header("mainlobby.php") ;
+}
 
 if( $_SESSION['userType'] == "C" ){
 
     if(isset($_POST['withdrawRequest'])){ 
     
+      $selectAllRequests = "SELECT * FROM job where jobID = '$jobID'" ; 
+      $result = mysqli_query( $conn, $selectAllRequests ) ;
+      $row = mysqli_fetch_assoc($result) ;
+      $bookingStatus = $row['bookingStatus'] ; 
+      $jobStatus = $row['jobStatus'] ;
+      
+      if( $bookingStatus == 0 && $jobStatus == 0 ){
         $withdrawRequestQuery = "update job set bookingStatus = 3, jobStatus = 2 where jobID ='$jobID'" ;
         if( $result = mysqli_query( $conn, $withdrawRequestQuery ) ){
             echo "<script>alert('Request for $workerID has been withdrawn. Redirecting you to job requests page.')</script>" ;
@@ -54,24 +69,49 @@ if( $_SESSION['userType'] == "C" ){
             echo "<script>alert('Unable to withdraw request for worker $workerID.')</script>" ;
         }
         $conn->close();
+      }else{
+        echo "<script>alert('This request has been modified by the worker. Unable to withdraw request for worker $workerID. Go to lobby.')</script>" ;
+      }
 
     }   
 }
 else if( $_SESSION['userType'] == "W" ){
 
     if( isset($_POST['acceptRequest'])){
+      $selectAllRequests = "SELECT * FROM job where jobID = '$jobID'" ; 
+      $result = mysqli_query( $conn, $selectAllRequests ) ;
+      $row = mysqli_fetch_assoc($result) ;
+      $bookingStatus = $row['bookingStatus'] ; 
+      $jobStatus = $row['jobStatus'] ;
+      
+      if( $bookingStatus == 0 && $jobStatus == 0 ){
         $acceptRequestQuery = "update job set bookingStatus = 1, jobStatus = 1 where jobID ='$jobID'" ;
         if( $result = mysqli_query( $conn, $acceptRequestQuery ) ){
             echo "<script>alert('Request for $clientID accepted.')</script>" ;
             header("location:jobRequests.php") ; 
         }
+      }
+      else{
+        echo "<script>alert('This request has been withdrawn by the Client. Unable to accept request for client $clientID. Go to lobby.')</script>" ;
+      }
     }
     else if( isset($_POST['rejectRequest'])){
+      $selectAllRequests = "SELECT * FROM job where jobID = '$jobID'" ; 
+      $result = mysqli_query( $conn, $selectAllRequests ) ;
+      $row = mysqli_fetch_assoc($result) ;
+      $bookingStatus = $row['bookingStatus'] ; 
+      $jobStatus = $row['jobStatus'] ;
+      
+      if( $bookingStatus == 0 && $jobStatus == 0 ){
         $rejectRequestQuery = "update job set bookingStatus = 2, jobStatus = 2 where jobID ='$jobID'" ;
         if( $result = mysqli_query( $conn, $rejectRequestQuery ) ){
             echo "<script>alert('Request for $clientID canceled.')</script>" ;
             header("location:jobRequests.php") ; 
         }
+      }
+      else{
+        echo "<script>alert('This request has been withdrawn by the Client. Unable to reject request for client $clientID. Go to lobby.')</script>" ;
+      }
     }
 
     $conn->close();
@@ -106,6 +146,10 @@ else{
         if( $_SESSION['userType'] == "C" ){
         ?>
         <div class="fname">
+          <label for="workerName">Worker Name</label><br>
+          <input type = "text" id="workerName" name="workerName" value='<?php echo $workerName ?>'readonly> <br>
+        </div>
+        <div class="fname">
           <label for="workerID">Worker ID</label><br>
           <input type = "text" id="workerID" name="workerID" value='<?php echo $workerID ?>'readonly> <br>
         </div>
@@ -116,6 +160,10 @@ else{
         <?php 
         if( $_SESSION['userType'] == "W" ){
         ?>
+        <div class="fname">
+          <label for="clientName">Client Name</label><br>
+          <input type = "text" id="clientName" name="clientName" value='<?php echo $clientName ?>'readonly> <br>
+        </div>
         <div class="fname">
           <label for="clientID">Client ID</label><br>
           <input type = "text" id="clientID" name="clientID" value='<?php echo $clientID ?>'readonly> <br>

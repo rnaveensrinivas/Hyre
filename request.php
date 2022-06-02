@@ -35,7 +35,7 @@ if( $_SESSION['userType'] == "C" ){
             $landmark = $_POST['landmark'] ; 
             $clientID = $_SESSION['ID'] ;
 
-            $query = "insert into job values('$clientID', '$workerID', '$landmark' , '$pincode', '$time', '$date', '$workType', '$description', 0 , 0 , 0 , 0 )" ; 
+            $query = "insert into job values('$clientID', '$clientName' , '$workerID', '$workerName',  '$landmark' , '$pincode', '$time', '$date', '$workType', '$description', 0 , 0 , 0 , 0 )" ; 
             $result = $conn->query($query) ; 
 
             if( $result ){ 
@@ -142,7 +142,7 @@ else{
         <label for="landmark">Landmark</label><br>
         <input type = "text" id="landmark" name="landmark" placeholder="Eg: Opposite to Copper Kitchen" required> <br>
 
-        <button type="button" onclick="newCaptcha()" id="cap" title="Give a new Captcha." style="border-radius:5px">New Captcha</button>
+        <button type="button" onclick="newCaptcha()" id="cap" title="Give a new Captcha.">New Captcha</button>
         <input type="text"  id="captcha" class="searchBox" readonly>
         <input type="text" id="enteredCaptcha" placeholder="Enter Above Captcha" style="text-align:center; font-size: 17px;"><br><br>
         

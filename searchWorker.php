@@ -96,7 +96,7 @@ if( $_SESSION['userType'] == "C" ){
                 }
             }
             if ( $result = mysqli_query( $conn, $selectWorkers ) ) { 
-                echo "<div style='margin:auto; display: block ; '>" ; 
+                echo "<div class='search-worker'>" ; 
                 while ( $row = mysqli_fetch_assoc($result) ) { 
                     $isAvailableWorker = 1 ;
                     $printName = $row['name'] ;
