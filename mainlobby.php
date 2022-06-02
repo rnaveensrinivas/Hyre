@@ -63,8 +63,8 @@ if( $_SESSION['userType'] == "W"){
 else if( $_SESSION['userType'] == "C"){ 
     
     $name = $_SESSION['name'];
-    echo "<div style='text-align:center'>Welcome $name, this is Client's Portfolio.</div>" ;
-
+    $ID = $_SESSION['ID'] ; 
+    echo "<p>Welcome, $name.<br>User ID : $ID</p>" ;
 ?>
         <div>
         <button type="button" onclick="location.href='searchWorker.php'" name="searchWorker" id="submit-button" style="margin-top:15px; border-radius:5px">Search Worker</button>
