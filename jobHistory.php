@@ -60,8 +60,9 @@ if( $_SESSION['userType'] == "W"){
             $printClientID = $row['clientID'] ;
             $printDescription = $row['description'] ;  
             $jobID = $row['jobID'] ; 
+            $clientName = $row['clientName'] ; 
 
-            echo "<div style='text-align:center'><h3 style='font-size:1.25rem;font-weight:300; margin-top:20px; margin-bottom:20px' >Client ID : $printClientID<br>Description : $printDescription<br></div>"; 
+            echo "<div style='text-align:center'><h3 style='font-size:1.25rem;font-weight:300; margin-top:20px; margin-bottom:20px' >Client Name : $clientName<br>Client ID : $printClientID<br>Description : $printDescription<br></div>"; 
             //echo "<a href='teams.php?TeamName=$teams' id='submit-button'><button> Join </button></a></h3>" ;
             //Joining a specific team page. And we are passing the team name using GET to that teams page.
         }
@@ -91,8 +92,9 @@ else if( $_SESSION['userType'] == "C"){
             $printWorkerID = $row['workerID'] ;
             $printDescription = $row['description'] ;  
             $jobID = $row['jobID'] ; 
+            $workerName = $row['workerName'] ;
 
-            echo "<div style='text-align:center'><h3 style='font-size:1.25rem;font-weight:300; margin-top:20px; margin-bottom:20px' >Worker ID: $printWorkerID<br>Description: $printDescription<br></div>"; 
+            echo "<div style='text-align:center'><h3 style='font-size:1.25rem;font-weight:300; margin-top:20px; margin-bottom:20px' >Worker Name : $workerName<br>Worker ID: $printWorkerID<br>Description: $printDescription<br></div>"; 
             echo "<a href='comment.php?workerID=$printWorkerID&jobID=$jobID' id='submit-button'><div style='text-align:center'><button style='border-radius:5px'>Comment</button></div></a></h3>" ;
             //echo "<a href='teams.php?TeamName=$teams' id='submit-button'><button> Join </button></a></h3>" ;
             //Joining a specific team page. And we are passing the team name using GET to that teams page.
