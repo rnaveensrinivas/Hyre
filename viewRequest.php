@@ -42,6 +42,9 @@ $date = $row['date'] ;
 $workType = $row['workType'] ;
 $description =  $row['description'] ; 
 $bookingStatus = $row['bookingStatus'] ; 
+$clientName = $row['clientName'] ; 
+$workerName = $row['workerName'] ; 
+
 
 if( $bookingStatus != 0 ){
   header("mainlobby.php") ;
@@ -143,6 +146,10 @@ else{
         if( $_SESSION['userType'] == "C" ){
         ?>
         <div class="fname">
+          <label for="workerName">Worker Name</label><br>
+          <input type = "text" id="workerName" name="workerName" value='<?php echo $workerName ?>'readonly> <br>
+        </div>
+        <div class="fname">
           <label for="workerID">Worker ID</label><br>
           <input type = "text" id="workerID" name="workerID" value='<?php echo $workerID ?>'readonly> <br>
         </div>
@@ -153,6 +160,10 @@ else{
         <?php 
         if( $_SESSION['userType'] == "W" ){
         ?>
+        <div class="fname">
+          <label for="clientName">Client Name</label><br>
+          <input type = "text" id="clientName" name="clientName" value='<?php echo $clientName ?>'readonly> <br>
+        </div>
         <div class="fname">
           <label for="clientID">Client ID</label><br>
           <input type = "text" id="clientID" name="clientID" value='<?php echo $clientID ?>'readonly> <br>

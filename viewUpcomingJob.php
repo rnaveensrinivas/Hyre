@@ -46,6 +46,13 @@ if( $_SESSION['userType'] == "C" ){
 
     if(isset($_POST['cancelJob'])){ 
     
+      $selectAllRequests = "SELECT * FROM job where jobID = '$jobID'" ; 
+      $result = mysqli_query( $conn, $selectAllRequests ) ;
+      $row = mysqli_fetch_assoc($result) ;
+      $bookingStatus = $row['bookingStatus'] ; 
+      $jobStatus = $row['jobStatus'] ;
+      
+      if( $bookingStatus == 1 && $jobStatus == 1 ){
         $cancelJobQuery = "update job set jobStatus = 4 where jobID ='$jobID'" ;
         if( $result = mysqli_query( $conn, $cancelJobQuery ) ){
             echo "<script>alert('Booked Job for $workerID cancelled. Redirecting to upcoming jobs page.')</script>" ;
@@ -54,12 +61,23 @@ if( $_SESSION['userType'] == "C" ){
             echo "<script>alert('Unable to cancel request for worker $workerID.')</script>" ;
         }
         $conn->close();
+      }else{
+        echo "<script>alert('This request has been cancelled by the worker. Unable to cancel job for worker $workerID.')</script>" ;
+      }
 
     }   
 }
 else if( $_SESSION['userType'] == "W" ){
 
     if(isset($_POST['cancelJob'])){ 
+
+      $selectAllRequests = "SELECT * FROM job where jobID = '$jobID'" ; 
+      $result = mysqli_query( $conn, $selectAllRequests ) ;
+      $row = mysqli_fetch_assoc($result) ;
+      $bookingStatus = $row['bookingStatus'] ; 
+      $jobStatus = $row['jobStatus'] ;
+      
+      if( $bookingStatus == 1 && $jobStatus == 1 ){
         $cancelJobQuery = "update job set jobStatus = 3 where jobID ='$jobID'" ;
         if( $result = mysqli_query( $conn, $cancelJobQuery ) ){
             echo "<script>alert('Booked Job for $clientID cancelled. Redirecting to upcoming jobs page.')</script>" ;
@@ -68,8 +86,10 @@ else if( $_SESSION['userType'] == "W" ){
             echo "<script>alert('Unable to cancel request for worker $clientID.')</script>" ;
         }
         $conn->close();
+      }else{
+        echo "<script>alert('This request has been cancelled by the Client. Unable to cancel job for client $clientID.')</script>" ;
+      }
     }
-
 }
 else{ 
     header("location:index.html") ; 
@@ -80,7 +100,7 @@ else{
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Upcoming Job </title>
+    <title>Upcoming Job</title>
     <link rel="stylesheet" type="text/css" href="1Level/darkTheme.css">
     <script src="1Level/validation.js"></script>
   </head>

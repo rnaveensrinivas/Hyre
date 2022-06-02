@@ -37,7 +37,7 @@
         <!--COMPLETE THIS REPORT AND SIGN OUT WITH NAVEEN -->
     </nav>
         <div class="form">
-            <h2>Request Queue</h2>
+            <h2>Job Requests</h2>
 
 <?php
 
