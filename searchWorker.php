@@ -102,11 +102,12 @@ if( $_SESSION['userType'] == "C" ){
                     $printName = $row['name'] ;
                     $printAverageRating = $row['averageRating'] ;
                     $printExperience = $row['experience'] ;
+                    $jobType = $row['jobType'] ;
                     $workerID = $row['workerID'] ; 
                     echo "<div class='card' style='width:300px; margin: 20px; float:left'>" ;
                     echo "<div class='card-body' style='text-align:center; '>";
                     echo "<h5 class='card-title' >$printName</h5>"; 
-                    echo "<p class='card-text' style='font-weight:300; font-size:1.25rem'>Average Rating: $printAverageRating<br>Experience: $printExperience</p>" ;
+                    echo "<p class='card-text' style='font-weight:300; font-size:1.25rem'>Job Type: $jobType<br>Average Rating: $printAverageRating<br>Experience: $printExperience<br></p>" ;
                     echo "<a href='workerProfile.php?workerID=$workerID' id='submit-button' style='text-decoration:none;'><button style='width:50%; border-radius:7px; margin:auto; display:block;'>View Worker</button></a></h3>" ;
                     echo "</div>" ;
                     echo "</div>" ;
