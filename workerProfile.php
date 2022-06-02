@@ -73,7 +73,7 @@ if( $_SESSION['userType'] ){
                 echo "Payment Mode : $paymentMode<br>Average Rating : $averageRating<br>Experience : $experience<br>Pincode : $pincode<br>" ;
 
                 if( $_SESSION['userType'] == "C" ){
-                    echo "<div><h3 style='font-size:1.25rem;font-weight:300; margin-top:20px; margin-bottom:20px'><a href='book.php?workerID=$workerID' id='submit-button'><button>Book Request</button></a></h3></div>" ;
+                    echo "<div style='text-align:center;'><h3 style='font-size:1.25rem;font-weight:300; margin-top:20px; margin-bottom:20px'><a href='book.php?workerID=$workerID' id='submit-button'><button style='border-radius:7px'>Book Request</button></a></h3></div>" ;
                 }
                 else{
                     ?>
