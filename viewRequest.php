@@ -147,7 +147,7 @@ else{
   <body onload="newCaptcha()">
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <!--navbar-expand aligns all components horizontally displayed-->
-        <a class="navbar-brand ms-4" href="">Hyre</a>
+        <a class="navbar-brand ms-4" href="index.html">Hyre</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleButton" aria-controls="navbarToggleButton" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>

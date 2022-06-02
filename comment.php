@@ -90,22 +90,22 @@ else{
   <body onload="newCaptcha()">
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <!--navbar-expand aligns all components horizontally displayed-->
-        <a class="navbar-brand ms-4" href="">Hyre</a>
+        <a class="navbar-brand ms-4" href="index.html">Hyre</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleButton" aria-controls="navbarToggleButton" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
         <div class="collapse navbar-collapse" id="navbarToggleButton">
           <ul class="navbar-nav px-4 ms-auto"> <!--from documentation-->
-            <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="index.html">About</a></li>
         </ul>
         <ul class="navbar-nav px-4"> <!--from documentation-->
-          <li class="nav-item"><a class="nav-link" href="">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="1Level/contact.html">Contact</a></li>
       </ul>
         <ul class="navbar-nav px-4"> <!--from documentation-->
-            <li class="nav-item"><a class="nav-link" href="">Login</a></li>
+            <li class="nav-item"><a class="nav-link" href="1Level/login.php">Login</a></li>
         </ul>
         <ul class="navbar-nav px-4"> <!--from documentation-->
-            <li class="nav-item"><a class="nav-link" href="">Signup</a></li>
+            <li class="nav-item"><a class="nav-link" href="1Level/signup.php">Signup</a></li>
         </ul>
        
         </div>
