@@ -98,6 +98,7 @@ if( $_SESSION['userType'] == "C" ){
                 }
             }
             if ( $result = mysqli_query( $conn, $selectWorkers ) ) { 
+                echo "<div style='margin:auto; display: block ; '>" ; 
                 while ( $row = mysqli_fetch_assoc($result) ) { 
                     $isAvailableWorker = 1 ;
                     $printName = $row['name'] ;
@@ -111,8 +112,9 @@ if( $_SESSION['userType'] == "C" ){
                     echo "<a href='workerProfile.php?workerID=$workerID' id='submit-button' style='text-decoration:none;'><button style='width:50%; border-radius:7px; margin:auto; display:block;'>View Worker</button></a></h3>" ;
                     echo "</div>" ;
                     echo "</div>" ;
-                }
 
+                }
+                echo "</div>" ; 
             }
             
             if( $isAvailableWorker == 0 ){
