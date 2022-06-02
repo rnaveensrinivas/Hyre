@@ -120,7 +120,7 @@ else{
                 </select><br>
 
                 <label for="description">Description of Report</label><br>
-                <textarea id="description" name="description" required rows="10" cols="40" style="width:100%; height:200px" ></textarea>
+                <textarea id="description" name="description" required rows="10" cols="40" style="width:100%; height:200px; color: rgb(112, 112, 112);" ></textarea>
                 
                 <button type="button" onclick="newCaptcha()" id="cap" title="Give a new Captcha." style="margin-top:25px; border-radius:5px">New Captcha</button>
                 <input type="text"  id="captcha" oncopy="return false" class="searchBox" readonly>
