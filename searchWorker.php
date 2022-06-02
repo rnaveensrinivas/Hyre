@@ -49,10 +49,10 @@ if( $_SESSION['userType'] == "C" ){
                 <label for="jobType">Type of job</label><br>
                 <select name="jobType" id="jobType" >
                 <option value="NULL" selected hidden>Select an Option</option>
-                <option value="Carpenter">Carpenter</option>
-                <option value="Cook">Cook</option>
-                <option value="Maid">Maid</option>
-                <option value="Painter">Painter</option>
+                <option value="carpenter">Carpenter</option>
+                <option value="cook">Cook</option>
+                <option value="maid">Maid</option>
+                <option value="painter">Painter</option>
                 </select><br>
 
                 <label for="gender">Gender</label><br>
@@ -84,17 +84,15 @@ if( $_SESSION['userType'] == "C" ){
 
             if( $gender == "NULL"){
                 if( $jobType == "NULL"){
-                    //should be changed to view.
-                    $selectWorkers = "SELECT * FROM worker,account where worker.workerID=account.ID and pincode = '$pincode' ";
+                    $selectWorkers = "SELECT * FROM searchWorker where pincode = '$pincode' ";
                 }else{
-                    $selectWorkers = "SELECT * FROM worker,account where worker.workerID=account.ID and pincode = '$pincode' and jobType = '$jobType' ";
+                    $selectWorkers = "SELECT * FROM searchWorker where pincode = '$pincode' and jobType = '$jobType' ";
                 }
             }else{
                 if( $jobType == "NULL"){
-                    //should be changed to view.
-                    $selectWorkers = "SELECT * FROM worker,account where worker.workerID=account.ID and pincode = '$pincode' and gender = '$gender' " ;
+                    $selectWorkers = "SELECT * FROM searchWorker where pincode = '$pincode' and gender = '$gender' " ;
                 }else{
-                    $selectWorkers = "SELECT * FROM worker,account where worker.workerID=account.ID and pincode = '$pincode' and gender = '$gender' and jobType = '$jobType' ";
+                    $selectWorkers = "SELECT * FROM searchWorker where pincode = '$pincode' and gender = '$gender' and jobType = '$jobType' ";
                 }
             }
             if ( $result = mysqli_query( $conn, $selectWorkers ) ) { 
