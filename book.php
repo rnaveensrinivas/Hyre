@@ -6,6 +6,12 @@ include 'config.php' ;
 $workerID ="" ;
 if( isset($_GET['workerID'] ) ){ 
     $workerID = $_GET['workerID'] ; 
+    $query = "SELECT * FROM searchworker WHERE workerID = '$workerID' " ; 
+    $result = $conn->query($query) ; 
+    $row = mysqli_fetch_assoc($result) ; 
+    $jobType = $row['jobType'] ; 
+    $pincode = $row['pincode'] ; 
+    $workerName = $row['name'] ; 
 }
 
 
@@ -27,15 +33,16 @@ if( $_SESSION['userType'] == "C" ){
             $row = mysqli_fetch_assoc($result) ; 
 
             $workerID = $_POST['workerID'] ; 
-            $workType = $_POST['workType'] ;
+            $jobType = $_POST['jobType'] ;
             $date = $_POST['date'] ; 
             $time = $_POST['time'] ; 
             $description = $_POST['description'] ;
             $pincode = $_POST['pincode'] ; 
             $landmark = $_POST['landmark'] ; 
             $clientID = $_SESSION['ID'] ;
+            $clientName = $_SESSION['name'] ; 
 
-            $query = "insert into job(clientID, workerID, landmark, pincode, time, date, workType, description,bookingStatus, jobStatus, clientRating, workerRating) values('$clientID', '$workerID', '$landmark' , '$pincode', '$time', '$date', '$workType', '$description', 0 , 0 , 0 , 0 )" ; 
+            $query = "insert into job(clientID, clientName, workerID, workerName, landmark, pincode, time, date, workType, description,bookingStatus, jobStatus, clientRating, workerRating) values('$clientID', '$clientName', '$workerID', '$workerName', '$landmark' , '$pincode', '$time', '$date', '$workType', '$description', 0 , 0 , 0 , 0 )" ; 
             $result = $conn->query($query) ; 
 
             if( $result ){ 
@@ -49,9 +56,7 @@ if( $_SESSION['userType'] == "C" ){
 
         }
         else{ 
-            //echo mysqli_error($conn);
             $error = 'Invalid workerID. Try again.' ; 
-            //echo"<script>document.location='jointeam.php'</script>" ; 
         }   
         $conn->close();
     }   
@@ -88,17 +93,13 @@ else{
                 <span class="navbar-toggler-icon"></span>
               </button>
             <div class="collapse navbar-collapse" id="#navbarToggleButton">
-              <ul class="navbar-nav px-4 ms-auto"> <!--from documentation-->
-                <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+              
+            <ul class="navbar-nav px-4 ms-auto"> <!--from documentation-->
+              <li class="nav-item"><a class="nav-link" href="mainlobby.php">Lobby</a></li>
             </ul>
+    
             <ul class="navbar-nav px-4"> <!--from documentation-->
-              <li class="nav-item"><a class="nav-link" href="">Contact</a></li>
-          </ul>
-            <ul class="navbar-nav "> <!--from documentation-->
-                <li class="nav-item"><a class="nav-link" href="">Login</a></li>
-            </ul>
-            <ul class="navbar-nav px-4"> <!--from documentation-->
-                <li class="nav-item"><a class="nav-link" href="">Signup</a></li>
+                <li class="nav-item"><a class="nav-link" href="logout.php">Sign Out</a></li>
             </ul>
             </div>
         </nav>
@@ -107,18 +108,20 @@ else{
 
         <h2>Book a Request</h2>
         
-    
+
+        <label for="name">Worker Name</label><br>
+        <input type = "text" id="name" name="name" value='<?php echo $workerName ?>' required readonly> <br>
+
         <div class="fname">
           <label for="workerID">Worker ID</label><br>
           <input type = "text" id="workerID" name="workerID" placeholder="Eg: fhsd8sfdfkj242Gsf23423" value='<?php echo $workerID ?>' required readonly> <br>
         </div>
 
-        <label for="workType">Job</label><br>
-        <select name="workType" id="workType" required>
-        <option value="Carpentry">Carpenter</option>
-        <option value="Cook">Cook</option>
-        <option value="Other">Other</option>
-        </select><br>
+        <label for="jobType">Job Type</label><br>
+        <input type = "text" id="jobType" name="jobType" value='<?php echo $jobType ?>' required readonly> <br>
+
+        <label for="pincode">Pincode</label><br>
+        <input type="number" id="pincode" name="pincode" min="100000" max="999999" placeholder="Eg: 600025" value='<?php echo $pincode ?>' required readonly><br>
 
         <label for="date">Date of Job</label><br>
         <input type="date" id="date" name="date" required><br>
@@ -129,15 +132,12 @@ else{
         <label for="description">Work description</label><br>
         <textarea id="description" name="description" required rows="10" cols="40" style="height:200px" ></textarea><br>
            
-        <label for="pincode">Pincode</label><br>
-        <input type="number" id="pincode" name="pincode" min="100000" max="999999" placeholder="Eg: 600025" required><br>
-
         <label for="landmark">Landmark</label><br>
         <input type = "text" id="landmark" name="landmark" placeholder="Eg: Opposite to Copper Kitchen" required> <br>
 
-        <button type="button" onclick="newCaptcha()" id="cap" title="Give a new Captcha." style="border-radius:5px">New Captcha</button>
+        <button type="button" onclick="newCaptcha()" id="cap" title="Give a new Captcha.">New Captcha</button>
         <input type="text"  id="captcha" class="searchBox" readonly>
-        <input type="text" id="enteredCaptcha" placeholder="Enter Above Captcha" style="text-align:center; font-size: 17px;" required><br><br>
+        <input type="text" id="enteredCaptcha" placeholder="Enter Above Captcha" style="text-align:center; font-size: 17px;"><br><br>
         
         <button type="submit" onclick="return validationBooking()" name="submit" id="submit-button" style="border-radius:5px">Request Worker</button>
       </div> 
