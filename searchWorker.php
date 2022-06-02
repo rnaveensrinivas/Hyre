@@ -95,11 +95,12 @@ if( $_SESSION['userType'] == "C" ){
                     $selectWorkers = "SELECT * FROM searchWorker where pincode = '$pincode' and gender = '$gender' and jobType = '$jobType' ";
                 }
             }
+            echo "<p>Workers In $pincode</p>" ; 
+
             if ( $result = mysqli_query( $conn, $selectWorkers ) ) { 
                 echo "<div class='search-worker'>" ; 
 
                 //center align this please, give a good English sentence for this.
-                echo "<p>Workers available in $pincode<p>"; 
 
 
 
