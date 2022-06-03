@@ -3,6 +3,9 @@
 session_start() ; 
 include 'config.php' ; 
 
+if( isset($_GET['ID']))
+    $reportedID = $_GET['ID'] ;
+
 if( isset($_SESSION['ID'])){
     if(isset($_POST['reportUser'])){ 
 
@@ -113,9 +116,14 @@ else{
             
                 
                 <label for="reportedID">User ID to report</label><br>
+                <?php
+                if( isset($_GET['ID'])){ ?>
+                <input type="text" id="reportedID" name="reportedID" minlength="32" maxlength="32" required value=' <?php echo $reportedID ?>' readonly >
+                <?php }
+                else{ ?>
                 <input type="text" id="reportedID" name="reportedID" minlength="32" maxlength="32" required >
-                <!--<a href="resetpassword.php" style="text-decoration:none; font-size: 15px;">Forgot Password?</a><br><br> -->
-
+                <?php } ?>
+                
                 <label for="type" style="margin-top:20px">Reporting reason</label><br>
                 <select name="type" id="type" style="width:100%; height:40px">
                 <option value="Assault">Assault</option>

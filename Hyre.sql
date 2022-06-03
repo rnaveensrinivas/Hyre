@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 02, 2022 at 03:51 PM
+-- Generation Time: Jun 03, 2022 at 02:46 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -92,8 +92,17 @@ CREATE TABLE `comment` (
   `workerName` varchar(30) NOT NULL,
   `clientID` varchar(32) NOT NULL,
   `clientName` varchar(30) NOT NULL,
+  `rating` tinyint(4) NOT NULL DEFAULT 0,
   `description` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `comment`
+--
+
+INSERT INTO `comment` (`commentID`, `jobID`, `workerID`, `workerName`, `clientID`, `clientName`, `rating`, `description`) VALUES
+(17, 15, 'aa7372eaa327ee4372711da7f26f73c5', 'Naveen Srinivas', 'f56a9e630b931e993bc1ecdd3b0ba853', 'Rithvik Senthil', 5, 'good.'),
+(18, 15, 'aa7372eaa327ee4372711da7f26f73c5', 'Naveen Srinivas', 'f56a9e630b931e993bc1ecdd3b0ba853', 'Rithvik Senthil', 3, 'asdf');
 
 -- --------------------------------------------------------
 
@@ -138,9 +147,7 @@ INSERT INTO `job` (`jobID`, `clientID`, `clientName`, `workerID`, `workerName`, 
 CREATE TABLE `report` (
   `reportID` int(11) NOT NULL,
   `reporterID` varchar(32) NOT NULL,
-  `reporterName` varchar(30) NOT NULL,
   `reportedID` varchar(32) NOT NULL,
-  `reportedName` varchar(30) NOT NULL,
   `type` varchar(32) NOT NULL,
   `description` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -149,8 +156,8 @@ CREATE TABLE `report` (
 -- Dumping data for table `report`
 --
 
-INSERT INTO `report` (`reportID`, `reporterID`, `reporterName`, `reportedID`, `reportedName`, `type`, `description`) VALUES
-(4, 'aa7372eaa327ee4372711da7f26f73c5', '', 'aa7372eaa327ee4372711da7f26f73c5', '', 'Assault', 'asdf');
+INSERT INTO `report` (`reportID`, `reporterID`, `reportedID`, `type`, `description`) VALUES
+(4, 'aa7372eaa327ee4372711da7f26f73c5', 'aa7372eaa327ee4372711da7f26f73c5', 'Assault', 'asdf');
 
 -- --------------------------------------------------------
 
@@ -2268,22 +2275,23 @@ CREATE TABLE `worker` (
   `paymentMode` varchar(50) NOT NULL DEFAULT 'Cash',
   `photo` blob NOT NULL,
   `reputationCount` int(11) NOT NULL DEFAULT 0,
-  `averageRating` float NOT NULL DEFAULT 0
+  `averageRating` float NOT NULL DEFAULT 0,
+  `ratingCount` smallint(6) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `worker`
 --
 
-INSERT INTO `worker` (`workerID`, `workerName`, `jobType`, `workingHours`, `experience`, `paymentMode`, `photo`, `reputationCount`, `averageRating`) VALUES
-('525160aa0ef43746a54e1a01e0bd99bd', 'Worker100', '', '9am to 6pm', 0, 'Cash', '', 0, 0),
-('610fa507dde9a3c7b8c590c1b3ba3aa7', 'worker2', 'maid', '9am to 6pm', 0, 'Cash', '', 0, 0),
-('8902f4a4be156722bf6987e2ff95df37', 'worker3', 'cook', '9am to 6pm', 0, 'Cash', '', 0, 0),
-('aa7372eaa327ee4372711da7f26f73c5', 'Naveen Srinivas', 'maid', '0900-1600', 4, 'Card', '', 0, 0),
-('c18b3c4bfab5c75da5211f355da7908f', 'asiro', 'cook', '830am to 430pm', 30, 'Cash', '', 0, 0),
-('dd333031f7439fd40b8fa1f5d4f53a33', 'Navu', 'maid', '9am to 6pm', 0, 'Cash', '', 0, 0),
-('de18b9249fae37b4dc1f1fa8d49f2569', 'test', 'painter', 'asdfasdf', 8, 'askjdf;askfj;askdfk;dsafks', '', 0, 0),
-('ffe35762cea8fbff1e58fe2aae1d7db1', 'worker1', 'maid', '9am to 6pm', 0, 'Cash', '', 0, 0);
+INSERT INTO `worker` (`workerID`, `workerName`, `jobType`, `workingHours`, `experience`, `paymentMode`, `photo`, `reputationCount`, `averageRating`, `ratingCount`) VALUES
+('525160aa0ef43746a54e1a01e0bd99bd', 'Worker100', '', '9am to 6pm', 0, 'Cash', '', 0, 0, 0),
+('610fa507dde9a3c7b8c590c1b3ba3aa7', 'worker2', 'maid', '9am to 6pm', 0, 'Cash', '', 0, 0, 0),
+('8902f4a4be156722bf6987e2ff95df37', 'worker3', 'cook', '9am to 6pm', 0, 'Cash', '', 0, 0, 0),
+('aa7372eaa327ee4372711da7f26f73c5', 'Naveen Srinivas', 'maid', '0900-1600', 4, 'Card', '', 0, 4, 2),
+('c18b3c4bfab5c75da5211f355da7908f', 'asiro', 'cook', '830am to 430pm', 30, 'Cash', '', 0, 0, 0),
+('dd333031f7439fd40b8fa1f5d4f53a33', 'Navu', 'maid', '9am to 6pm', 0, 'Cash', '', 0, 0, 0),
+('de18b9249fae37b4dc1f1fa8d49f2569', 'test', 'painter', 'asdfasdf', 8, 'askjdf;askfj;askdfk;dsafks', '', 0, 0, 0),
+('ffe35762cea8fbff1e58fe2aae1d7db1', 'worker1', 'maid', '9am to 6pm', 0, 'Cash', '', 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -2348,7 +2356,7 @@ ALTER TABLE `worker`
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `commentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `commentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `job`
