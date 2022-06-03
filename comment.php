@@ -3,64 +3,72 @@
 session_start() ; 
 include 'config.php' ; 
 
-$workerID ="" ;
 if( isset($_GET['workerID'] ) ){ 
     $workerID = $_GET['workerID'] ; 
+}else{
+  header("location:mainlobby.php") ;
 }
 
-$jobID = 0 ;
 if( isset($_GET['jobID'] ) ){ 
     $jobID = $_GET['jobID'] ; 
+}else{
+  header("location:mainlobby.php") ;
 }
 
 
 if( $_SESSION['userType'] == "C" ){
+
+  $clientID = $_SESSION['ID'] ;
+  $isExistingAccountQuery = "SELECT * FROM job WHERE jobID = '$jobID' LIMIT 1" ;
+  $resultSet = $conn->query($isExistingAccountQuery) ; 
+    
+  if( $resultSet->num_rows ){ 
+
+    $row = $resultSet->fetch_assoc() ; 
+
+    $workerName = $row['workerName'] ; 
+    $clientName = $row['clientName'] ;
+    $checkWorkerID = $row['workerID'] ;
+    $checkClientID = $row['clientID'] ;
+
+    if( $checkWorkerID != $workerID || $checkClientID != $clientID ){
+      header("location:mainlobby.php") ;
+    }
+
     if(isset($_POST['submit'])){ 
 
-        $workerID = $_POST['workerID'] ;
+      $workerID = $_POST['workerID'] ; 
+      $rating = $_POST['rating'] ;
+      $description = $_POST['description'] ;
+      
+      $insertCommentQuery = "insert into comment(jobID, workerID, workerName, clientID, clientName, rating , description) values('$jobID', '$workerID', '$workerName' , '$clientID', '$clientName' , '$rating' ,'$description') "  ; 
+      $result = $conn->query($insertCommentQuery) ;
+      if( $result ){ 
         
-        //we can another query here to check if the job matches with the worker.
-        //have to implement this later.
+        $searchWorkerQuery = "select * from worker where workerID = '$workerID' LIMIT 1"  ; 
+        $result = $conn->query($searchWorkerQuery) ;
+        $row = $result->fetch_assoc() ;
 
-        $query = "SELECT * FROM worker WHERE workerID = '$workerID' " ; 
-        $result = $conn->query($query) ; 
+        $averageRating = $row['averageRating'] ;
+        $ratingCount = $row['ratingCount'] ;
 
-        if( $result->num_rows ){ // ($resultSet->num_rows != 0)
-            //If there exist a worker with that id, continue.
+        $totalRating = $averageRating * $ratingCount ;
+        $totalRating = $totalRating + $rating ; 
+        $ratingCount = $ratingCount + 1 ; 
+        $averageRating = $totalRating / $ratingCount ;
 
-            $row = mysqli_fetch_assoc($result) ; 
-            $workerID = $_POST['workerID'] ; 
-            $description = $_POST['description'] ;
-            $jobID = $_POST['jobID'] ;
-            $clientID = $_SESSION['ID'] ;
-            echo $workerID . "-------" ;
-            echo $clientID . "-------" ;
-            echo $description . "-------" ;
-            echo $jobID ;
-            //not working.
-            $insertCommentQuery = "INSERT INTO comment (jobID, workerID, clientID, description) values($jobID, '$workerID', '$clientID', '$description') "  ; 
-            $in = "insert into comment values(1,'sdff','asdf',adf') ";
-            $result2 = $conn->query($insertCommentQuery) ;
-            echo("Error description: " . $conn->error);
-            if( $result2  ){ 
-                echo "hellw" ;
-                echo"<script>alert('Comment made successfully. Redirecting to worker's profile.') </script>" ; 
-                echo"<script>document.location='workerProfile.php?workerID=$workerID'</script>" ;
+        $updateWorkerRatingQuery = "update worker set averageRating = '$averageRating' , ratingCount = '$ratingCount' where workerID = '$workerID' " ; 
+        $result = $conn->query($updateWorkerRatingQuery) ;
 
-            }else{ 
-                echo"<script>alert('Comment made successfully. Redirecting to worker's profile.') </script>" ; 
-                //echo"<script>alert('Unable to make a comment. Try again Late.Redirecting to main lobby.')</script>" ; 
-                //echo"<script>document.location='mainlobby.php'</script>" ;
-            }  
-
-        }
-        else{ 
-            //echo mysqli_error($conn);
-            $error = 'Invalid workerID. Try again.' ; 
-            //echo"<script>document.location='jointeam.php'</script>" ; 
-        }   
-        $conn->close();
-    }   
+        echo"<script>document.location='workerProfile.php?workerID=$workerID'</script>" ;
+      }else{ 
+        echo"<script>alert('Unable to make comment at this moment.') </script>" ; 
+      }  
+    }
+    $conn->close();  
+  }else{
+    header("location:mainlobby.php");
+  } 
 }
 else if( $_SESSION['userType'] == "W" ){
     header("location:mainlobby.php") ;
@@ -114,17 +122,26 @@ else{
     <form action="" method="POST" autocomplete="off" >
       <div class="form">
 
-        <h2>(to be filled)</h2>
+        <h2>Comment</h2>
         <p><?php echo $error ; ?></p>
             
         <div class="fname">
-          <label for="workerID">Worker ID</label><br>
-          <input type = "text" id="workerID" name="workerID" placeholder="Eg: fhsd8sfdfkj242Gsf23423" value='<?php echo $workerID ?>' required readonly> <br>
+          <label for="workerName">Worker Name</label><br>
+          <input type = "text" id="workerName" name="workerName"  value='<?php echo $workerName ?>' required readonly> <br>
         </div>
         <div class="fname">
-          <label for="jobID">Job ID</label><br>
-          <input type = "text" id="jobID" name="jobID"  value='<?php echo $jobID ?>' required readonly> <br>
+          <label for="workerID">Worker ID</label><br>
+          <input type = "text" id="workerID" name="workerID"  value='<?php echo $workerID ?>' required readonly> <br>
         </div>
+        
+        <label for="rating" >Rating</label><br>
+        <select name="rating" id="rating" style="width:100%; height:40px" required>
+        <option value=1>1</option>
+        <option value=2>2</option>
+        <option value=3>3</option>
+        <option value=4>4</option>
+        <option value=5 selected>5</option>
+        </select><br>
 
         <label for="description">Comment Description</label><br>
         <textarea id="description" name="description" required rows="10" cols="40"style="width:100%; height:200px" ></textarea><br>

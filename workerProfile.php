@@ -29,6 +29,7 @@ if( $_SESSION['userType'] ){
     $phoneNumber = $row['phoneNumber'] ; 
     $gender = $row['gender'] ; 
     $averageRating = $row['averageRating'] ;
+    $ratingCount = $row['ratingCount'] ;
     $paymentMode = $row['paymentMode'] ; 
     $experience = $row['experience'] ;
     $pincode = $row['pincode'] ;
@@ -73,7 +74,7 @@ if( $_SESSION['userType'] ){
                 <?php
                 echo "<p>Name : $name<br> workerID : $workerID<br>"; 
                 echo "Job Type : $jobType<br> Phone Number : $phoneNumber<br>Gender : $gender<br>Working Hours : $workingHours<br>" ;
-                echo "Payment Mode : $paymentMode<br>Average Rating : $averageRating<br>Experience : $experience<br>Pincode : $pincode<br>" ;
+                echo "Payment Mode : $paymentMode<br>Average Rating : $averageRating ($ratingCount)<br>Experience : $experience<br>Pincode : $pincode<br>" ;
 
                 if( $_SESSION['userType'] == "C" ){
                     echo "<div style='text-align:center;'><h3 style='font-size:1.25rem;font-weight:300; margin-top:20px; margin-bottom:20px'><a href='book.php?workerID=$workerID' id='submit-button'><button style='border-radius:7px'>Book Request</button></a></h3></div>" ;
@@ -94,10 +95,11 @@ if( $_SESSION['userType'] ){
                     while ( $row = mysqli_fetch_assoc($result) ) { 
             
                         $printClientID = $row['clientID'] ;
+                        $clientName = $row['clientName'] ;
                         $printDescription = $row['description'] ;  
                         $jobID = $row['jobID']; 
             
-                        echo "<div><h3 style='font-size:1.25rem;font-weight:300; margin-top:20px; margin-bottom:20px'>Client ID: $printClientID<br>Description: $printDescription<br></div>"; 
+                        echo "<div><h3 style='font-size:1.25rem;font-weight:300; margin-top:20px; margin-bottom:20px'>Client Name: $clientName<br>Client ID: $printClientID<br>Description: $printDescription<br></div>"; 
                         
                     }
                 }
