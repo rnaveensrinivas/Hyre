@@ -156,12 +156,12 @@ button:hover {
 
 .searchBox{
     background-image:url('captchaBackground.jpg');
-    background-size: 100% 100%; /*sets the background image size to full*/
+    background-size: 100%; /*sets the background image size to full*/
     background-repeat:no-repeat;
     padding-left:20px;
     text-align:center; 
     margin-bottom:8px; 
-    font-size:20px;
+    font-size:25px;
     color: rgb(33, 37, 41);
   }
   
