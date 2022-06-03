@@ -153,16 +153,18 @@ button:hover {
     background-color: rgb(112, 112, 112);
     color: rgb(255, 255, 255);
 }
+
 .searchBox{
-  background-image:url('captchaBackground.jpg');
-  background-size: 100%; /*sets the background image size to full*/
-  background-repeat:no-repeat;
-  padding-left:20px;
-  text-align:center; 
-  margin-bottom:8px; 
-  font-size:25px;
-  color: rgb(33, 37, 41);
-}
+    background-image:url('captchaBackground.jpg');
+    background-size: 100% 100%; /*sets the background image size to full*/
+    background-repeat:no-repeat;
+    padding-left:20px;
+    text-align:center; 
+    margin-bottom:8px; 
+    font-size:20px;
+    color: rgb(33, 37, 41);
+  }
+  
 input[type=radio] {
     width: 15px;
     height: 15px;
