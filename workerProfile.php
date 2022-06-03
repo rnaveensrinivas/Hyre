@@ -15,7 +15,6 @@ if( $_SESSION['userType'] ){
         header("location:searchWorker.php") ;
     }
 
-    
     $selectWorkers = "SELECT * FROM worker,account where worker.workerID=account.ID and workerID = '$workerID' ";
     $result = mysqli_query( $conn, $selectWorkers ) ;
     $row = mysqli_fetch_assoc($result) ;

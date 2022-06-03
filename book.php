@@ -137,10 +137,10 @@ else{
         <label for="landmark">Landmark</label><br>
         <input type = "text" id="landmark" name="landmark" placeholder="Eg: Opposite to Copper Kitchen" required> <br>
 
-        <button type="button" onclick="newCaptcha()" id="cap" title="Give a new Captcha.">New Captcha</button>
-        <input type="text"  id="captcha" class="searchBox" readonly>
-        <input type="text" id="enteredCaptcha" placeholder="Enter Above Captcha" style="text-align:center; font-size: 17px;"><br><br>
-        
+        <button type="button" onclick="newCaptcha()" id="cap" title="Give a new Captcha." style="margin-top:25px; border-radius:5px">New Captcha</button>
+        <input type="text"  id="captcha" oncopy="return false" class="searchBox" readonly>
+        <input type="text" id="enteredCaptcha" onpaste="return false" placeholder="Enter Above Captcha" style="text-align:center; font-size: 17px;"><br><br>
+
         <button type="submit" onclick="return validationBooking()" name="submit" id="submit-button" style="border-radius:5px">Request Worker</button>
       </div> 
     </form>

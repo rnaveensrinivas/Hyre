@@ -82,9 +82,10 @@ else if( $_SESSION['userType'] == "C"){
             $jobID = $row['jobID'] ; 
             $jobStatus = $row['jobStatus'] ;  
             $date = $row['date'] ; 
+            $workerName = $row['workerName'] ;
 
 
-            echo "<div style='text-align:center'><h3 style='font-size:1.25rem;font-weight:300; margin-top:20px; margin-bottom:20px'>Worker ID: $workerID<br>Description: $description<br></div>"; 
+            echo "<div style='text-align:center'><h3 style='font-size:1.25rem;font-weight:300; margin-top:20px; margin-bottom:20px'>Date : $date<br>Worker Name : $workerName<br>Worker ID: $workerID<br>Description: $description<br></div>"; 
             echo "<a href='viewUpcomingJob.php?jobID=$jobID&workerID=$workerID&clientID=$clientID&jobStatus=$jobStatus' id='submit-button'><div style='text-align:center'><button style='border-radius:5px'>View Job</button></div></a></h3>" ;
         }
     }
