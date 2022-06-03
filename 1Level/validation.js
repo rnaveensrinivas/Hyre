@@ -65,7 +65,10 @@ function checkPassword() {
             alert("Passwords don't match");
             return false;
         }
-        return true;
+        if(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).*$/.test(p1)){
+            return true;
+        }
+        alert("THe password should contain one lowercase, one uppercase letter and one number");
     }
     return false ;
 }
@@ -124,3 +127,5 @@ function checkLettersSpaces() {
     alert('Name should contain only uppercase , lowercase and spaces.');
     return false ;
 }
+
+
