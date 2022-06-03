@@ -31,9 +31,9 @@ function validationSignup(){
     var check = checkPassword() ;  
     var check2 = checkAge();
     var check3 = checkCaptcha() ; 
-    //var check4 = checkLettersSpaces() ;
+    var check4 = checkLettersSpaces() ;
 
-    if ( !check || !check2 || !check3 ) {
+    if ( !check || !check2 || !check3 || !check4) {
         return false;
     }
     return true ;
@@ -114,12 +114,10 @@ function checkDate(){
 }
 
 function checkLettersSpaces() {
-    var str = document.getElementById("nm").value;
+    var str = document.getElementById("name").value;
 
 
     if(/^[A-Za-z\s]+$/.test(str)){
-        alert('Valid');
-
         return true; 
     }
 
