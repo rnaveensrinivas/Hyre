@@ -146,14 +146,14 @@ if( isset($_POST['submit'])){ //Checking if the form is submitted.
         <input type="number" id="aadhaar" name="aadhaar" min="1000000000000000" max="9999999999999999" placeholder="Eg: 2567 7765 8586 5650" required><br>
 
         <label for="pwd1">Password</label><br>
-        <input type="password" id="pwd1" name="pwd1"  minlength="8" pattern="[0-9a-fA-F!@#$%^&*_-.\|/><,';:]" placeholder="Must have atleast 8 characters" required><br>
+        <input type="password" id="pwd1" name="pwd1"  minlength="8" pattern="[0-9a-fA-F!@#$%^&*_-.\|/><,';:]" placeholder="Must have at least 8 characters" required><br>
 
         <label for="pwd2">Confirm Password</label><br>
-        <input type="password" id="pwd2" name="pwd2"  minlength="8" pattern="[0-9a-fA-F!@#$%^&*_-.\|/><,';:]" placeholder="Must have atleast 8 characters" required><br><br>
+        <input type="password" id="pwd2" name="pwd2"  minlength="8" pattern="[0-9a-fA-F!@#$%^&*_-.\|/><,';:]" placeholder="Must have at least 8 characters" required><br><br>
 
-        <button type="button" onclick="newCaptcha()" id="cap" title="Give a new Captcha.">New Captcha</button>
-        <input type="text"  id="captcha" class="searchBox" readonly>
-        <input type="text" id="enteredCaptcha" placeholder="Enter Above Captcha" style="text-align:center; font-size: 17px;"><br><br>
+        <button type="button" onclick="newCaptcha()" id="cap" title="Give a new Captcha." style="margin-top:25px; border-radius:5px">New Captcha</button>
+        <input type="text"  id="captcha" oncopy="return false" class="searchBox" readonly>
+        <input type="text" id="enteredCaptcha" onpaste="return false" placeholder="Enter Above Captcha" style="text-align:center; font-size: 17px;"><br><br>
         
         <button type="submit" onclick="return validationSignup()" name="submit" id="submit-button">Create Account</button>
         <p style="font-size :15px; " >Already a user ? <a href="login.php" style="text-decoration:none; font-size: 15px;">Login</a></p>
