@@ -55,7 +55,7 @@ if( $_SESSION['userType'] == "W"){
     $workerID = $_SESSION['ID'] ; 
 
     //For displaying all the teams they have enrolled in. 
-    $selectAllJobs = "SELECT * FROM job where workerID='$workerID' and jobStatus in( 2,3,4,5) " ; 
+    $selectAllJobs = "SELECT * FROM job where workerID='$workerID' and jobStatus in( 2,3,4,5) order by date desc" ; 
     if ( $result = mysqli_query( $conn, $selectAllJobs ) ) { 
         while ( $row = mysqli_fetch_assoc($result) ) { 
 
@@ -63,8 +63,10 @@ if( $_SESSION['userType'] == "W"){
             $printDescription = $row['description'] ;  
             $jobID = $row['jobID'] ; 
             $clientName = $row['clientName'] ; 
+            $date = $row['date'] ; 
 
-            echo "<div style='text-align:center'><h3 style='font-size:1.25rem;font-weight:300; margin-top:20px; margin-bottom:20px' >Client Name : $clientName<br>Client ID : $printClientID<br>Description : $printDescription<br></div>"; 
+
+            echo "<div style='text-align:center'><h3 style='font-size:1.25rem;font-weight:300; margin-top:20px; margin-bottom:20px' >Date : $date<br>Client Name : $clientName<br>Client ID : $printClientID<br>Description : $printDescription<br></div>"; 
             echo "<a href='report.php?ID=$printClientID' id='submit-button'><div style='text-align:center'><button style='border-radius:5px'>Report</button></div></a></h3>" ;
         }
     }
@@ -86,7 +88,7 @@ else if( $_SESSION['userType'] == "C"){
     $clientID = $_SESSION['ID'] ; 
 
     //For displaying all the teams they have enrolled in. 
-    $selectAllJobs = "SELECT * FROM job where clientID='$clientID' and jobStatus in( 2,3,4,5) " ;
+    $selectAllJobs = "SELECT * FROM job where clientID='$clientID' and jobStatus in( 2,3,4,5) order by date desc " ;
     if ( $result = mysqli_query( $conn, $selectAllJobs ) ) { 
         while ( $row = mysqli_fetch_assoc($result) ) { 
 
@@ -94,8 +96,9 @@ else if( $_SESSION['userType'] == "C"){
             $printDescription = $row['description'] ;  
             $jobID = $row['jobID'] ; 
             $workerName = $row['workerName'] ;
+            $date = $row['date'] ; 
 
-            echo "<div style='text-align:center'><h3 style='font-size:1.25rem;font-weight:300; margin-top:20px; margin-bottom:20px' >Worker Name : $workerName<br>Worker ID: $printWorkerID<br>Description: $printDescription<br></div>"; 
+            echo "<div style='text-align:center'><h3 style='font-size:1.25rem;font-weight:300; margin-top:20px; margin-bottom:20px' >Date : $date<br>Worker Name : $workerName<br>Worker ID: $printWorkerID<br>Description: $printDescription<br></div>"; 
             echo "<a href='comment.php?workerID=$printWorkerID&jobID=$jobID' id='submit-button'><div style='text-align:center'><button style='border-radius:5px'>Comment</button></div></a></h3>" ;
             echo "<a href='report.php?ID=$printWorkerID' id='submit-button'><div style='text-align:center'><button style='border-radius:5px'>Report</button></div></a></h3>" ;
 

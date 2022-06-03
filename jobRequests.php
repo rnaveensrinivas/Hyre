@@ -50,7 +50,7 @@ if( $_SESSION['userType'] == "W"){
 
     $workerID = $_SESSION['ID'] ; 
 
-    $selectAllRequests = "SELECT * FROM job where workerID='$workerID' and bookingStatus = 0" ; 
+    $selectAllRequests = "SELECT * FROM job where workerID='$workerID' and bookingStatus = 0 order by date" ; 
     if ( $result = mysqli_query( $conn, $selectAllRequests ) ) { 
         while ( $row = mysqli_fetch_assoc($result) ) { 
 
@@ -58,9 +58,11 @@ if( $_SESSION['userType'] == "W"){
             $description = $row['description'] ;  
             $jobID = $row['jobID'] ; 
             $bookingStatus = $row['bookingStatus'] ;
+            $date = $row['date'] ; 
+            $clientName = $row['clientName'] ; 
 
             
-            echo "<div style='text-align:center'><h3 style='font-size:1.25rem;font-weight:300; margin-top:20px; margin-bottom:20px'>Client ID: $clientID<br>Description: $description<br></div>"; 
+            echo "<div style='text-align:center'><h3 style='font-size:1.25rem;font-weight:300; margin-top:20px; margin-bottom:20px'>Date: $date<br>Client Name: $clientName<br> Client ID: $clientID<br>Description: $description<br></div>"; 
             echo "<a href='viewRequest.php?jobID=$jobID&workerID=$workerID&clientID=$clientID&bookingStatus=$bookingStatus' id='submit-button'><div style='text-align:center'><button style='border-radius:5px; width:50%'>View Request</button></div></a></h3>" ;
         }
     }
@@ -71,7 +73,7 @@ else if( $_SESSION['userType'] == "C"){
 
     $clientID = $_SESSION['ID'] ; 
 
-    $selectAllRequests = "SELECT * FROM job where clientID='$clientID' and bookingStatus = 0" ; 
+    $selectAllRequests = "SELECT * FROM job where clientID='$clientID' and bookingStatus = 0 order by date" ; 
     if ( $result = mysqli_query( $conn, $selectAllRequests ) ) { 
         while ( $row = mysqli_fetch_assoc($result) ) { 
 
@@ -79,9 +81,12 @@ else if( $_SESSION['userType'] == "C"){
             $description = $row['description'] ;  
             $jobID = $row['jobID'] ; 
             $bookingStatus = $row['bookingStatus'] ;
+            $date = $row['date'] ; 
+            $workerName = $row['workerName'] ; 
 
 
-            echo "<div style='text-align:center'><h3 style='font-size:1.25rem;font-weight:300; margin-top:20px; margin-bottom:20px'>Worker ID: $workerID<br>Description: $description<br></div>"; 
+
+            echo "<div style='text-align:center'><h3 style='font-size:1.25rem;font-weight:300; margin-top:20px; margin-bottom:20px'>Date: $date<br> Worker Name: $workerName<br>Worker ID: $workerID<br>Description: $description<br></div>"; 
             echo "<a href='viewRequest.php?jobID=$jobID&workerID=$workerID&clientID=$clientID&bookingStatus=$bookingStatus' id='submit-button'><div style='text-align:center'><button style='border-radius:5px; width:50%'>View Request</button></div></a></h3>" ;
         }
     }

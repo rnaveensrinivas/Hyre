@@ -50,7 +50,7 @@ if( $_SESSION['userType'] == "W"){
 
     $workerID = $_SESSION['ID'] ; 
 
-    $selectAllUpcomingJobs = "SELECT * FROM job where workerID='$workerID' and jobStatus = 1" ; 
+    $selectAllUpcomingJobs = "SELECT * FROM job where workerID='$workerID' and jobStatus = 1 order by date" ; 
     if ( $result = mysqli_query( $conn, $selectAllUpcomingJobs ) ) { 
         while ( $row = mysqli_fetch_assoc($result) ) { 
 
@@ -58,9 +58,11 @@ if( $_SESSION['userType'] == "W"){
             $description = $row['description'] ;  
             $jobID = $row['jobID'] ;
             $jobStatus = $row['jobStatus'] ;  
+            $date = $row['date'] ; 
+            $clientName = $row['clientName'] ; 
 
             
-            echo "<div style='text-align:center'><h3 style='font-size:1.25rem;font-weight:300; margin-top:20px; margin-bottom:20px' >Client ID: $clientID<br>Description: $description<br></div>"; 
+            echo "<div style='text-align:center'><h3 style='font-size:1.25rem;font-weight:300; margin-top:20px; margin-bottom:20px' >Date : $date<br>Client Name : $clientName<br>Client ID: $clientID<br>Description: $description<br></div>"; 
             echo "<a href='viewUpcomingJob.php?jobID=$jobID&workerID=$workerID&clientID=$clientID&jobStatus=$jobStatus' id='submit-button'><div style='text-align:center'><button style='border-radius:5px'>View Job</button></div></a></h3>" ;
         }
     }
@@ -71,7 +73,7 @@ else if( $_SESSION['userType'] == "C"){
 
     $clientID = $_SESSION['ID'] ; 
 
-    $selectAllUpcomingJobs = "SELECT * FROM job where clientID='$clientID' and jobStatus = 1" ; 
+    $selectAllUpcomingJobs = "SELECT * FROM job where clientID='$clientID' and jobStatus = 1 order by date" ; 
     if ( $result = mysqli_query( $conn, $selectAllUpcomingJobs ) ) { 
         while ( $row = mysqli_fetch_assoc($result) ) { 
 
@@ -79,6 +81,7 @@ else if( $_SESSION['userType'] == "C"){
             $description = $row['description'] ;  
             $jobID = $row['jobID'] ; 
             $jobStatus = $row['jobStatus'] ;  
+            $date = $row['date'] ; 
 
 
             echo "<div style='text-align:center'><h3 style='font-size:1.25rem;font-weight:300; margin-top:20px; margin-bottom:20px'>Worker ID: $workerID<br>Description: $description<br></div>"; 
