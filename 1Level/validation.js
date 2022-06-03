@@ -113,14 +113,16 @@ function checkDate(){
     return true ;
 }
 
-/*
 function checkLettersSpaces() {
-    var str = document.getElementById('fname') ;
-    if( /^[a-zA-Z\s]+$/.test(str) ){
-        return true ; 
+    var str = document.getElementById("nm").value;
+
+
+    if(/^[A-Za-z\s]+$/.test(str)){
+        alert('Valid');
+
+        return true; 
     }
 
-    alert('Name should contain only uppercase , lowercase and spaces.') ;
+    alert('Name should contain only uppercase , lowercase and spaces.');
     return false ;
 }
-*/
