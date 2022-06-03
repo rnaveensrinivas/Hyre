@@ -114,7 +114,7 @@ function checkDate(){
 }
 
 function checkLettersSpaces() {
-    var str = document.getElementById("name").value;
+    var str = document.getElementById("fname").value;
 
 
     if(/^[A-Za-z\s]+$/.test(str)){
