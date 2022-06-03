@@ -31,6 +31,7 @@ function validationSignup(){
     var check = checkPassword() ;  
     var check2 = checkAge();
     var check3 = checkCaptcha() ; 
+    //var check4 = checkLettersSpaces() ;
 
     if ( !check || !check2 || !check3 ) {
         return false;
@@ -111,3 +112,15 @@ function checkDate(){
     
     return true ;
 }
+
+/*
+function checkLettersSpaces() {
+    var str = document.getElementById('fname') ;
+    if( /^[a-zA-Z\s]+$/.test(str) ){
+        return true ; 
+    }
+
+    alert('Name should contain only uppercase , lowercase and spaces.') ;
+    return false ;
+}
+*/
