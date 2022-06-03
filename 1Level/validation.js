@@ -68,7 +68,7 @@ function checkPassword() {
         if(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).*$/.test(p1)){
             return true;
         }
-        alert("THe password should contain one lowercase, one uppercase letter and one number");
+        alert("Password should contain one lowercase, one uppercase letter and one number.");
     }
     return false ;
 }
