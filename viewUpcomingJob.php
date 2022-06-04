@@ -31,6 +31,19 @@ if( isset($_GET['jobID']) && $_GET['jobStatus'] == 1 ){
     header("location:upcomingJobs.php") ; 
 }
 
+$selectClientPhoneNumberQuery = "SELECT * FROM account where ID='$clientID' " ; 
+$selectWorkerPhoneNumberQuery = "SELECT * FROM account where ID='$workerID' " ; 
+
+$result = mysqli_query( $conn, $selectClientPhoneNumberQuery ) ; 
+$result2 = mysqli_query( $conn, $selectWorkerPhoneNumberQuery ) ; 
+
+$row = mysqli_fetch_assoc($result) ; 
+$clientPhoneNumber = $row['phoneNumber'] ; 
+
+$row = mysqli_fetch_assoc($result2) ; 
+$workerPhoneNumber = $row['phoneNumber'] ;
+
+
 $selectThatJobQuery = "SELECT * FROM job where jobID = '$jobID'" ; 
 $result = mysqli_query( $conn, $selectThatJobQuery ) ;
 $row = mysqli_fetch_assoc($result) ;
@@ -147,6 +160,10 @@ else{
           <label for="workerID">Worker ID</label><br>
           <input type = "text" id="workerID" name="workerID" value='<?php echo $workerID ?>'readonly> <br>
         </div>
+        <div class="fname">
+          <label for="WorkerPhoneNumber">Worker Phone Number</label><br>
+          <input type = "text" id="workerPhoneNuber" name="workerPhoneNumber" value='<?php echo $workerPhoneNumber ?>'readonly> <br>
+        </div>
         <?php 
         }
         ?>
@@ -161,6 +178,10 @@ else{
         <div class="fname">
           <label for="clientID">Client ID</label><br>
           <input type = "text" id="clientID" name="clientID" value='<?php echo $clientID ?>'readonly> <br>
+        </div>
+        <div class="fname">
+          <label for="Client Phone Number">Client Phone Number</label><br>
+          <input type = "text" id="clientPhoneNumber" name="clientPhoneNumber" value='<?php echo $clientPhoneNumber ?>'readonly> <br>
         </div>
         <?php 
         }

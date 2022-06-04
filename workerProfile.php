@@ -81,6 +81,9 @@ if( $_SESSION['userType'] ){
                         echo "Phone Number : $phoneNumber<br>" ;
                     }
                 }
+                else{
+                    echo "Phone Number : $phoneNumber<br>" ; 
+                }
                 echo "Gender : $gender<br>Working Hours : $workingHours<br>" ;
                 echo "Payment Mode : $paymentMode<br>Average Rating : $averageRating ($ratingCount)<br>Experience : $experience<br>Pincode : $pincode<br>" ;
 
