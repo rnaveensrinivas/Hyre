@@ -38,7 +38,7 @@
         </div>
         <!--COMPLETE THIS REPORT AND SIGN OUT WITH NAVEEN -->
     </nav>
-        <div class="form">
+        <div class="form" style="width:100%">
             <h2>Job Requests</h2>
 
 <?php
