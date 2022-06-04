@@ -29,6 +29,14 @@ if ( isset($_POST['submit'])){
         $accountStatus = $row['accountStatus'] ; 
 
         if ( $accountStatus == 1 ){ // if it is a verifed account.
+            
+            //changing job to history. 
+
+            $updateUnrespondedQuery = "UPDATE job set jobStatus = 2 , bookingStatus = 4 where bookingStatus = 0 and jobStatus = 0 and date < CURRENT_DATE ;" ;
+            $updateCompletedQuery = "UPDATE job set jobStatus = 5 where bookingStatus = 1 and jobStatus = 1 and date < CURRENT_DATE ;" ;
+            $resultSet = $conn->query($updateCompletedQuery) ; 
+            $resultSet = $conn->query($updateUnrespondedQuery) ;         
+            
             header('location:../mainlobby.php');
         }
         else  if ( $accountStatus == 0 ){ 
