@@ -41,7 +41,7 @@
     </nav>
         
 
-        <div class="form" style="margin-top:100px">
+        <div class="form" style="margin-top:100px; width:100%;">
             <h2>Hi there.</h2>
 
 <?php
@@ -70,7 +70,7 @@ else if( $_SESSION['userType'] == "C"){
     echo "<p>Welcome, $name.<br>User ID : $ID</p>" ;
 ?>
         <div>
-        <button type="button" onclick="location.href='searchWorker.php'" name="searchWorker" id="submit-button" style="margin-top:15px; border-radius:5px">Search Worker</button>
+        <button type="button" onclick="location.href='searchWorker.php'" name="searchWorker" id="submit-button" style="margin-top:15px; width:50%; ">Search Worker</button>
         </div>        
 
 <?php

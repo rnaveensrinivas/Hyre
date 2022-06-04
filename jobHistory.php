@@ -40,7 +40,7 @@
         <!--COMPLETE THIS REPORT AND SIGN OUT WITH NAVEEN -->
     </nav>
 
-        <div class="form">
+        <div class="form" style="width:100%">
             <h2>Job History</h2>
 
 <?php
@@ -67,8 +67,8 @@ if( $_SESSION['userType'] == "W"){
 
 
             echo "<div style='text-align:center'><h3 style='font-size:1.25rem;font-weight:300; margin-top:20px; margin-bottom:20px' >Date : $date<br>Client Name : $clientName<br>Client ID : $printClientID<br>Description : $printDescription<br></div>"; 
-            echo "<a href='report.php?ID=$printClientID' id='submit-button'><div style='text-align:center'><button style='border-radius:5px'>Report</button></div></a></h3>" ;
-        }
+            echo "<a href='report.php?ID=$printClientID' id='submit-button'><div style='text-align:center'><button>Report</button></div></a></h3>" ;
+            echo "<hr style='margin-top:30px; border:0.5px solid grey; width:50%; margin:auto;'>";        }
     }
     else{ 
         //echo "<script>alert('You have to join a new team.')</script>" ; 
@@ -99,8 +99,9 @@ else if( $_SESSION['userType'] == "C"){
             $date = $row['date'] ; 
 
             echo "<div style='text-align:center'><h3 style='font-size:1.25rem;font-weight:300; margin-top:20px; margin-bottom:20px' >Date : $date<br>Worker Name : $workerName<br>Worker ID: $printWorkerID<br>Description: $printDescription<br></div>"; 
-            echo "<a href='comment.php?workerID=$printWorkerID&jobID=$jobID' id='submit-button'><div style='text-align:center'><button style='border-radius:5px'>Comment</button></div></a></h3>" ;
-            echo "<a href='report.php?ID=$printWorkerID' id='submit-button'><div style='text-align:center'><button style='border-radius:5px'>Report</button></div></a></h3>" ;
+            echo "<a href='comment.php?workerID=$printWorkerID&jobID=$jobID' id='submit-button'><div style='text-align:center'><button style='border-radius:5px; margin-bottom:20px;'>Comment</button></div></a></h3>" ;
+            echo "<a href='report.php?ID=$printWorkerID' id='submit-button'><div style='text-align:center'><button style='border-radius:5px; margin-bottom:50px;'>Report</button></div></a></h3>" ;
+            echo "<hr style='margin-top:30px; border:0.5px solid grey; width:50%; margin:auto;'>";
 
         }
     }

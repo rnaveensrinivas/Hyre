@@ -20,6 +20,7 @@ body {
     background-color: rgb(255, 255, 255);
  }
  .form {
+
      margin: auto; 
      /*to center a div element in the page, always say margin auto*/
      padding-left: 50px;
