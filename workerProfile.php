@@ -72,7 +72,16 @@ if( $_SESSION['userType'] ){
                 <h2 style='text-align:center'>Worker Profile</h2>
                 <?php
                 echo "<p>Name : $name<br> workerID : $workerID<br>"; 
-                echo "Job Type : $jobType<br> Phone Number : $phoneNumber<br>Gender : $gender<br>Working Hours : $workingHours<br>" ;
+                echo "Job Type : $jobType<br> " ; 
+                if( $_SESSION['userType'] == "C"){
+                    $clientID = $_SESSION['ID'] ; 
+                    $checkIfAnyAcceptanceExistsQuery = "SELECT * from job where workerID = '$workerID' AND bookingStatus = 1 AND clientID = '$clientID';" ;
+                    $resultSet = $conn->query($checkIfAnyAcceptanceExistsQuery) ;
+                    if( $resultSet->num_rows ){
+                        echo "Phone Number : $phoneNumber<br>" ;
+                    }
+                }
+                echo "Gender : $gender<br>Working Hours : $workingHours<br>" ;
                 echo "Payment Mode : $paymentMode<br>Average Rating : $averageRating ($ratingCount)<br>Experience : $experience<br>Pincode : $pincode<br>" ;
 
                 if( $_SESSION['userType'] == "C" ){
