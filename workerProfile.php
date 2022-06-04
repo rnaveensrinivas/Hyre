@@ -75,7 +75,7 @@ if( $_SESSION['userType'] ){
                 echo "Job Type : $jobType<br> " ; 
                 if( $_SESSION['userType'] == "C"){
                     $clientID = $_SESSION['ID'] ; 
-                    $checkIfAnyAcceptanceExistsQuery = "SELECT * from job where workerID = '$workerID' AND bookingStatus = 1 AND clientID = '$clientID';" ;
+                    $checkIfAnyAcceptanceExistsQuery = "SELECT * from job where workerID = '$workerID' AND bookingStatus = 1 AND clientID = '$clientID';" ; 
                     $resultSet = $conn->query($checkIfAnyAcceptanceExistsQuery) ;
                     if( $resultSet->num_rows ){
                         echo "Phone Number : $phoneNumber<br>" ;
