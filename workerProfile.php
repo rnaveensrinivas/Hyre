@@ -68,7 +68,7 @@ if( $_SESSION['userType'] ){
        
     </nav>
 
-            <div class="form">
+            <div class="form" style="width:100%">
                 <h2 style='text-align:center'>Worker Profile</h2>
                 <?php
                 echo "<p>Name : $name<br> workerID : $workerID<br>"; 
