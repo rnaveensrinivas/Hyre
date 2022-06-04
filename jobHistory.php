@@ -67,8 +67,10 @@ if( $_SESSION['userType'] == "W"){
 
 
             echo "<div style='text-align:center'><h3 style='font-size:1.25rem;font-weight:300; margin-top:20px; margin-bottom:20px' >Date : $date<br>Client Name : $clientName<br>Client ID : $printClientID<br>Description : $printDescription<br></div>"; 
-            echo "<a href='report.php?ID=$printClientID' id='submit-button'><div style='text-align:center'><button>Report</button></div></a></h3>" ;
-            echo "<hr style='margin-top:30px; border:0.5px solid grey; width:50%; margin:auto;'>";        }
+            echo "<a href='report.php?ID=$printClientID' id='submit-button'><div style='text-align:center'><button style='margin-bottom:30px;'>Report</button></div></a></h3>" ;
+            echo "<hr style='margin-top:30px; border:0.5px solid grey; width:50%; margin:auto;'>";        
+        }
+
     }
     else{ 
         //echo "<script>alert('You have to join a new team.')</script>" ; 

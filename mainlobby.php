@@ -56,8 +56,8 @@ if( $_SESSION['userType'] == "W"){
     $ID = $_SESSION['ID'] ; 
     echo "<p>Welcome, $name.<br>User ID : $ID</p>" ;
 ?>
-        <div>
-        <button type="button" onclick="location.href='workerProfile.php'" name="workerProfile" id="submit-button" style="margin-top:15px;  border-radius:5px" >My profile</button>
+        <div style="text-align:center">
+        <button type="button" onclick="location.href='workerProfile.php'" name="workerProfile" id="submit-button" style="margin-top:15px;  border-radius:5px; width:50%;" >My profile</button>
         </div>
 
 <?php
@@ -69,7 +69,7 @@ else if( $_SESSION['userType'] == "C"){
     $ID = $_SESSION['ID'] ; 
     echo "<p>Welcome, $name.<br>User ID : $ID</p>" ;
 ?>
-        <div>
+        <div style="text-align:center">
         <button type="button" onclick="location.href='searchWorker.php'" name="searchWorker" id="submit-button" style="margin-top:15px; width:50%; ">Search Worker</button>
         </div>        
 

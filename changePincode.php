@@ -91,7 +91,7 @@ else{
                 <label for="currentPincode">Current Pincode</label><br>
                 <input type="number" id="currentPincode" name="currentPincode" value="<?php echo $pincode?>" readonly >
 
-                <label for="pincode">New Pincode</label><br>
+                <label for="pincode" style="margin-top:25px">New Pincode</label><br>
                 <input type="number" id="pincode" name="pincode" min=600000 max=700000 placeholder="Eg : 600025"  >
                 
                 <button type="button" onclick="newCaptcha()" id="cap" title="Give a new Captcha." style="margin-top:25px; border-radius:5px">New Captcha</button>

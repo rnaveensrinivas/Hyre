@@ -92,7 +92,7 @@ if( $_SESSION['userType'] ){
                 }
                 else{
                     ?>
-                    <div><button type="button" onclick="location.href='editWorkerDetails.php'" name="editWorkerDetails" id="submit-button" style="margin-top:15px;  border-radius:5px">Edit</button></div>
+                    <div style="text-align:center"><button type="button" onclick="location.href='editWorkerDetails.php'" name="editWorkerDetails" id="submit-button" style="margin-top:15px; width:50%;">Edit</button></div>
                     <?php
                 }
 
@@ -111,7 +111,7 @@ if( $_SESSION['userType'] ){
                         $jobID = $row['jobID']; 
             
                         echo "<div><h3 style='font-size:1.25rem;font-weight:300; margin-top:20px; margin-bottom:20px'>Client Name: $clientName<br>Client ID: $printClientID<br>Description: $printDescription<br></div>"; 
-                        
+                        echo "<hr style='margin-top:30px; border:0.5px solid grey; width:100%; margin:auto;'>";  
                     }
                 }
                 ?>
