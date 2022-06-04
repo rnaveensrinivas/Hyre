@@ -28,12 +28,12 @@ function validationBooking(){
 }
 
 function validationSignup(){
-    var check4 = checkLettersSpaces() ;
+    var check1 = checkLettersSpaces() ;
     var check2 = checkAge();
-    var check = checkPassword() ;  
-    var check3 = checkCaptcha() ; 
+    var check3 = checkPassword() ;  
+    var check4 = checkCaptcha() ; 
 
-    if ( !check || !check2 || !check3 || !check4) {
+    if ( !check1 || !check2 || !check3 || !check4) {
         return false;
     }
     return true ;
