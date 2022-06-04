@@ -28,10 +28,10 @@ function validationBooking(){
 }
 
 function validationSignup(){
-    var check = checkPassword() ;  
-    var check2 = checkAge();
-    var check3 = checkCaptcha() ; 
     var check4 = checkLettersSpaces() ;
+    var check2 = checkAge();
+    var check = checkPassword() ;  
+    var check3 = checkCaptcha() ; 
 
     if ( !check || !check2 || !check3 || !check4) {
         return false;
