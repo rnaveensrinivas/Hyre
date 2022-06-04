@@ -101,21 +101,14 @@ else{
         <a class="navbar-brand ms-4" href="index.html">Hyre</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleButton" aria-controls="navbarToggleButton" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-          </button>
+        </button>
         <div class="collapse navbar-collapse" id="navbarToggleButton">
           <ul class="navbar-nav px-4 ms-auto"> <!--from documentation-->
-            <li class="nav-item"><a class="nav-link" href="index.html">About</a></li>
-        </ul>
-        <ul class="navbar-nav px-4"> <!--from documentation-->
-          <li class="nav-item"><a class="nav-link" href="1Level/contact.html">Contact</a></li>
-      </ul>
-        <ul class="navbar-nav px-4"> <!--from documentation-->
-            <li class="nav-item"><a class="nav-link" href="1Level/login.php">Login</a></li>
-        </ul>
-        <ul class="navbar-nav px-4"> <!--from documentation-->
-            <li class="nav-item"><a class="nav-link" href="1Level/signup.php">Signup</a></li>
-        </ul>
-       
+            <li class="nav-item"><a class="nav-link" href="mainlobby.php">Lobby</a></li>
+          </ul>
+          <ul class="navbar-nav px-4"> 
+            <li class="nav-item"><a class="nav-link" href="logout.php">Sign Out</a></li>
+          </ul>
         </div>
         <!--COMPLETE THIS REPORT AND SIGN OUT WITH NAVEEN -->
     </nav>
@@ -146,11 +139,11 @@ else{
         <label for="description">Comment Description</label><br>
         <textarea id="description" name="description" required rows="10" cols="40"style="width:100%; height:200px" ></textarea><br>
 
-        <button type="button" onclick="newCaptcha()" id="cap" title="Give a new Captcha." style="height:47px; margin-top: 25px;border-radius:5px">New Captcha</button>
-        <input type="text"  id="captcha" class="searchBox" readonly>
-        <input type="text" id="enteredCaptcha" placeholder="Enter Above Captcha" style="text-align:center; font-size: 17px;"><br><br>
-        
-        <button type="submit" onclick="return checkCaptcha()" name="submit" id="submit-button" style="border-radius:5px">Submit Comment</button>
+        <button type="button" onclick="newCaptcha()" id="cap" title="Give a new Captcha." style="margin-top:25px; border-radius:5px">New Captcha</button>
+        <input type="text"  id="captcha" oncopy="return false" class="searchBox" readonly>
+        <input type="text" id="enteredCaptcha" onpaste="return false" placeholder="Enter Above Captcha" style="text-align:center; font-size: 17px;"><br><br>
+
+        <button type="submit" onclick="return checkCaptcha()" name="submit" id="submit-button" style="border-radius:5px">Comment</button>
         
         
 
