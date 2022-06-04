@@ -65,7 +65,7 @@ if( $_SESSION['userType'] == "C" ){
                 <option value="F">Female</option>
                 </select>
 
-                    <button type="submit" name="submit" id="submit-button" style="margin-top:20px ; border-radius:10px; width:30%; margin:auto; display:block;">Search</button>
+                <button type="submit" name="submit" id="submit-button" style="margin-top:20px ;border-radius:10px; margin:auto; display:block;">Search</button>
 
 
             </div> 

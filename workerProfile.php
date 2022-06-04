@@ -67,7 +67,7 @@ if( $_SESSION['userType'] ){
         </div>
        
     </nav>
-    
+
             <div class="form">
                 <h2 style='text-align:center'>Worker Profile</h2>
                 <?php
@@ -85,7 +85,7 @@ if( $_SESSION['userType'] ){
                 echo "Payment Mode : $paymentMode<br>Average Rating : $averageRating ($ratingCount)<br>Experience : $experience<br>Pincode : $pincode<br>" ;
 
                 if( $_SESSION['userType'] == "C" ){
-                    echo "<div style='text-align:center;'><h3 style='font-size:1.25rem;font-weight:300; margin-top:20px; margin-bottom:20px'><a href='book.php?workerID=$workerID' id='submit-button'><button style='border-radius:7px'>Book Request</button></a></h3></div>" ;
+                    echo "<div style='text-align:center;'><a href='book.php?workerID=$workerID' id='submit-button'><button type='submit' style='border-radius:7px; width:50%'>Book Request</button></a></div>" ;
                 }
                 else{
                     ?>
