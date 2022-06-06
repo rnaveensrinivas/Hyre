@@ -118,7 +118,7 @@ else{
                 <label for="reportedID">User ID to report</label><br>
                 <?php
                 if( isset($_GET['ID'])){ ?>
-                <input type="text" id="reportedID" name="reportedID" minlength="32" maxlength="32" required value=' <?php echo $reportedID ?>' readonly >
+                <input type="text" id="reportedID" name="reportedID" minlength="32" maxlength="32" required value='<?php echo $reportedID ?>' readonly >
                 <?php }
                 else{ ?>
                 <input type="text" id="reportedID" name="reportedID" minlength="32" maxlength="32" required >
