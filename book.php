@@ -42,7 +42,7 @@ if( $_SESSION['userType'] == "C" ){
             $clientID = $_SESSION['ID'] ;
             $clientName = $_SESSION['name'] ; 
 
-            $query = "insert into job(clientID, clientName, workerID, workerName, landmark, pincode, time, date, workType, description,bookingStatus, jobStatus, clientRating, workerRating) values('$clientID', '$clientName', '$workerID', '$workerName', '$landmark' , '$pincode', '$time', '$date', '$workType', '$description', 0 , 0 , 0 , 0 )" ; 
+            $query = "insert into job(clientID, clientName, workerID, workerName, landmark, pincode, time, date, workType, description,bookingStatus, jobStatus, clientRating, workerRating) values('$clientID', '$clientName', '$workerID', '$workerName', '$landmark' , '$pincode', '$time', '$date', '$jobType', '$description', 0 , 0 , 0 , 0 )" ; 
             $result = $conn->query($query) ; 
 
             if( $result ){ 
