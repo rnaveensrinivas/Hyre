@@ -85,7 +85,7 @@ if( $_SESSION['userType'] ){
                     echo "Phone Number : $phoneNumber<br>" ; 
                 }
                 echo "Gender : $gender<br>Working Hours : $workingHours<br>" ;
-                echo "Payment Mode : $paymentMode<br>Average Rating : $averageRating ($ratingCount)<br>Experience : $experience<br>Pincode : $pincode<br>" ;
+                echo "Payment Mode : $paymentMode<br>Average Rating : $averageRating ($ratingCount)<br>Experience : $experience years<br>Pincode : $pincode<br>" ;
 
                 if( $_SESSION['userType'] == "C" ){
                     echo "<div style='text-align:center;'><a href='book.php?workerID=$workerID' id='submit-button'><button type='submit' style='border-radius:7px; width:50%'>Book Request</button></a></div>" ;
