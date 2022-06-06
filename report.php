@@ -126,8 +126,10 @@ else{
                 
                 <label for="type" style="margin-top:20px">Reporting reason</label><br>
                 <select name="type" id="type" style="width:100%; height:40px">
-                <option value="Assault">Assault</option>
-                <option value="Money Related">Money Related</option>
+                <option value="Misbehave">Misbehave</option>
+                <option value="Fake Account">Fake Account</option>
+                <option value="Money Related" selected>Money Related</option>
+                <option value="Punctuality Issue">Punctuality Issue</option>
                 <option value="Other">Other</option>
                 </select><br>
 
