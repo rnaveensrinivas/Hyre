@@ -3,7 +3,7 @@
 session_start() ;  
 include 'config.php' ; 
 
-$workerID ="" ;
+$workerID ="" ; 
 if( isset($_GET['workerID'] ) ){ 
     $workerID = $_GET['workerID'] ; 
     $query = "SELECT * FROM searchworker WHERE workerID = '$workerID' " ; 
