@@ -1,4 +1,4 @@
-function newCaptcha() {
+function newCaptcha() { //function that generates a new captcha.
     var alphabets = 'abcdefghijkmnopqrstuvwxyzABCDEFGHJKMNOPQRSTUVWXYZ234567890'.split('');
 
     var a = alphabets[Math.floor(Math.random() * 58)];
@@ -14,6 +14,7 @@ function newCaptcha() {
 
 }
 
+//below validation is used in booking's page.
 function validationBooking(){
 
     var check = checkCaptcha() ; 
@@ -27,6 +28,7 @@ function validationBooking(){
 
 }
 
+//below validation is used in sign up page.
 function validationSignup(){
     var check1 = checkLettersSpaces() ;
     var check2 = checkAge();
@@ -39,6 +41,7 @@ function validationSignup(){
     return true ;
 }
 
+//checking if the captcha matches.
 function checkCaptcha() {
 
     var captcha = document.getElementById('captcha').value;
@@ -55,6 +58,8 @@ function checkCaptcha() {
     return true ;
 }
 
+//checking if they passwords match.
+//if they match, check if they meet the format.
 function checkPassword() {
 
     var p1 = document.getElementById("pwd1").value;
@@ -73,7 +78,7 @@ function checkPassword() {
     return false ;
 }
 
-
+//checking if the age is valid or not.
 function checkAge(){
 
     var userDateInput = document.getElementById("dOB").value;  
@@ -102,6 +107,8 @@ function checkAge(){
     return true ;
 }
 
+
+//cheking if the entering date is valid or not. Used in booking.
 function checkDate(){
 
     var userDateInput = document.getElementById("date").value;  
@@ -116,6 +123,7 @@ function checkDate(){
     return true ;
 }
 
+//checking if the name is valid or not. 
 function checkLettersSpaces() {
     var str = document.getElementById("fname").value;
 

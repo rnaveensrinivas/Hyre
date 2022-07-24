@@ -1,5 +1,6 @@
 <?php
 
+//if someone tries to access this page directly. It won't permit. This can be accessed only after signup is successful.
 if($_GET['Status'] != "success"){ 
     header("location: ../index.html") ; 
 }

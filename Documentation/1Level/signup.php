@@ -1,8 +1,8 @@
 <?php
-session_start() ;
+session_start() ; //for checking $_SESSION['ID']
 include '../config.php';
 
-if( isset($_SESSION['ID'])){ //If the user already signed in and trys to signup.
+if( isset($_SESSION['ID'])){ //If the user already logged in and trys to signup, which is kind of philosocially wrong, since he can't access login or sign up page when he is already logged in.
   header("location: ../mainlobby.php") ;
 }
 
@@ -13,7 +13,7 @@ if( isset($_POST['submit'])){ //Checking if the form is submitted.
   $pwd1 = $_POST["pwd1"]; 
   $pincode=$_POST["pincode"];
 
-  $checkPincodeIfExistsQuery = "SELECT * from tamilnadupincodes where pincode = '$pincode'" ; 
+  $checkPincodeIfExistsQuery = "SELECT * from tamilnadupincodes where pincode = '$pincode'" ; //checking if the picode is valid or not.
   $checkPhoneNumberIfExistsQuery = "SELECT * FROM account WHERE phoneNumber = '$phoneNumber'" ; //Checking if phone already exists. 
   $checkAadhaarIDIfExistsQuery = "SELECT * FROM account WHERE aadhaar = '$aadhaar'" ; //Checking if aadhaar ID already exists. 
   $pincodeResult = mysqli_query( $conn , $checkPincodeIfExistsQuery ) ;
@@ -25,7 +25,7 @@ if( isset($_POST['submit'])){ //Checking if the form is submitted.
     echo "<script>alert('This Phone Number already exists. Go to login page.')</script>" ; 
   }
   else if( $aadhaarIDResult->fetch_assoc()){
-    echo "<script>alert('This Aadhaar ID Id already exists. Go to login page.')</script>" ; 
+    echo "<script>alert('This Aadhaar ID already exists. Go to login page.')</script>" ; 
   }
   else if( $pincodeResult->fetch_assoc()){
 
@@ -36,21 +36,21 @@ if( isset($_POST['submit'])){ //Checking if the form is submitted.
     $userType=$_POST["userType"];
     
 
-    $pwd1 = md5($pwd1) ; 
-    $ID = md5($aadhaar) ; 
+    $pwd1 = md5($pwd1) ; //encrypting the password
+    $ID = md5($aadhaar) ; //creating a unique id.
       
     $insertQuery = "INSERT INTO account(name,phoneNumber,gender,dOB,pincode,aadhaar,password,userType,ID,accountStatus,reportCount) VALUES ('$fname','$phoneNumber','$gender','$dOB','$pincode','$aadhaar','$pwd1','$userType','$ID',1,0)";
 
     if ($conn->query($insertQuery)){ 
-
+      //catergorizing them in here. 
       if( $userType == "C" ){
-        $conn->query("INSERT INTO client(clientID,clientName) values('$ID','$fname') ") ;
+        $conn->query("INSERT INTO client(clientID,clientName) values('$ID','$fname') ") ; //rest of the values are default.
       }
       else{
         $conn->query("INSERT INTO worker(workerID, workerName) values('$ID','$fname') ") ;
       }
       //echo "<script>alert('Account successfully created')</script>";
-      header('location:thankyou.php?Status=success');
+      header('location:thankyou.php?Status=success');//sending them to signup page. 
     }  
   }
   else{ 
