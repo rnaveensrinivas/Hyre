@@ -1,0 +1,204 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+h2 {
+    font-weight: 400;
+    margin-bottom: 35px;
+    color: rgb(33, 37, 41);
+    font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    text-align: center;
+    margin-bottom: 10px;
+}
+h1 {
+    font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    font-size: 50px;
+    font-weight: normal;
+    font-stretch: narrower;
+    color: rgb(33, 37, 41);
+}
+
+
+body {
+    background-color: rgb(255, 255, 255);
+ }
+ .form {
+
+     margin: auto; 
+     /*to center a div element in the page, always say margin auto*/
+     padding-left: 50px;
+     padding-right: 50px;
+     padding-bottom: 50px;
+     padding-top: 30px;
+     background-color: white;
+     min-height: xxx;
+     overflow: hidden;
+     /*lines 30 & 31 for div element to automatically adjust height
+     according to content inside the div tag*/
+     width: 40%;
+     border-radius: 15px;
+     /* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 30px 0 rgba(0,0,0,0.2); */
+     /*gives the shadow effect of the div element*/
+     font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+     line-height: 180%; /*the spacing between the two lines */
+     color: rgb(33, 37, 41);
+     font-size: 17px;
+     font-size: 1.25rem;
+     font-weight: 300;
+ }
+ input {
+     border-radius: 7px;
+     width: 100%;
+     height: 40px;
+     border: 2px solid rgb(213, 213, 213);
+     font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+     color: rgb(112, 112, 112);
+     margin: auto;
+     display: block; /*lines 41 and 42 align the input fields in the center*/
+
+ }
+select {
+    border-radius: 7px;
+    width: 100%;
+    height: 40px;
+    border: 2px solid rgb(213, 213, 213);
+    font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    color: rgb(112, 112, 112);
+    margin: auto;
+    display: block; /*lines 41 and 42 align the input fields in the center*/
+
+}
+textarea {
+    border: 2px solid rgb(213, 213, 213);
+    border-radius: 7px;
+    width:100%;
+    color: rgb(112, 112, 112);
+    height:200px;
+}
+ 
+ h3 {
+    font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    
+    font-weight: normal;
+    font-stretch: narrower;
+    color: rgb(33, 37, 41);
+    font-size:1.25rem;
+
+ }
+
+ input:focus { /*removes the automatic blue highlight*/
+     outline: none;
+     border-color:#91D6FF ;
+     box-shadow: 0 0 5px #91D6FF;
+ }
+textarea:focus { /*removes the automatic blue highlight*/
+    outline: none;
+    border-color:#91D6FF ;
+    box-shadow: 0 0 5px #91D6FF;
+}
+ button{
+     font-size: 17px;
+     padding: 15px;
+     top:50%;
+     background-color: rgb(33, 37, 41);
+     color: white;
+     border: none;
+     border-radius: 10px !important;
+     box-shadow: 0 4px 5px 0 rgba(0,0,0,0.2), 0 5px 5px 0 rgba(0,0,0,0.1);
+     font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+     color: rgb(255, 255, 255);
+     width: 30%;
+ }
+ .button {
+    font-size: 17px;
+    padding: 15px;
+    top:50%;
+    background-color: rgb(33, 37, 41);
+    color: white;
+    border: none;
+    border-radius: 10px !important;
+    box-shadow: 0 4px 5px 0 rgba(0,0,0,0.2), 0 5px 5px 0 rgba(0,0,0,0.1);
+    font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    color: rgb(255, 255, 255);
+    width: 30%;
+ }
+
+ ::placeholder {
+     color: rgb(198, 198, 198);
+ }
+
+ #cap {
+     font-size: 17px;
+     padding: 5px;
+     box-shadow: 0 4px 4px 0 rgba(0,0,0,0.1), 0 4px 4px 0 rgba(0,0,0,0.1);
+     width: 100%;
+     margin-bottom: 10px;
+ }
+ #submit-button {
+     width: 100%;
+}
+p {
+    color: rgb(33, 37, 41);
+    text-align: center;
+    font-size: 20px;
+    line-height: 30px;
+    font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+*{/*to set the captcha button to same width as the input field*/
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+} 
+
+button {
+    transition-duration: 0.4s;
+  }
+  
+button:hover {
+    background-color: rgb(112, 112, 112);
+    color: rgb(255, 255, 255);
+}
+
+.searchBox{
+    background-image:url('captchaBackground.jpg');
+    background-size: 100%; /*sets the background image size to full*/
+    background-repeat:no-repeat;
+    padding-left:20px;
+    text-align:center; 
+    margin-bottom:8px; 
+    font-size:25px;
+    color: rgb(33, 37, 41);
+  }
+  
+input[type=radio] {
+    width: 15px;
+    height: 15px;
+    /*do not use size; use width and height*/
+    display: inline;
+}
+
+.logout{
+    width:10%;
+    position: fixed;
+    top:2px;
+    right: 0;
+}
+
+
+
+a, a:hover, a:focus, a:active {
+    text-decoration: none;
+    color: inherit;
+} 
+.navbar-toggler {
+    width:10%;
+}
+.search-worker {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 90%;
+    margin: 10px auto;
+    position: relative;
+    text-align:center;
+}
+.navbar-toggler {
+    margin-right: 20px;
+}
